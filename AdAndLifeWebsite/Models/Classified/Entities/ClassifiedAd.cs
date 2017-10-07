@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace VitalConnection.AAL.Builder.Model
 {
 
+
 	public class IssueNumber
 	{
 		public int Year { get; set; }
@@ -28,7 +29,11 @@ namespace VitalConnection.AAL.Builder.Model
 
 	public class ClassifiedAd : DbObject, IDbObject
 	{
-		[Flags]
+
+        public const int PA = 0;
+        public const int BALTIMORE = 1;
+
+        [Flags]
 		public enum OptionsFlags
 		{
 			IsBorder = 1,
@@ -47,6 +52,7 @@ namespace VitalConnection.AAL.Builder.Model
 			CreditCard = 1
 		}
 
+        public int State { get; }
 		public int Id { get; private set; }
 		public string Advertiser { get; set; }
 		public ClassifiedRubric Rubric { get; set; }
@@ -66,8 +72,9 @@ namespace VitalConnection.AAL.Builder.Model
 
         public bool IsPromoting => WebsitePromitionPrice > 0 && WebsitePromotionExpirationDate.HasValue && WebsitePromotionExpirationDate.Value >= DateTime.Today;
 
-        public ClassifiedAd()
+        public ClassifiedAd(int state)
 		{
+            State = state;
 			StartIssue = new IssueNumber(DateTime.Now.Year, 1);
 			EndIssue = new IssueNumber(DateTime.Now.Year, 52);
 		}
@@ -97,7 +104,7 @@ namespace VitalConnection.AAL.Builder.Model
 			Id = (int)rdr["Id"];
 			Advertiser = (string)rdr["Advertizer"];
             var rubId = (int)rdr["RubricId"];
-			Rubric = ClassifiedRubric.GetById(rubId);
+			Rubric = ClassifiedRubric.GetById(State, rubId);
 			Text = (string)rdr["AdText"];
 
 			Options = 0;
@@ -164,11 +171,11 @@ namespace VitalConnection.AAL.Builder.Model
         }
 
 
-        private static ClassifiedAd[] _all;
+        private static ClassifiedAd[][] _all;
 
         private static DateTime lastRefreshTime = DateTime.MinValue;
 
-		public static ClassifiedAd[] All
+		public static ClassifiedAd[][] All
 		{
 			get
 			{
@@ -180,7 +187,9 @@ namespace VitalConnection.AAL.Builder.Model
 
 				if (_all == null)
 				{
-					_all = ReadCollectionFromDb<ClassifiedAd>("select * from [ClassifiedAd]");
+                    _all = new ClassifiedAd[2][];
+					_all[0] = ReadCollectionFromDb("select * from [ClassifiedAd]", () => new ClassifiedAd(PA));
+					_all[1] = ReadCollectionFromDb("select * from [ClassifiedAdBaltimore]", () => new ClassifiedAd(BALTIMORE));
 				}
 				return _all;
 			}

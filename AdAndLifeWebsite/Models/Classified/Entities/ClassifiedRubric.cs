@@ -35,23 +35,19 @@ namespace VitalConnection.AAL.Builder.Model
             ImageFilename = (string)rdr["ImageFilename"];
         }
 
-		private static Dictionary<int, ClassifiedRubric> _all;
+		private static ClassifiedRubric[][] _all;
 
         private static void ReadAllFromDb()
         {
-            var all = ReadCollectionFromDb<ClassifiedRubric>("select * from ClassifiedRubric");
-            _all = new Dictionary<int, ClassifiedRubric>();
-            foreach (var a in all)
-            {
-                _all.Add(a.Id, a);
-            }
+            _all = new ClassifiedRubric[2][];
+            _all[0] = ReadCollectionFromDb<ClassifiedRubric>("select * from ClassifiedRubric");
+            _all[1] = ReadCollectionFromDb<ClassifiedRubric>("select * from ClassifiedRubricBaltimore");
         }
 
-        public static ClassifiedRubric GetById(int id)
+        public static ClassifiedRubric GetById(int state, int id)
 		{
             if (_all == null) ReadAllFromDb();
-			if (!_all.ContainsKey(id)) return null;
-			return _all[id];
+			return _all[state].FirstOrDefault((x) => x.Id == id);
 		}
 
         public static void ReloadAllFromDb()
@@ -60,14 +56,8 @@ namespace VitalConnection.AAL.Builder.Model
         }
 
 
-        public static IEnumerable<ClassifiedRubric> All
-		{
-			get
-			{
-                if (_all == null) ReadAllFromDb();
-                return _all.Values;
-			}
-		}
+        public static ClassifiedRubric[][] All => _all;
+		
 
 		public override string ToString()
 		{

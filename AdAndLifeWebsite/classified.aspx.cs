@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdAndLifeWebsite.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -33,8 +34,9 @@ namespace AdAndLifeWebsite
             }
             catch { }
 
+            int state = Utility.IsBaltimore ? ClassifiedAd.BALTIMORE : ClassifiedAd.PA;
 
-            IEnumerable<ClassifiedAd> ads = ClassifiedAd.All;
+            IEnumerable<ClassifiedAd> ads = ClassifiedAd.All[state];
 
             if (adId > 0)
             {
@@ -66,7 +68,7 @@ namespace AdAndLifeWebsite
 
 
 
-            RubricRepeater.DataSource = ClassifiedRubric.All.Where((x) => x.Ads.Count > 0);
+            RubricRepeater.DataSource = ClassifiedRubric.All[state].Where((x) => x.Ads.Count > 0);
             RubricRepeater.DataBind();
 
         }

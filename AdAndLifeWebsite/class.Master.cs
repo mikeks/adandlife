@@ -1,4 +1,5 @@
-﻿using AdAndLifeWebsite.Models;
+﻿using AdAndLifeWebsite.Classes;
+using AdAndLifeWebsite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,16 @@ namespace AdAndLifeWebsite
 
         public bool IsAdmin => Models.SiteUser.IsAdmin;
 
+        public string DomainPA => Utility.DomainPA;
+        public string DomainBaltimore => Utility.DomainBaltimore;
+
+        protected bool IsBaltimore => Utility.IsBaltimore;
+
+        protected string CurrentUrlInBaltimore => Request.Url.ToString().Replace("adandlife", "baltimore.adandlife");
+        protected string CurrentUrlInPA => Request.Url.ToString().Replace("baltimore.", "");
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
         }
 
         bool _isAnySel = false;

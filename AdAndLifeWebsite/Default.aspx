@@ -31,7 +31,18 @@
 <p>
     Для <strong>рекламодателей</strong>, размещающих рекламу в газетах, установлены гибкие системы цен и скидок.
 </p>
-
-<img class="bannerBottom" src="ArticleImages/banners/4bc_C_Trucking Co_5343_17_P36.jpg" />
-
+    <div class="p">
+        На сайте доступны электронные версии газет в разделе <a href="/archive.aspx">архив</a>: 
+        <ul>
+            <li>
+                Последний выпуск газеты "Реклама и Жизнь" в Филадельфии и New Jersey <a target="_blank" href="<%= lastPhila.Url%>">номер <%= lastPhila.Number %></a>.
+            </li>
+            <li>
+                Последний выпуск газеты "Реклама и Жизнь" в Baltimore и Washington, D.C. <a target="_blank" href="<%= lastBalt.Url%>">номер <%= lastBalt.Number %></a>.
+            </li>
+            <li>
+                Последний выпуск газеты "Еврейская Жизнь" <a target="_blank" href="<%= lastJL.Url%>">номер <%= lastJL.Number %></a>.
+            </li>
+        </ul>
+    </div>
 </asp:Content>

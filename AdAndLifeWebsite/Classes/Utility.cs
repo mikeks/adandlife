@@ -12,6 +12,12 @@ namespace AdAndLifeWebsite.Classes
     public class Utility
     {
 
+        public static string DomainPA => IsProd ? "adandlife.com" : "adandlife-test.com";
+        public static string DomainBaltimore => IsProd ? "baltimore.adandlife.com" : "baltimore.adandlife-test.com";
+        public static bool IsBaltimore => HttpContext.Current.Request.Url.Host.Contains("baltimore");
+
+        public static bool IsProd => !HttpContext.Current.IsDebuggingEnabled;
+
         public static Bitmap ResizeImage(Image image, int width)
         {
             int height = image.Height * width / image.Width;

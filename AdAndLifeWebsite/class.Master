@@ -1,9 +1,10 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="class.master.cs" Inherits="AdAndLifeWebsite.MainMaster" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Реклама и Жизнь - бесплатная газета объявлений. Филадельфия, New Jersey, Baltimore.</title>
+    <title>Реклама и Жизнь - бесплатная газета объявлений. <%= IsBaltimore ? "Baltimore (Балтимор), Washington, DC" : "Philadelphia (Филадельфия), New Jersey"  %>, США</title>
     <meta name="Description" content="Реклама и Жизнь, Еврейская Жизнь - популярные бесплатные газеты объявление в Филадельфии, New Jersey, Baltimore. Classified, объявления, реклама, статьи, билеты." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="main.css?3" rel="stylesheet" />
@@ -18,6 +19,12 @@
 
   ga('create', 'UA-105084554-1', 'auto');
   ga('send', 'pageview');
+
+  function setState() {
+      if (document.getElementById('selState').selectedIndex == <%= IsBaltimore ? 0 : 1 %>) {
+          location.href = "<%= IsBaltimore ? CurrentUrlInPA : CurrentUrlInBaltimore %>";
+      }
+  }
 
 </script>
 </head>
@@ -39,15 +46,33 @@
             <img src="/Img/bg_city.png" class="bg-city" />
             <img src="/Img/bg_newspaper.png" class="bg-newspaper" />
 
+            <select id="selState" class="mobile-state" onchange="setState()">
+                <option>
+                    Philadelphia & New Jersey
+                </option>
+                <option <%= IsBaltimore ? "selected" : "" %>>
+                    Baltimore & Washington, D.C.
+                </option>
+            </select>
 
             <div class="cities-list">
-                Philadelphia
-                <span class="rombus">&#9670;</span>
-                New Jersey
-                <span class="rombus">&#9670;</span>
-                Baltimore
-                <span class="rombus">&#9670;</span>
-                Washington
+<%--                Your location: 
+                <select>
+                    <option>Philadelphia & New Jersey</option>
+                    <option>Baltimore & Washington, DC</option>
+                </select>--%>
+                <%if (IsBaltimore)
+                    { %>
+                <a href="<%= CurrentUrlInPA %>" class="off-city">Philadelphia</a>
+                <a href="<%= CurrentUrlInPA %>" class="off-city">New Jersey</a>
+                <span class="active-city">Baltimore</span>
+                <span class="active-city">Washington, DC</span>
+                <% } else { %>
+                <span class="active-city">Philadelphia</span>
+                <span class="active-city">New Jersey</span>
+                <a href="<%= CurrentUrlInBaltimore %>" class="off-city">Baltimore</a>
+                <a href="<%= CurrentUrlInBaltimore %>" class="off-city">Washington, D.C.</a>
+                <% } %>
             </div>
             <div class="vc-inc">
                 Vital Connections.Inc

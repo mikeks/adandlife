@@ -38,6 +38,9 @@
             </asp:Repeater>
         </div>
 
+    <div class="classified-note">
+        Показаны объявления в <%= AdAndLifeWebsite.Classes.Utility.IsBaltimore ? "Baltimore & Washington, DC" : "Philadelphia и New Jersey" %>. Переключить штат можно в верхней части сайта.
+    </div>
 
         <div class="classified-ad-container">
             <asp:Repeater runat="server" ID="ClassifiedRepeater">
