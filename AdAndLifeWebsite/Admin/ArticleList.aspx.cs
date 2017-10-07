@@ -14,6 +14,14 @@ namespace AdAndLifeWebsite.Admin
 		{
 			ArticlesRepeater.DataSource = WebsiteArticle.All;
 			ArticlesRepeater.DataBind();
+
+            if (Request["del"] != null)
+            {
+                int delId = int.Parse(Request["del"]);
+                WebsiteArticle.Delete(delId);
+                Response.Redirect("ArticleList.aspx");
+            }
+
 		}
 	}
 }

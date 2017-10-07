@@ -1,10 +1,7 @@
-﻿<%@ Page ValidateRequest="false" Language="C#" AutoEventWireup="true" CodeBehind="EditArticle.aspx.cs" Inherits="AdAndLifeWebsite.Admin.EditArticle" %>
+﻿<%@ Page ValidateRequest="false" Language="C#" AutoEventWireup="true" MasterPageFile="admin.Master" CodeBehind="EditArticle.aspx.cs" Inherits="AdAndLifeWebsite.Admin.EditArticle" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-	<title></title>
 	<script src="/tinymce/tinymce.min.js"></script>
 	<script>
 
@@ -23,22 +20,44 @@
 
 
 	</script>
-</head>
-<body>
-	<form id="form1" runat="server">
-		<div>
+</asp:Content>
 
-		Название статьи: <asp:TextBox runat="server" ID="ArticleName" />
-		</div>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentArea" runat="server">
 
+    <h1>Редактирование статьи</h1>
 
-		Текст статьи:
+	<%if (IsSaved)
+		{ %>
+	<div style="font-size:26px;color:green;margin:15px 0">Изменения сохранены</div>
+	<% } %>
+
+	<div style="font-size:26px;color:red;margin:15px 0"><%= ErrorMessage %></div>
+
+	<div>
+		Название статьи:
+			<asp:TextBox runat="server" ID="ArticleName" Width="300" />
+	</div>
+	
+	Текст статьи:
 		<textarea runat="server" id="ArticleText">
-<		</textarea>
+		</textarea>
 
-		<asp:Button runat="server" Text="Сохранить" />
 
-	</form>
 
-</body>
-</html>
+    <div style="margin:15px 0;">
+    <%foreach (var url in Article.GetImagesUrls())
+        {
+            Response.Write("<img style=\"width:100px\" src=\"" + url + "\" />");
+        }
+    %>
+    </div>
+
+    <div style="margin:15px 0;">
+	    Прежде чем использовать картинку на сайте, ее нужно загрузить тут. Допускается формат PNG или JPG.<br />
+	    <asp:FileUpload ID="FileUpload1" runat="server" />
+    </div>
+
+
+	<asp:Button runat="server" Text="Сохранить" />
+
+</asp:Content>

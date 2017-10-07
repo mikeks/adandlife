@@ -6,18 +6,34 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class article : System.Web.UI.Page
+namespace AdAndLifeWebsite
 {
 
-	protected WebsiteArticle Article;
 
-	protected void Page_Load(object sender, EventArgs e)
-	{
+    public partial class ArticlePage : System.Web.UI.Page
+    {
 
-		var name = Request["name"];
+        protected string CanonicalUrl;
 
-		//WebsiteArticle.GetById
+        protected WebsiteArticle Article;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
 
-	}
+            try
+            {
+                var aId = int.Parse(Request["id"]);
+                Article = WebsiteArticle.GetById(aId);
+                CanonicalUrl = "http://adandlife.com/article.aspx?id=" + aId.ToString();
+            }
+            catch (Exception)
+            {
+                Response.Redirect("/articles.aspx", true);
+            }
+
+
+
+        }
+    }
 }

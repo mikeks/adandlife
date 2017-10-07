@@ -61,7 +61,12 @@ namespace VitalConnection.AAL.Builder.Model
 		public string SM { get; set; }
 		public DateTime Created { get; private set; }
 
-		public ClassifiedAd()
+        public decimal WebsitePromitionPrice { get; set; }
+        public DateTime? WebsitePromotionExpirationDate { get; set; }
+
+        public bool IsPromoting => WebsitePromitionPrice > 0 && WebsitePromotionExpirationDate.HasValue && WebsitePromotionExpirationDate.Value >= DateTime.Today;
+
+        public ClassifiedAd()
 		{
 			StartIssue = new IssueNumber(DateTime.Now.Year, 1);
 			EndIssue = new IssueNumber(DateTime.Now.Year, 52);
@@ -111,7 +116,13 @@ namespace VitalConnection.AAL.Builder.Model
 
 			SM = (string)ResolveDbNull(rdr["clasSM"]);
 			Created = (DateTime)rdr["clasTimestamp"];
-		}
+
+            Rubric.Ads.Add(this);
+
+            WebsitePromitionPrice = (decimal)ResolveDbNull(rdr["WebsitePromitionPrice"], 0m);
+            WebsitePromotionExpirationDate = (DateTime?)ResolveDbNull(rdr["WebsitePromotionExpirationDate"]);
+
+        }
 
         public void Revert()
         {
@@ -155,10 +166,18 @@ namespace VitalConnection.AAL.Builder.Model
 
         private static ClassifiedAd[] _all;
 
+        private static DateTime lastRefreshTime = DateTime.MinValue;
+
 		public static ClassifiedAd[] All
 		{
 			get
 			{
+                if ((DateTime.Now - lastRefreshTime).TotalMinutes > 30) // refresh every 30 min
+                {
+                    _all = null; 
+                    lastRefreshTime = DateTime.Now;
+                }
+
 				if (_all == null)
 				{
 					_all = ReadCollectionFromDb<ClassifiedAd>("select * from [ClassifiedAd]");

@@ -1,18 +1,488 @@
 ﻿body {
 }
 
-.classifiedAd {
-    border: solid 1px #ccc;
+.classified-ad {
+    border: solid 1px #b1e0f0;
+    border-radius: 3px;
     margin: 10px;
     padding: 10px;
-    width: 300px;
-    height: 150px;
-    float: left;
-    font-size: 14px;
+    font-size: 16px;
     font-family: Arial;
+    background-color: #eee;
+    color: #333;
+}
+
+.classified-ad.premium {
+    color: #fefefe;
+    font-weight: bold;
+    background: #0c8290;
 }
 
 .classifiedRubric {
     display: inline-block;
     margin: 5px;
+}
+
+
+
+.logo {
+    border: solid 3px #088392;
+    border-radius: 8px;
+}
+
+.logo-holder {
+    margin-bottom: 3px;
+}
+
+.left-panel {
+    float: left;
+    margin-right: 15px;
+}
+
+.cities-list {
+    font-family: sans-serif;
+    letter-spacing: 6px;
+    font-size: 16px;
+    color: #1262a7;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.rombus {
+    color: #0c8290;
+}
+
+.vc-inc {
+    letter-spacing: 3px;
+    font-family: sans-serif;
+    font-size: 15px;
+    color: #0f808e;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.phone {
+    font-family: sans-serif;
+    font-size: 34px;
+    color: #ea3338;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.address {
+    font-family: sans-serif;
+    color: #225e92;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+
+
+
+.ad-rubric, .ad-rubric-sel {
+    display: inline-block;
+    text-decoration: none;
+    margin: 11px 5px;
+    border: solid 2px #b4c0c0;
+    border-radius: 9px;
+    padding: 5px;
+    text-transform: uppercase;
+    color: #0d63ae;
+    font-size: 17px;
+    font-family: sans-serif;
+    box-shadow: #b4c0c0 1px 2px 2px;
+    background: white;
+}
+
+.ad-rubric-sel {
+    background-color: #fffbd6;
+}
+
+.main-area {
+    min-width: 350px;
+}
+
+.coontent-area {
+    margin-top: 15px;
+    margin-left: 14px;
+    max-width: 1250px;
+}
+
+.search-bar {    color: #fefefe;
+    font-weight: bold;
+    width: 300px;
+    font-size: large;
+    border: solid 2px #b1e0f0;
+    border-radius: 5px 0 0 5px;
+    padding: 6px;
+    margin-left: 10px;
+}
+
+.search-button {
+    font-size: large;
+    height: 37px;
+    padding: 0 10px;
+    border: solid 2px #b1e0f0;
+    border-radius: 0 5px 5px 0;
+    margin: 0;
+    position: relative;
+    left: -1px;
+    cursor: pointer;
+}
+
+.bg-city {
+    height: 148px;
+    position: absolute;
+    z-index: -1;
+    left: 867px;
+}
+
+.bg-newspaper {
+    height: 317px;
+    position: absolute;
+    left: 1221px;
+    top: -42px;
+}
+
+.menu-bar {
+    background-color: #b1e0f0;
+    margin-top: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+.menu-item {
+    background-color: #0c8290;
+    transform: skewX(-20deg);
+    display: inline-block;
+    padding: 5px 20px;
+    margin: 0px 6px;
+}
+
+.menu-item-text, .menu-item-text-sel {
+    display: block;
+    transform: skewX(20deg);
+    color: white;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    font-size: 19px;
+    text-decoration: none;
+}
+
+.menu-item-text-sel {
+    color: #f7f322;
+}
+
+.article-list {
+    list-style-type: none;
+    font-size: 36px;
+    margin: 0;
+}
+
+
+.archive-block {
+    border: solid 2px #0c8290;
+    display: inline-block;
+    height: 77px;
+    font-family: Arial;
+    margin: 0;
+    vertical-align: top;
+    padding-top: 6px;
+    border-bottom-width: 0;
+    cursor: pointer;
+    width: 270px;
+}
+
+.archive-block.last {
+    border-radius: 0 6px 0 0;
+    border-left-width: 0;
+}
+
+.archive-block.first {
+    border-radius: 6px 0 0 0;
+    border-right-width: 0;
+}
+
+.archive-block.selected {
+    background: #0c8290;
+    color: white;
+}
+
+.selected .archive-title {
+    color: white;
+    font-weight: bold;
+}
+
+.archive-title {
+    color: #0c8290;
+    font-size: 21px;
+    font-family: Arial;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 4px;
+}
+
+.archive-title-city {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 2px;
+}
+
+.archive-list {
+    list-style-type: none;
+    margin: 0 -10px 0 -10px;
+    padding: 8px 10px 0 10px;
+    border-top: solid 3px #0c8290;
+
+}
+
+.archive-list li {
+    display: inline-block;
+}
+
+.archive-list a {
+    color: #0f62ab;
+    font-size: 19px;
+    text-decoration: none;
+    padding: 6px 21px 0 4px;
+    border-radius: 4px;
+    margin: 5px 0;
+    font-family: Arial;
+    font-style: italic;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.archive-list a:hover {
+    text-decoration: underline;
+}
+
+
+@media only screen and (max-width: 1620px) {
+    .bg-newspaper {
+        display: none;
+    }
+}
+
+
+
+@media only screen and (max-width: 1230px) {
+    .bg-city {
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .archive-block {
+        width: 113px;
+    }
+    .archive-title {
+        font-size: 15px;
+        margin-top: 0;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .bg-newspaper, .bg-city, .cities-list, .vc-inc, .phone, .address, .search-button {
+        display: none;
+    }
+    .menu-bar {
+        white-space: inherit;
+        background-color: white;
+    }
+    .menu-item {
+        border-radius: 3px;
+        transform: none;
+        padding: 5px 0 5px 10px;
+        margin: 3px 0px;
+        width: 46%;
+    }
+    .menu-item-text, .menu-item-text-sel {
+        transform: none;
+        font-size: 16px;
+    }
+
+    .left-panel {
+        float: none;
+        margin-right: 5px;
+        min-width: 350px;
+    }
+    .logo {
+        width: 100%;
+    }
+    .search-bar {
+        width: 94%;
+        margin-left: 0;
+        border-radius: 5px;
+    }
+    .coontent-area {
+        margin-left: 0;
+    }
+    .new-classified-ad {
+        float: right;
+        font-size: 12px;
+    }
+    .ad-rubric, .ad-rubric-sel {
+        width: 95%;
+        margin: 3px 0px;
+        font-size: 15px;
+    }
+    .classified-ad {
+        margin: 10px 0;
+    }
+
+    .banner_mob {
+        display: block!important;
+        width: 100%;
+    }
+    .banner {
+        display: none;
+    }
+    .classified-ad-container {
+        column-count: 1!important;
+    }
+}
+
+.classified-ad-container {
+    column-count: 2;
+}
+
+.bannerView {
+	float: right;
+	max-width: 300px;
+	margin-top: 20px;
+	width: 30%;
+}
+
+.bannerBottom {
+	max-width: 100%;
+}
+
+.banner {
+}
+
+.banner_mob {
+    display: none;
+}
+
+
+
+h1, h2 {
+    color: #27656d;
+    font-family: Arial;
+    font-weight: normal;
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+section h1 {
+    font-size: 24px;
+    text-decoration: none;
+    margin: 0 0 5px 0;
+}
+
+h1 a {
+    color: #0c8290;
+    text-decoration: none;
+}
+
+    h1 a:hover {
+        text-decoration: underline;
+    }
+
+p {
+    color: #444;
+    font-family: Arial;
+    font-weight: normal;
+}
+
+strong {
+    color: #27656d;
+}
+
+.login-link {
+    font-size: 10px;
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 200px;
+}
+
+.admin-add-archive {
+    clear: both;
+    width: 500px;
+    background: #ccc;
+    padding: 20px;
+}
+
+.form-msg div {
+    margin-bottom: 10px;
+}
+
+.form-msg span {
+    display: inline-block;
+    min-width: 200px;
+    font-size: 20px;
+    vertical-align: top;
+}
+
+.form-msg input, textarea {
+    width: 300px;
+}
+
+.form-msg textarea {
+    height: 100px;
+}
+
+.success {
+    color: green;
+    font-size: 23px;
+}
+
+.error {
+    color: red;
+    font-size: 23px;
+}
+
+.button {
+    text-decoration: none;
+    color: #05335a;
+    display: inline-block;
+    background: #b1e0f0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: #7cc2da 2px 2px 7px;
+    border: solid 1px #7cc2da;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #73dcff;
+    text-decoration: none;
+}
+
+.event-description {
+    margin: 0 0 30px 0;
+    font-size: 19px;
+    color: #333;
+}
+
+.new-classified-ad {
+    font-family: Arial;
+    color: #0c8290;
+}
+
+a {
+     color: #0c8290;
+}
+.classified-ad.premium a {
+    color: white;
+    font-weight: normal;
 }

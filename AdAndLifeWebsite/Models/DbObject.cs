@@ -51,7 +51,7 @@ namespace VitalConnection.AAL.Builder.Model
                     }
                 }
             }
-            catch (ConnectionProblemException)
+            catch (ConnectionProblemException e)
             {
             }
         }

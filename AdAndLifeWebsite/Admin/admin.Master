@@ -1,0 +1,22 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="admin.Master.cs" Inherits="AdAndLifeWebsite.AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="admin.css" rel="stylesheet" />
+    <title>Админка РИЖ</title>
+    <asp:ContentPlaceHolder ID="Head" runat="server" />
+</head>
+<body>
+    <div class="admin-menu">
+        <a href="/Admin/Default.aspx" >Админка</a>
+        <a href="/" >Вернуться на сайт</a>
+    </div>
+
+    <form id="form1" runat="server">
+	    <asp:ContentPlaceHolder ID="ContentArea" runat="server" />
+    </form>
+
+</body>
+</html>

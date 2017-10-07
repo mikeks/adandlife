@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="class.master.cs" Inherits="AdAndLifeWebsite.MainMaster" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Реклама и Жизнь - бесплатная газета объявлений. Филадельфия, New Jersey, Baltimore.</title>
+    <meta name="Description" content="Реклама и Жизнь, Еврейская Жизнь - популярные бесплатные газеты объявление в Филадельфии, New Jersey, Baltimore. Classified, объявления, реклама, статьи, билеты." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="main.css?3" rel="stylesheet" />
+    <meta property="fb:app_id" content="1519165781479119"/>
+    <asp:ContentPlaceHolder ID="Head" runat="server">
+    </asp:ContentPlaceHolder>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-105084554-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+
+        <div class="left-panel">
+            <div class="logo-holder">
+                <img class="logo" width="250" src="/Img/logo_adal.png" />
+            </div>
+            <div class="logo-holder">
+                <img class="logo" width="250" src="/Img/logo_eg.png" />
+            </div>
+
+
+
+        </div>
+        <div class="main-area">
+
+            <img src="/Img/bg_city.png" class="bg-city" />
+            <img src="/Img/bg_newspaper.png" class="bg-newspaper" />
+
+
+            <div class="cities-list">
+                Philadelphia
+                <span class="rombus">&#9670;</span>
+                New Jersey
+                <span class="rombus">&#9670;</span>
+                Baltimore
+                <span class="rombus">&#9670;</span>
+                Washington
+            </div>
+            <div class="vc-inc">
+                Vital Connections.Inc
+            </div>
+            <div class="phone">
+                215-354-0844
+            </div>
+            <div class="address">
+                Vc.inc@aol.com
+            </div>
+            <div class="address">
+                1051 County Line Rd., Unit 112, Huntingdon Valley, PA 19006 
+                
+                <a href="/Admin/Default.aspx" class="login-link"><%= IsAdmin ? "Админка" : "login" %></a>
+            </div>
+
+            <div class="menu-bar">
+                <div class="menu-item">
+                    <a href="/" class="menu-item-text<%= _isSel("default.aspx") %>">Главная</a>
+                </div>
+                <div class="menu-item">
+                    <a href="/classified.aspx" class="menu-item-text<%= _isSel("classified.aspx") %>">Объявления</a>
+                </div>
+                <div class="menu-item">
+                    <a href="/archive.aspx" class="menu-item-text<%= _isSel("archive.aspx") %>">Архив</a>
+                </div>
+                <div class="menu-item">
+                    <a href="/contacts.aspx" class="menu-item-text<%= _isSel("contacts.aspx") %>">Контакты</a>
+                </div>
+                <div class="menu-item">
+                    <a href="/articles.aspx" class="menu-item-text<%= _isSel("articles.aspx") %>">Статьи</a>
+                </div>
+                <%if (AdAndLifeWebsite.Models.TicketsSale.AllForSale.Count() > 0)
+                    { %>
+                <div class="menu-item" style="background-color: #a53692;">
+                    <a href="/tickets.aspx" class="menu-item-text<%= _isSel("tickets.aspx") %>">Билеты</a>
+                </div><% } %>
+            </div>
+
+			<div class="bannerView">
+				<img class="banner" src="ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
+				<img class="banner" src="ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
+				<img class="banner" src="ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
+			</div>
+			
+            <div class="coontent-area">
+                <form id="form1" runat="server">
+                    <asp:ContentPlaceHolder ID="ContentArea" runat="server" />
+                </form>
+                <asp:ContentPlaceHolder ID="ContentAreaNoForm" runat="server" />
+            </div>
+            <img class="banner_mob" src="ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
+            <img class="banner_mob" src="ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
+            <img class="banner_mob" src="ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
+
+
+        </div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 ﻿using AdAndLifeWebsite.Models.Articles.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,9 @@ namespace AdAndLifeWebsite.Admin
 	public partial class EditArticle : System.Web.UI.Page
 	{
 
-		public string ArtText;
+        public WebsiteArticle Article;
+        public string ErrorMessage = "";
+		public bool IsSaved = false;
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -26,29 +29,51 @@ namespace AdAndLifeWebsite.Admin
 			{
 			}
 
-			WebsiteArticle art;
+			
 
 			if (id > 0)
 			{
-				art = WebsiteArticle.GetById(id);
+				Article = WebsiteArticle.GetById(id);
 			} else
 			{
-				art = new WebsiteArticle();
+				Article = new WebsiteArticle();
 			}
 
 
 			if (IsPostBack)
 			{
-				art.Txt = ArticleText.InnerHtml;
-				art.Name = ArticleName.Text;
-				art.Save();
+				Article.Txt = HttpUtility.HtmlDecode(ArticleText.InnerHtml);
+				Article.Name = ArticleName.Text;
 
-				Response.Redirect("~/Admin/ArticleList.aspx");
+				if (FileUpload1.HasFiles)
+				{
+					var fn = FileUpload1.FileName;
+					var ext = Path.GetExtension(fn).ToLowerInvariant();
+					if (ext != ".png" && ext != ".jpg")
+					{
+						ErrorMessage = "Картинка не загружена. Требуется формат PNG или JPG.";
+						return;
+					}
+                    try
+                    {
+                        Article.SaveImage(FileUpload1.FileBytes);
+                    }
+                    catch (Exception ee)
+                    {
+                        ErrorMessage = "Картинка не загружена. " + ee.Message;
+                        return;
+                    }
+                }
+
+                Article.Save();
+
+                IsSaved = true;
+				//Response.Redirect("~/Admin/ArticleList.aspx");
 
 			}
 
-			ArticleText.InnerHtml = art.Txt;
-			ArticleName.Text = art.Name;
+			ArticleText.InnerHtml = Article.Txt;
+			ArticleName.Text = Article.Name;
 
 
 		}

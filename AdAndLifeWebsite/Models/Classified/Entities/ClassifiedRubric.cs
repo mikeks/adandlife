@@ -15,6 +15,8 @@ namespace VitalConnection.AAL.Builder.Model
 		public string ImageFilename { get; private set; }
 		public int SortOrder { get; private set; }
 
+        public List<ClassifiedAd> Ads { get; set; } = new List<ClassifiedAd>();
+
 		public ClassifiedRubric()
 		{
 
@@ -35,18 +37,19 @@ namespace VitalConnection.AAL.Builder.Model
 
 		private static Dictionary<int, ClassifiedRubric> _all;
 
-		public static ClassifiedRubric GetById(int id)
-		{
-			if (_all == null)
-			{
-				var all = ReadCollectionFromDb<ClassifiedRubric>("select * from ClassifiedRubric");
-				_all = new Dictionary<int, ClassifiedRubric>();
-				foreach (var a in all)
-				{
-					_all.Add(a.Id, a);
-				}
-			}
+        private static void ReadAllFromDb()
+        {
+            var all = ReadCollectionFromDb<ClassifiedRubric>("select * from ClassifiedRubric");
+            _all = new Dictionary<int, ClassifiedRubric>();
+            foreach (var a in all)
+            {
+                _all.Add(a.Id, a);
+            }
+        }
 
+        public static ClassifiedRubric GetById(int id)
+		{
+            if (_all == null) ReadAllFromDb();
 			if (!_all.ContainsKey(id)) return null;
 			return _all[id];
 		}
@@ -61,7 +64,8 @@ namespace VitalConnection.AAL.Builder.Model
 		{
 			get
 			{
-				return _all.Values;
+                if (_all == null) ReadAllFromDb();
+                return _all.Values;
 			}
 		}
 
