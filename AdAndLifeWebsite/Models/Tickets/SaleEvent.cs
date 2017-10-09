@@ -9,14 +9,15 @@ using System.Linq;
 using System.Web;
 using VitalConnection.AAL.Builder.Model;
 
-namespace AdAndLifeWebsite.Models
+namespace AdAndLifeWebsite.Models.Tickets
 {
 
 
-    public class TicketsSale : DbObject, IDbObject
+    public class SaleEvent : DbObject, IDbObject
     {
         public int Id { get; set; } = 0;
         public string EventName { get; set; }
+        public string EventNameEng { get; set; }
         public string EventDescription { get; set; }
         //public int TotalTicketCount { get; set; }
         //public int SoldTicketCount { get; set; }
@@ -24,12 +25,17 @@ namespace AdAndLifeWebsite.Models
         public string UrlName { get; set; }
         public bool IsAvaliable { get; set; }
 
-        //public bool IsTicketsAvaliable => TotalTicketCount - SoldTicketCount > 0;
+		//public bool IsTicketsAvaliable => TotalTicketCount - SoldTicketCount > 0;
 
-        public void ReadFromDb(SqlDataReader rdr)
+		public IEnumerable<TicketType> Codes => TicketType.ForEvent(this);
+
+		public IEnumerable<Ticket> Tickets => Ticket.GetAvaliableTickets(this);
+
+		public void ReadFromDb(SqlDataReader rdr)
         {
             Id = (int)rdr["Id"];
             EventName = (string)rdr["EventName"];
+			EventNameEng = (string)rdr["EventNameEng"];
             EventDescription = (string)rdr["EventDescription"];
             //TotalTicketCount = (int)rdr["TotalTickets"];
             //SoldTicketCount = (int)rdr["SoldTickets"];
@@ -38,29 +44,29 @@ namespace AdAndLifeWebsite.Models
             UrlName = (string)rdr["UrlName"];
         }
 
-        private static TicketsSale[] _all;
+        private static SaleEvent[] _all;
 
-        public static IEnumerable<TicketsSale> AllForSale => All.Where((x) => x.IsAvaliable);
+        public static IEnumerable<SaleEvent> AllForSale => All.Where((x) => x.IsAvaliable);
 
-        public static TicketsSale[] All
+        public static SaleEvent[] All
         {
             get
             {
                 if (_all == null)
                 {
                     //_all = ReadCollectionFromDb<TicketsSale>("GetTicketsSales");
-                    _all = ReadCollectionFromDb<TicketsSale>("select * from ticket.SaleEvent order by Created");
+                    _all = ReadCollectionFromDb<SaleEvent>("select * from ticket.SaleEvent order by Created");
                 }
                 return _all;
             }
         }
 
-        public static TicketsSale GetById(int id)
+        public static SaleEvent GetById(int id)
         {
             return All.FirstOrDefault((x) => x.Id == id);
         }
 
-        public static TicketsSale GetByUrl(string url)
+        public static SaleEvent GetByUrl(string url)
         {
             return All.FirstOrDefault((x) => x.UrlName == url);
         }

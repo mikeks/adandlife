@@ -12,7 +12,9 @@ namespace AdAndLifeWebsite
     public partial class MainMaster : System.Web.UI.MasterPage
     {
 
-        public bool IsAdmin => Models.SiteUser.IsAdmin;
+		public bool HideBanners { get; set; } = false;
+
+		public bool IsAdmin => Models.SiteUser.IsAdmin;
 
         public string DomainPA => Utility.DomainPA;
         public string DomainBaltimore => Utility.DomainBaltimore;

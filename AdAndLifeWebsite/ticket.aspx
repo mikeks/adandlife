@@ -1,40 +1,45 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/class.Master" AutoEventWireup="true" CodeBehind="ticket.aspx.cs" Inherits="AdAndLifeWebsite.Ticket" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/class.Master" AutoEventWireup="true" CodeBehind="ticket.aspx.cs" Inherits="AdAndLifeWebsite.TicketPage" %>
 
 <%@ Import Namespace="AdAndLifeWebsite.Classes" %>
+<%@ Register Src="~/Controls/HallMap.ascx" TagPrefix="uc1" TagName="HallMap" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
+	<script src="/js/tickets.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentAreaNoForm" runat="server">
+
+	<script>
+		var eventId = <%= Sale.Id %>;
+		var avaliableTickets = [<% 
+		var f = true;
+		foreach (var t in Sale.Tickets)   {
+			if (!f) Response.Write(",");
+			Response.Write("{seat:\"" + t.Seat + "\",pr:\"" + t.Price + "\"}");
+			f = false;
+		}
+		%>]
+	</script>
 
     <h1>
         <%=Sale.EventName %>
     </h1>
     <div class="event-description">
         <%= Sale.EventDescription %>
-        <br /><br />
-        Нажмите на кнопку <strong>Buy Now</strong>, чтобы купить билет. Вы можете оплатить кредитной карточкой <strong>Visa</strong>, <strong>Master Card</strong>, <strong>Discover</strong> или напрямую через PayPal. 
     </div>
 
-    
+	<div id="ticketInfoBox" class="ticket-price-box">
+		Выберите места на карте зала.
+	</div>
 
-<%-- PRODUCTION: Хрен в ступе
-	<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="custom" value="5400615">
-<input type="hidden" name="hosted_button_id" value="4LST3AKX2CMHG">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>--%>
 
-<%--Sandbox: Африканская оргия--%>
+	<uc1:HallMap runat="server" id="HallMap" />
 
-<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="custom" value="5400615">
-<input type="hidden" name="hosted_button_id" value="R85J3RWJT3QYU">
-<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
+
+
+
+
+
 
 
 </asp:Content>

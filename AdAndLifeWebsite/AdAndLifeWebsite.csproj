@@ -79,12 +79,16 @@
     <Content Include="Admin\Login.aspx" />
     <Content Include="archive.aspx" />
     <Content Include="bin\Facebook.dll" />
+    <Content Include="Controls\HallMap.ascx" />
+    <Content Include="js\tickets.js" />
     <Content Include="Listener\readLog.aspx" />
     <Content Include="new\classified-paid.aspx" />
     <Content Include="new\classified-free.aspx" />
     <Content Include="new\classified.aspx" />
     <Content Include="FacebookInteraction\FacebookFeed.aspx" />
     <Content Include="js\adandlife.js" />
+    <Content Include="ticketBuyRequest.aspx" />
+    <Content Include="ticketReturn.aspx" />
     <Content Include="ticketSoldout.aspx" />
     <Content Include="ticket.aspx" />
     <Content Include="contacts.aspx" />
@@ -175,6 +179,13 @@
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\HallMap.ascx.cs">
+      <DependentUpon>HallMap.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\HallMap.ascx.designer.cs">
+      <DependentUpon>HallMap.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Listener\hook5763.ashx.cs">
       <DependentUpon>hook5763.ashx</DependentUpon>
     </Compile>
@@ -185,6 +196,8 @@
     <Compile Include="Listener\readLog.aspx.designer.cs">
       <DependentUpon>readLog.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tickets\Ticket.cs" />
+    <Compile Include="Models\Tickets\TicketType.cs" />
     <Compile Include="new\classified-paid.aspx.cs">
       <DependentUpon>classified-paid.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -201,6 +214,20 @@
     </Compile>
     <Compile Include="new\classified.aspx.designer.cs">
       <DependentUpon>classified.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticketBuyRequest.aspx.cs">
+      <DependentUpon>ticketBuyRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticketBuyRequest.aspx.designer.cs">
+      <DependentUpon>ticketBuyRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticketReturn.aspx.cs">
+      <DependentUpon>ticketReturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticketReturn.aspx.designer.cs">
+      <DependentUpon>ticketReturn.aspx</DependentUpon>
     </Compile>
     <Compile Include="ticketSoldout.aspx.cs">
       <DependentUpon>ticketSoldout.aspx</DependentUpon>
@@ -230,7 +257,7 @@
     <Compile Include="contacts.aspx.designer.cs">
       <DependentUpon>contacts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\TicketsSale.cs" />
+    <Compile Include="Models\Tickets\SaleEvent.cs" />
     <Compile Include="Models\Articles\Entities\WebsiteNewspaper.cs" />
     <Compile Include="Models\SiteUser.cs" />
     <Compile Include="tickets.aspx.cs">

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="main.css?3" rel="stylesheet" />
     <meta property="fb:app_id" content="1519165781479119"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <asp:ContentPlaceHolder ID="Head" runat="server">
     </asp:ContentPlaceHolder>
 <script>
@@ -105,28 +106,31 @@
                 <div class="menu-item">
                     <a href="/articles.aspx" class="menu-item-text<%= _isSel("articles.aspx") %>">Статьи</a>
                 </div>
-                <%if (AdAndLifeWebsite.Models.TicketsSale.AllForSale.Count() > 0)
-                    { %>
+                <%if (1==0 && AdAndLifeWebsite.Models.Tickets.SaleEvent.AllForSale.Count() > 0)
+					{ %>
                 <div class="menu-item" style="background-color: #a53692;">
                     <a href="/tickets.aspx" class="menu-item-text<%= _isSel("tickets.aspx") %>">Билеты</a>
                 </div><% } %>
             </div>
 
+			<%if (!HideBanners) { %>
 			<div class="bannerView">
-				<img class="banner" src="ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
-				<img class="banner" src="ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
-				<img class="banner" src="ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
+				<img class="banner" src="/ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
+				<img class="banner" src="/ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
+				<img class="banner" src="/ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
 			</div>
-			
+			<% } %>
+
             <div class="coontent-area">
                 <form id="form1" runat="server">
                     <asp:ContentPlaceHolder ID="ContentArea" runat="server" />
                 </form>
                 <asp:ContentPlaceHolder ID="ContentAreaNoForm" runat="server" />
             </div>
-            <img class="banner_mob" src="ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
-            <img class="banner_mob" src="ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
-            <img class="banner_mob" src="ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
+
+            <img class="banner_mob" src="/ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
+            <img class="banner_mob" src="/ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
+            <img class="banner_mob" src="/ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
 
 
         </div>

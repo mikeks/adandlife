@@ -20,7 +20,7 @@ namespace VitalConnection.AAL.Builder.Model
 
 
 
-        protected static SqlConnection GetConnection()
+        public static SqlConnection GetConnection()
         {
             var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CS"].ConnectionString);
             try
@@ -37,64 +37,68 @@ namespace VitalConnection.AAL.Builder.Model
 
         protected static void ReadSql(string sql, Action<SqlDataReader> f)
         {
-            try
+            using (var conn = GetConnection())
             {
-                using (var conn = GetConnection())
+                var cmd = new SqlCommand(sql, conn);
+                using (var rdr = cmd.ExecuteReader())
                 {
-                    var cmd = new SqlCommand(sql, conn);
-                    using (var rdr = cmd.ExecuteReader())
+                    while (rdr.Read())
                     {
-                        while (rdr.Read())
-                        {
-                            f(rdr);
-                        }
+                        f(rdr);
                     }
                 }
             }
-            catch (ConnectionProblemException e)
+        }
+
+        protected static void ReadSql(string storedProcName, Action<SqlCommand> addParAction, Action<SqlDataReader> f)
+        {
+            using (var conn = GetConnection())
             {
+				var cmd = new SqlCommand(storedProcName, conn) { CommandType =  CommandType.StoredProcedure };
+				addParAction?.Invoke(cmd);
+				using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        f(rdr);
+                    }
+                }
             }
         }
 
         private static void _exec(string storedProcName, Action<SqlCommand> addParAction, CommandType cmdType)
         {
-            try
+            using (var conn = GetConnection())
             {
-                using (var conn = GetConnection())
-                {
-                    var cmd = new SqlCommand(storedProcName, conn) { CommandType = cmdType };
-                    addParAction?.Invoke(cmd);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (ConnectionProblemException)
-            {
-            }
-            catch (Exception e)
-            {
-                Directory.CreateDirectory(@"c:\NewspaperBuilderErrors");
-                var dt = DateTime.Now.ToString("dd-MM-yyyy hh-mm-ss");
-                var s = 
-$@"Stored proc: {storedProcName}
-Error: {e.Message}
-Inner: {e.InnerException?.Message}
-Stack: {e.StackTrace}
-";
-                File.WriteAllText($@"c:\NewspaperBuilderErrors\{dt}.log", s);
+                var cmd = new SqlCommand(storedProcName, conn) { CommandType = cmdType };
+                addParAction?.Invoke(cmd);
+                cmd.ExecuteNonQuery();
             }
         }
 
-        protected static void ExecStoredProc(string storedProcName, Action<SqlCommand> addParAction)
+		public static void ExecStoredProc(string storedProcName, Action<SqlCommand> addParAction)
         {
             _exec(storedProcName, addParAction, CommandType.StoredProcedure);
         }
 
-        protected static void ExecSQL(string storedProcName, Action<SqlCommand> addParAction = null)
+        public static void ExecSQL(string storedProcName, Action<SqlCommand> addParAction = null)
         {
             _exec(storedProcName, addParAction, CommandType.Text);
         }
 
-        protected static T[] ReadCollectionFromDb<T>(string sql) where T : IDbObject, new()
+		protected static T[] ReadCollectionFromDb<T>(string storedProcName, Action<SqlCommand> addParAction) where T : IDbObject, new()
+		{
+			List<T> ss = new List<T>();
+			ReadSql(storedProcName, addParAction, (rdr) =>
+			{
+				var itm = new T();
+				itm.ReadFromDb(rdr);
+				ss.Add(itm);
+			});
+			return ss.ToArray();
+		}
+
+		protected static T[] ReadCollectionFromDb<T>(string sql) where T : IDbObject, new()
         {
             List<T> ss = new List<T>();
             ReadSql(sql, (rdr) =>

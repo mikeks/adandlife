@@ -1,6 +1,4 @@
-﻿body {
-}
-
+﻿
 .classified-ad {
     border: solid 1px #b1e0f0;
     border-radius: 3px;
@@ -365,8 +363,6 @@
 	max-width: 100%;
 }
 
-.banner {
-}
 
 .banner_mob {
     display: none;
@@ -525,4 +521,60 @@ span.active-city {
     background: #f0ea57;
     padding: 5px;
     display: none;
+}
+
+.ticket-price-box {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 20px;
+	color: #0c8290;
+	font-weight: bold;
+}
+
+.note {
+	font-size: 17px;
+	color: #424242;
+}
+
+.hall-map  {
+	border-collapse: collapse;
+}
+
+.hall-map-cont {
+	width: 100%;
+	overflow-x: auto;
+	padding: 25px 0;
+	margin: 20px 0;
+}
+
+	.hall-map td {
+		width: 30px;
+		height: 30px;
+		text-align: center;
+	}
+
+	.hall-map a {
+		border: solid 1px #0c8290;
+		width: 30px;
+		height: 24px;
+		display: block;
+		text-decoration: none;
+		padding-top: 6px;
+	}
+
+a.selSeat {
+	background-color: #0c8290;
+	color: white;
+}
+
+.buyButton {
+	font-size: 26px;
+	color: #ffffff;
+	background: #0c8290;
+	padding: 9px;
+}
+
+.ticketBuyFormCont {
+	vertical-align: bottom;
+	padding-left: 60px;
 }

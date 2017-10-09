@@ -1,5 +1,6 @@
 ﻿using AdAndLifeWebsite.Models;
 using AdAndLifeWebsite.Models.Articles.Entities;
+using AdAndLifeWebsite.Models.Tickets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,13 @@ namespace AdAndLifeWebsite.Admin
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-            SalesRepeater.DataSource = TicketsSale.All;
+            SalesRepeater.DataSource = SaleEvent.All;
             SalesRepeater.DataBind();
 
             if (Request["del"] != null)
             {
                 int delId = int.Parse(Request["del"]);
-                TicketsSale.Delete(delId);
+                SaleEvent.Delete(delId);
                 Response.Redirect("Tickets.aspx");
             }
 

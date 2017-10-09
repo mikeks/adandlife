@@ -1,5 +1,6 @@
 ﻿using AdAndLifeWebsite.Models;
 using AdAndLifeWebsite.Models.Articles.Entities;
+using AdAndLifeWebsite.Models.Tickets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +12,24 @@ namespace AdAndLifeWebsite
 {
 
 
-    public partial class Ticket : System.Web.UI.Page
+    public partial class TicketPage : System.Web.UI.Page
     {
 
-        protected TicketsSale Sale;
+        protected SaleEvent Sale;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+			(Master as MainMaster).HideBanners = true;
+
             try
             {
                 //var aId = int.Parse(Request["id"]);
                 var url = Request["url"];
                 if (url == null) throw new Exception();
-                Sale = TicketsSale.GetByUrl(url);
-                if (Sale == null) throw new Exception();
+                Sale = SaleEvent.GetByUrl(url);
+				
+
+				if (Sale == null) throw new Exception();
             }
             catch (Exception)
             {

@@ -1,5 +1,6 @@
 ﻿using AdAndLifeWebsite.Models;
 using AdAndLifeWebsite.Models.Articles.Entities;
+using AdAndLifeWebsite.Models.Tickets;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,7 @@ namespace AdAndLifeWebsite.Admin
 	public partial class EditTicket : System.Web.UI.Page
 	{
 
-        public TicketsSale Sale;
+        public SaleEvent Sale;
         public string ErrorMessage = "";
 		public bool IsSaved = false;
 
@@ -32,10 +33,10 @@ namespace AdAndLifeWebsite.Admin
 
 			if (id > 0)
 			{
-                Sale = TicketsSale.GetById(id);
+                Sale = SaleEvent.GetById(id);
 			} else
 			{
-                Sale = new TicketsSale();
+                Sale = new SaleEvent();
 			}
 
 
