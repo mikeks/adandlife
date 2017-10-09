@@ -578,3 +578,9 @@ a.selSeat {
 	vertical-align: bottom;
 	padding-left: 60px;
 }
+
+.event-image {
+	max-width: 250px;
+	float: left;
+	margin-right: 20px;
+}

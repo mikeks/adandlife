@@ -8,7 +8,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentAreaNoForm" runat="server">
-
 	<script>
 		var eventId = <%= Sale.Id %>;
 		var avaliableTickets = [<% 
@@ -24,7 +23,14 @@
     <h1>
         <%=Sale.EventName %>
     </h1>
+
+	<img src="/ArticleImages/events/<%= Sale.EventImage %>" class="event-image" alt="<%= Sale.EventName %>" />
+
     <div class="event-description">
+		Дата/время: <%= Sale.EventDate %><br />
+		Место проведения: <%= Sale.EventLocation %><br />
+		Адрес: <%= Sale.EventAddress %><br /><br />
+
         <%= Sale.EventDescription %>
     </div>
 
@@ -32,13 +38,7 @@
 		Выберите места на карте зала.
 	</div>
 
-
 	<uc1:HallMap runat="server" id="HallMap" />
-
-
-
-
-
 
 
 

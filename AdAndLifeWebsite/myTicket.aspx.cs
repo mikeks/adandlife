@@ -26,25 +26,36 @@ namespace AdAndLifeWebsite
 
 		protected SaleEvent Sale;
 		protected IEnumerable<Ticket> Tickets;
+		protected SellingTransaction Trans;
 
-
+		protected string Seats
+		{
+			get
+			{
+				var s = "";
+				foreach (var t in Tickets) {
+					s += t.Seat + ", ";
+				}
+				return s.Trim(',');
+			}
+		}
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
 
 			//EMailSender.SendTicketToUser()
-
+			
 
 			try
 			{
 				var transId = (int)Session["transactionId"];
-				var tr = SellingTransaction.GetById(transId);
-				if (tr == null) throw new Exception("can't find transaction id=" + transId.ToString());
+				Trans = SellingTransaction.GetById(transId);
+				if (Trans == null) throw new Exception("can't find transaction id=" + transId.ToString());
 
-				Sale = SaleEvent.GetById(tr.EventId);
+				Sale = SaleEvent.GetById(Trans.EventId);
 				if (Sale == null) throw new Exception("can't find sale");
 
-				Tickets = Ticket.GetTicketsForTransaction(tr);
+				Tickets = Ticket.GetTicketsForTransaction(Trans);
 
 			}
 			catch 

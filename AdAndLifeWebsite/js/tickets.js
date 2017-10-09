@@ -15,7 +15,7 @@ function checkBuyTicketForm() {
 	}
 
 	var nm1 = /[<>{}!~#$%^&*()_\+,\.\/\\]/.replace(nm, "");
-	if (nm != nm1) $('#buyerName').val(nm1);
+	if (nm !== nm1) $('#buyerName').val(nm1);
 
 	if (!$('#buyerEmail').val()) {
 		alert('Пожалуйста, укажите Ваше адрес электронной почты. На него будет отправлен Ваш электронный билет.');
@@ -58,7 +58,7 @@ $(function () {
 		var found = false;
 		for (var j = 0; j < avaliableTickets.length; j++) {
 			var stDt = avaliableTickets[j];
-			if (stDt.seat == seat) {
+			if (stDt.seat === seat) {
 				$(ss[i])
 					.addClass('aval')
 					.attr('href', '#')

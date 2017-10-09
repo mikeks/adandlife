@@ -88,6 +88,7 @@
     <Content Include="FacebookInteraction\FacebookFeed.aspx" />
     <Content Include="js\adandlife.js" />
     <Content Include="ticketBuyRequest.aspx" />
+    <Content Include="myTicket.aspx" />
     <Content Include="ticketReturn.aspx" />
     <Content Include="ticketSoldout.aspx" />
     <Content Include="ticket.aspx" />
@@ -197,6 +198,7 @@
       <DependentUpon>readLog.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Tickets\Ticket.cs" />
+    <Compile Include="Models\Tickets\SellingTransaction.cs" />
     <Compile Include="Models\Tickets\TicketType.cs" />
     <Compile Include="new\classified-paid.aspx.cs">
       <DependentUpon>classified-paid.aspx</DependentUpon>
@@ -221,6 +223,13 @@
     </Compile>
     <Compile Include="ticketBuyRequest.aspx.designer.cs">
       <DependentUpon>ticketBuyRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myTicket.aspx.cs">
+      <DependentUpon>myTicket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myTicket.aspx.designer.cs">
+      <DependentUpon>myTicket.aspx</DependentUpon>
     </Compile>
     <Compile Include="ticketReturn.aspx.cs">
       <DependentUpon>ticketReturn.aspx</DependentUpon>

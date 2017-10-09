@@ -19,6 +19,11 @@ namespace AdAndLifeWebsite.Models.Tickets
         public string EventName { get; set; }
         public string EventNameEng { get; set; }
         public string EventDescription { get; set; }
+
+		public string EventImage { get; set; }
+		public string EventLocation { get; set; }
+		public string EventAddress { get; set; }
+        public DateTime EventDate { get; set; }
         //public int TotalTicketCount { get; set; }
         //public int SoldTicketCount { get; set; }
         //public string PaypalButtonCode { get; set; }
@@ -36,11 +41,14 @@ namespace AdAndLifeWebsite.Models.Tickets
             Id = (int)rdr["Id"];
             EventName = (string)rdr["EventName"];
 			EventNameEng = (string)rdr["EventNameEng"];
-            EventDescription = (string)rdr["EventDescription"];
-            //TotalTicketCount = (int)rdr["TotalTickets"];
-            //SoldTicketCount = (int)rdr["SoldTickets"];
-            //PaypalButtonCode = (string)rdr["PaypalButtonCode"];
-            IsAvaliable = (bool)rdr["IsAvaliable"];
+			EventDescription = (string)rdr["EventDescription"];
+
+			EventImage = (string)rdr["EventImage"];
+			EventLocation = (string)rdr["EventLocation"];
+			EventAddress = (string)rdr["EventAddress"];
+			EventDate = (DateTime)rdr["EventDate"];
+
+			IsAvaliable = (bool)rdr["IsAvaliable"];
             UrlName = (string)rdr["UrlName"];
         }
 
