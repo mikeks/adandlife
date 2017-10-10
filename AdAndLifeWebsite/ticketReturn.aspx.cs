@@ -45,13 +45,13 @@ namespace AdAndLifeWebsite
 					b.CompleteTransaction(transactionCode);
 
 					Session.Add("transactionId", transId);
-					Response.Redirect("/myTicket.aspx", true);
-
 				}
 				catch (Exception er)
 				{
 					DbObject.ExecStoredProc("ticket.LogTransaction", (cmd) => cmd.Parameters.AddWithValue("@data", "PROC ERR: " + er.Message + " (" + Request.RawUrl + ")"));
 				}
+
+				Response.Redirect("/myTicket.aspx", true);
 			}
 
 

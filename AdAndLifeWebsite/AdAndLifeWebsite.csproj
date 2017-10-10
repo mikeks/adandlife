@@ -85,6 +85,8 @@
     <Content Include="Admin\Login.aspx" />
     <Content Include="archive.aspx" />
     <Content Include="bin\Facebook.dll" />
+    <Content Include="checkTicketLogin.aspx" />
+    <Content Include="checkTicket.aspx" />
     <Content Include="Controls\HallMap.ascx" />
     <Content Include="js\tickets.js" />
     <Content Include="Listener\readLog.aspx" />
@@ -185,6 +187,20 @@
     </Compile>
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkTicketLogin.aspx.cs">
+      <DependentUpon>checkTicketLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkTicketLogin.aspx.designer.cs">
+      <DependentUpon>checkTicketLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkTicket.aspx.cs">
+      <DependentUpon>checkTicket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkTicket.aspx.designer.cs">
+      <DependentUpon>checkTicket.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controls\HallMap.ascx.cs">
       <DependentUpon>HallMap.ascx</DependentUpon>

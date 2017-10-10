@@ -22,6 +22,7 @@ namespace AdAndLifeWebsite.Models.Tickets
 		public string Name { get; set; }
 		public string Email { get; set; }
         public string RedeemCode { get; set; }
+        public DateTime? RedeemDateTime { get; set; }
 
         //public bool IsTicketsAvaliable => TotalTicketCount - SoldTicketCount > 0;
 
@@ -32,6 +33,7 @@ namespace AdAndLifeWebsite.Models.Tickets
 			Name = (string)rdr["Name"];
 			Email = (string)rdr["Email"];
 			RedeemCode = (string)ResolveDbNull(rdr["RedeemCode"]);
+			RedeemDateTime = (DateTime?)ResolveDbNull(rdr["RedeemDateTime"]);
         }
 
 		public SellingTransaction(string name, string email)
@@ -47,6 +49,16 @@ namespace AdAndLifeWebsite.Models.Tickets
 		public static SellingTransaction GetById(int id)
 		{
 			return ReadCollectionFromDb<SellingTransaction>("select * from ticket.SellTransaction where Id = " + id.ToString()).FirstOrDefault();
+		}
+
+		public static SellingTransaction GetByRedeemCode(string redeemCode)
+		{
+			return ReadCollectionFromDb<SellingTransaction>("select * from ticket.SellTransaction where RedeemCode = '" + redeemCode + "'").FirstOrDefault();
+		}
+
+		public void TicketRedeemed()
+		{
+			ExecSQL("update ticket.SellTransaction set RedeemDateTime = GETDATE() where Id = " + Id);
 		}
 
 		public void BeginSellingTransaction(SaleEvent sale, IEnumerable<Ticket> tickets)
