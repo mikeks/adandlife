@@ -9,11 +9,12 @@
 <body>
 	Please wait...
 
-	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" id="frm" method="post">
 		<input type="hidden" name="cmd" value="_cart" />
 		<input type="hidden" name="upload" value="1" />
 		<input type="hidden" name="business" value="R28N4TKRNCR4E" />
 		<input type="hidden" name="currency_code" value="USD" />
+		<input type="hidden" name="handling_cart" value="<%= Sale.HandlingFee %>" />
 
 		<%
 			int i = 1;
@@ -26,10 +27,11 @@
 			} %>
 
 		<input type="hidden" name="custom" value="<%= TransactionId %>" />
-	
-		<input type="submit" />
 	</form>
 
+	<script>
+		document.getElementById('frm').submit();
+	</script>
 
 
 </body>

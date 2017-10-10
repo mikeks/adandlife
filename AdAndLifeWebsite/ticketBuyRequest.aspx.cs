@@ -15,6 +15,7 @@ namespace AdAndLifeWebsite
 		protected SaleEvent Sale;
 		protected List<Ticket> Tickets;
 		protected int TransactionId;
+		//protected decimal FeePerTicket;
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -39,6 +40,9 @@ namespace AdAndLifeWebsite
 					var t = Sale.Tickets.First((x) => x.Seat == seat);
 					Tickets.Add(t);
 				}
+
+				//var totalFee = 0.3M + 0.029M * (Tickets.Sum((x) => x.Price));
+				//FeePerTicket = totalFee / Tickets.Count;
 
 				var b = new SellingTransaction(name, email);
 				b.BeginSellingTransaction(Sale, Tickets);

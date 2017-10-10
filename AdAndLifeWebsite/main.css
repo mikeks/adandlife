@@ -524,7 +524,7 @@ span.active-city {
 }
 
 .ticket-price-box {
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-bottom: 20px;
 	font-size: 20px;
 	color: #0c8290;
@@ -580,7 +580,33 @@ a.selSeat {
 }
 
 .event-image {
-	max-width: 250px;
+	max-width: 350px;
 	float: left;
 	margin-right: 20px;
+	margin-bottom: 50px;
 }
+
+.buy-form-label {
+	font-size: 18px;
+	color: #0c8290;
+	font-weight: bold;
+	font-family: Arial;
+}
+
+.ticket-buy-input {
+	padding: 6px;
+}
+
+.ticket-uinfo-table td {
+	padding-top: 5px;
+}
+
+.ticket-step2note {
+	font-size: 20px;
+	margin-bottom: 13px;
+}
+.ticket-agreement {
+	width: 450px;
+	height: 80px;
+}
+

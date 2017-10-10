@@ -10,44 +10,83 @@ function checkBuyTicketForm() {
 	var nm = $('#buyerName').val().trim();
 	var email = $('#buyerEmail').val().trim();
 	if (!nm) {
-		alert('Пожалуйста, укажите Ваше имя.');
+		$('#ticketFormError').text('Пожалуйста, укажите Ваше имя.');
 		return false;
 	}
 
-	var nm1 = /[<>{}!~#$%^&*()_\+,\.\/\\]/.replace(nm, "");
+	var nm1 = nm.replace(/[<>{}!~#$%^&*()_\+,\.\/\\]/g, "");
 	if (nm !== nm1) $('#buyerName').val(nm1);
 
 	if (!$('#buyerEmail').val()) {
-		alert('Пожалуйста, укажите Ваше адрес электронной почты. На него будет отправлен Ваш электронный билет.');
+		$('#ticketFormError').text('Пожалуйста, укажите Ваше адрес электронной почты. На него будет отправлен Ваш электронный билет.');
 		return false;
 	}
 	if (!validateEmail($('#buyerEmail').val())) {
-		alert('Ошибка в адресе электронной почты. Проверьте, что адрес указан верно.');
+		$('#ticketFormError').text('Ошибка в адресе электронной почты. Проверьте, что адрес указан верно.');
 		return false;
 	}
+
+	if (!$('#cbAgreed')[0].checked) {
+		$('#ticketFormError').text('Вы должны согласиться с условиями продажи билетов для продложения.');
+		return false;
+	}
+
 	return true;
+}
+
+function submitForm() {
+	if (checkBuyTicketForm()) $('#buyForm')[0].submit();
+	return false;
+}
+
+function buyStep1() {
+	$('#step0').hide();
+	$('#step1').show();
+	$('#step2').hide();
+	return false;
+}
+
+
+function buyStep2() {
+	$('#step0').hide();
+	$('#step1').hide();
+	$('#step2').show();
+	return false;
 }
 
 $(function () {
 
 	function refr() {
-		var s = '<table><tr><td>Выбрано билетов: ' + tickets.length + '<br>';
-		var totPr = 0;
+		var s = 'Выбрано билетов: ' + tickets.length + '<br>';
+		if (tickets.length > 1) s += "Места: "; else s += "Место "
+		var totPr = handlingFee;
 		var seats = '';
 		for (var i = 0; i < tickets.length; i++) {
-			s += 'Место: ' + tickets[i].seat + '. Цена: $' + Number(tickets[i].pr).toFixed(0) + '<br>';
+			if (i > 0) s += ", ";
+			s += tickets[i].seat + ' ($' + Number(tickets[i].pr).toFixed(2) + ')';
 			seats += tickets[i].seat + ',';
 			totPr += +tickets[i].pr;
 		}
-		s += "<br>Итого: $" + Number(totPr).toFixed(0);
-		s += '</td><td class=ticketBuyFormCont><form method=post action="/ticketBuyRequest.aspx">'
-			+ '<input type="hidden" name="eventId" value="' + eventId + '"/>'
-			+ '<input type="hidden" name="seats" value="' + seats + '"/>'
-			+ '<input type="text" maxlength=100 id=buyerName name="buyerName" placeholder="Ваше имя" value=""/>'
-			+ '<input type="text" maxlength=250 name=buyerEmail name="buyerEmail" placeholder="Ваш e-mail" value=""/>'
-			+ '<input type=submit onclick="checkBuyTicketForm()" class="buyButton" value="Купить"/></form>';
-		s += '</td></tr></table>';
+		var totPr = "$" + Number(totPr).toFixed(2);
+		s += "<br>Handling fee: $" + handlingFee;
+		s += "<br>Итого: " + totPr;
+		s += "<div style='margin-top:5px'><a class=button href='#' onclick=buyStep2()>Далее</a></div>"
+
+		$('#hSeats').val(seats);
+
+		//s += '</td><td class=ticketBuyFormCont><form method=post action="/ticketBuyRequest.aspx">'
+		//	+ '<input type="hidden" name="eventId" value="' + eventId + '"/>'
+		//	+ '<input type="hidden" name="seats" value="' + seats + '"/>'
+		//	+ '<input type="text" maxlength=100 id=buyerName name="buyerName" placeholder="Ваше имя" value=""/>'
+		//	+ '<input type="text" maxlength=250 name=buyerEmail name="buyerEmail" placeholder="Ваш e-mail" value=""/>'
+		//	+ '<input type=submit onclick="checkBuyTicketForm()" class="buyButton" value="Купить"/></form>';
+		//s += '</td></tr></table>';
 		$('#ticketInfoBox').html(s);
+		var msg = "";
+		if (tickets.length == 1) msg = "Выбран 1 билет на сумму " + totPr;
+		else if (tickets.length < 5) msg = "Выбрано " + tickets.length + " билета на общую сумму " + totPr;
+		else msg = "Выбрано " + tickets.length + " билетов на общую сумму " + totPr;
+		$('#ticketInfoShort').text(msg);
 	}
 
 	var ss = $('.hall-map a[data-n]');

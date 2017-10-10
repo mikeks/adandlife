@@ -31,7 +31,7 @@ namespace AdAndLifeWebsite.Models.Tickets
 			EventId = (int)rdr["EventId"];
 			Name = (string)rdr["Name"];
 			Email = (string)rdr["Email"];
-			RedeemCode = (string)rdr["RedeemCode"];
+			RedeemCode = (string)ResolveDbNull(rdr["RedeemCode"]);
         }
 
 		public SellingTransaction(string name, string email)
@@ -46,7 +46,7 @@ namespace AdAndLifeWebsite.Models.Tickets
 
 		public static SellingTransaction GetById(int id)
 		{
-			return ReadCollectionFromDb<SellingTransaction>("select * from ticket.Buyer where Id = " + id.ToString()).FirstOrDefault();
+			return ReadCollectionFromDb<SellingTransaction>("select * from ticket.SellTransaction where Id = " + id.ToString()).FirstOrDefault();
 		}
 
 		public void BeginSellingTransaction(SaleEvent sale, IEnumerable<Ticket> tickets)
@@ -76,9 +76,11 @@ namespace AdAndLifeWebsite.Models.Tickets
 		{
 			var sb = new StringBuilder();
 			string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+			int secondsSinceMidnight = Convert.ToInt32(DateTime.Now.Subtract(DateTime.Today).TotalSeconds);
+			Random rnd = new Random(secondsSinceMidnight);
 			for (int i = 0; i < 8; i++)
 			{
-				var idx = new Random().Next(chars.Length);
+				var idx = rnd.Next(chars.Length);
 				sb.Append(chars[idx]);
 			}
 			return sb.ToString();

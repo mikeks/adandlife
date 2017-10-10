@@ -15,6 +15,7 @@ namespace AdAndLifeWebsite.Models.Tickets
 
     public class SaleEvent : DbObject, IDbObject
     {
+		public decimal HandlingFee = 3.5M;
         public int Id { get; set; } = 0;
         public string EventName { get; set; }
         public string EventNameEng { get; set; }
