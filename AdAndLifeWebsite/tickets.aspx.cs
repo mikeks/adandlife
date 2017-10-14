@@ -17,7 +17,9 @@ namespace AdAndLifeWebsite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            EventsRepeater.DataSource = SaleEvent.AllForSale;
+			(Master as MainMaster).HideBanners = true;
+
+			EventsRepeater.DataSource = SaleEvent.AllForSale;
             EventsRepeater.DataBind();
         }
     }

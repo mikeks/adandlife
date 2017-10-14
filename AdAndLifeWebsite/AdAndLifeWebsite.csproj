@@ -87,7 +87,8 @@
     <Content Include="bin\Facebook.dll" />
     <Content Include="checkTicketLogin.aspx" />
     <Content Include="checkTicket.aspx" />
-    <Content Include="Controls\HallMap.ascx" />
+    <Content Include="Controls\HallMaps\HallMapArchWood.ascx" />
+    <Content Include="Controls\HallMaps\HallMapKleinLife.ascx" />
     <Content Include="js\tickets.js" />
     <Content Include="Listener\readLog.aspx" />
     <Content Include="new\classified-paid.aspx" />
@@ -136,7 +137,9 @@
     <Content Include="obj\Debug\AdAndLifeWebsite.dll" />
     <Content Include="obj\Debug\AdAndLifeWebsite.pdb" />
     <Content Include="tinymce\tinymce.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\EditTicket.aspx.cs">
@@ -202,13 +205,6 @@
     <Compile Include="checkTicket.aspx.designer.cs">
       <DependentUpon>checkTicket.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Controls\HallMap.ascx.cs">
-      <DependentUpon>HallMap.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\HallMap.ascx.designer.cs">
-      <DependentUpon>HallMap.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Listener\hook5763.ashx.cs">
       <DependentUpon>hook5763.ashx</DependentUpon>
     </Compile>
@@ -221,6 +217,7 @@
     </Compile>
     <Compile Include="Models\Tickets\Ticket.cs" />
     <Compile Include="Models\Tickets\SellingTransaction.cs" />
+    <Compile Include="Models\Tickets\EventLocation.cs" />
     <Compile Include="Models\Tickets\TicketType.cs" />
     <Compile Include="new\classified-paid.aspx.cs">
       <DependentUpon>classified-paid.aspx</DependentUpon>

@@ -9,16 +9,19 @@
 			width: 200px;
 			float: right;
 		}
+		.myticket-image {
+			max-height: 250px;
+		}
 		table {
 			font-size: 20px;
-			margin-top: 15px;
+			margin-top: 8px;
 			border: solid 1px;
 			border-collapse: collapse;
 			width: 100%;
 		}
 		table td {
 		   border: solid 1px black;
-			padding: 5px;
+			padding: 3px;
 		}
 		.qr {
 			width: 300px;
@@ -40,7 +43,7 @@
 <body>
 	<img src="/Img/logo_adal.png" alt="Реклама и Жизнь" class="myticket-logo" />
 	<div class="nfo noprint">
-		Билет отправлен на вашу электронную почту: <%= Trans.Email %><br />
+		Ссылка на Ваш билет была отправлена на Вашу электронную почту: <%= Trans.Email %><br />
 		Распечатайте Ваш билет сейчас.<br /> <input type="button" onclick="window.print()" value="РАСПЕЧАТАТЬ" />
 	</div>
 	<h1>Электронный билет</h1>
@@ -64,7 +67,7 @@
 				Место проведения:
 			</td>
 			<td>
-				<%= Sale.EventLocation %>
+				<%= Sale.Location.Name %>
 			</td>
 		</tr>
 		<tr>
@@ -72,7 +75,7 @@
 				Адрес:
 			</td>
 			<td>
-				<%= Sale.EventAddress %>
+				<%= Sale.Location.Address %>
 			</td>
 		</tr>
 		<tr>
@@ -110,8 +113,5 @@
 	</table>
 	<br />
 	<img class="qr" src="data:image/jpeg;base64,<%= Base64barcode %>" />
-	<script>
-		window.print();
-	</script>
 </body>
 </html>

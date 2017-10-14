@@ -53,9 +53,21 @@ namespace AdAndLifeWebsite
 
 			try
 			{
-				var transId = (int)Session["transactionId"];
+				int transId;
+				string checkRedeemCode = null;
+				if (Request["r"] != null)
+				{
+					var r = Request["r"];
+					checkRedeemCode = r.Substring(0, 8);
+					transId = int.Parse(r.Substring(8));
+				} else
+				{
+					transId = (int)Session["transactionId"];
+				}
+
 				Trans = SellingTransaction.GetById(transId);
 				if (Trans == null) throw new Exception("can't find transaction id=" + transId.ToString());
+				if (checkRedeemCode != null && Trans.RedeemCode != checkRedeemCode) throw new Exception();
 
 				Sale = SaleEvent.GetById(Trans.EventId);
 				if (Sale == null) throw new Exception("can't find sale");
@@ -83,22 +95,23 @@ namespace AdAndLifeWebsite
 		}
 
 
-		protected override void Render(HtmlTextWriter writer)
-		{
-			StringBuilder sbOut = new StringBuilder();
-			StringWriter swOut = new StringWriter(sbOut);
-			HtmlTextWriter htwOut = new HtmlTextWriter(swOut);
-			base.Render(htwOut);
-			string sOut = sbOut.ToString();
+		//protected override void Render(HtmlTextWriter writer)
+		//{
+		//	StringBuilder sbOut = new StringBuilder();
+		//	StringWriter swOut = new StringWriter(sbOut);
+		//	HtmlTextWriter htwOut = new HtmlTextWriter(swOut);
+		//	base.Render(htwOut);
+		//	string sOut = sbOut.ToString();
 
-			if (Session["ticketSentToEmail"] == null)
-			{
-				IsEmailSent = EMailSender.SendTicketToUser(Trans.Email, Trans.Name, "Ваш электронный билет - " + Sale.EventName, sOut);
-				Session.Add("ticketSentToEmail", "1");
-			}
+		//	if (Session["ticketSentToEmail"] == null)
+		//	{
+		//		IsEmailSent = EMailSender.SendTicketToUser(Trans.Email, Trans.Name, "Ваш электронный билет - " + Sale.EventName, sOut);
+		//		Trans.SaveDigitalTicket(sOut);
+		//		Session.Add("ticketSentToEmail", "1");
+		//	}
 
-			writer.Write(sOut);
-		}
+		//	writer.Write(sOut);
+		//}
 
 	}
 }

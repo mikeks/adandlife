@@ -1,10 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/class.Master" AutoEventWireup="true" CodeBehind="ticket.aspx.cs" Inherits="AdAndLifeWebsite.TicketPage" %>
 
 <%@ Import Namespace="AdAndLifeWebsite.Classes" %>
-<%@ Register Src="~/Controls/HallMap.ascx" TagPrefix="uc1" TagName="HallMap" %>
+<%@ Register Src="~/Controls/HallMaps/HallMapKleinLife.ascx" TagPrefix="uc1" TagName="HallMapKleinLife" %>
+<%@ Register Src="~/Controls/HallMaps/HallMapArchWood.ascx" TagPrefix="uc1" TagName="HallMapArchWood" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
 	<script src="/js/tickets.js"></script>
+	<style>
+		.coontent-area {
+			max-width: 10000px!important;
+		}
+	</style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentAreaNoForm" runat="server">
@@ -26,27 +32,32 @@
 		<%=Sale.EventName %>
 	</h1>
 
-	<div id="step0">
+	<div id="step0" <%= StartStep1 ? "style='display:none'" : "" %>>
 		<img src="/ArticleImages/events/<%= Sale.EventImage %>" class="event-image" alt="<%= Sale.EventName %>" />
 		<div class="event-description">
-			Дата/время: <%= Sale.EventDate %><br />
-			Место проведения: <%= Sale.EventLocation %><br />
-			Адрес: <%= Sale.EventAddress %><br />
-			<br />
 			<%= Sale.EventDescription %>
-			<div style="margin-top:18px">
-				<a class="button" href='#' onclick="buyStep1()">Купить билеты</a>
+
+			<div style="margin-top: 15px">
+				<strong>Мероприятие состоится:</strong> <%= Sale.EventDate %><br />
+				<strong>Место проведения:</strong> <%= Sale.Location.Name %><br />
+				<strong>Адрес:</strong> <%= Sale.Location.Address %><br />
 			</div>
+		</div>
+		<div style="margin-top:5px;width:100%">
+			<a class="button" href='#' onclick="buyStep1();return false">Купить билеты</a>
 		</div>
 	</div>
 
-	<div id="step1" style="display:none">
-		<div class="ticket-price-box">
-			Выберите места на карте зала.
+	<div id="step1" <%= !StartStep1 ? "style='display:none'" : "" %>>
+		<div class="ticket-price-box0">
+			<strong>Выберите места на карте зала.</strong>
+			<div class="note">Зеленым цветом обозначены доступные для покупки места. Спешите! Осталось билетов: <%= Sale.Tickets.Count() %> шт.</div>
+
 		</div>
-		<uc1:HallMap runat="server" ID="HallMap" />
-		<div id="ticketInfoBox" class="ticket-price-box">
+		<div id="ticketInfoBox" style="display:none" class="ticket-price-box">
 		</div>
+		<uc1:HallMapKleinLife runat="server" ID="hmKleinLife" />
+		<uc1:HallMapArchWood runat="server" ID="hmArchWood" />
 	</div>
 
 	<div id="step2" style="display:none">
@@ -82,13 +93,15 @@
 			</table>
 			<div style="margin-top: 10px">
 				<div class="buy-form-label">Условия продажи билетов</div>
-				<textarea class="ticket-agreement" readonly="readonly">Купленные билеты возврату не подлежат.
-После оплаты мы рекомендуем распечатать электронный билет. 
-Изображение электронного билета в читаемом качестве должно быть предоставлено перед входом на мероприятие. В противном случае вход на мероприятие невозможен.</textarea>
+				<textarea class="ticket-agreement" readonly="readonly">Купленные билеты возврату и обмену не подлежат. Исключением является только отмена мероприятия. В случае отмены мероприятия, возврат денег происходит в течение двух недель.
+Мы настоятельно рекомендуем распечатать электронный билет. Изображение электронного билета в читаемом качестве с четким штрих-кодом должно быть предоставлено перед входом на мероприятие. При отсутствии билета вход на мероприятие невозможен.</textarea>
 			</div>
 			<input type="checkbox" id="cbAgreed" /><label for="cbAgreed">Я согласен с этими условиями.</label>
 			<div style="margin-top:18px">
-				<a class="button" href='#' onclick="submitForm()">Далее</a>
+				<a class="button" href='#' onclick="submitForm();return false">Перейти к оплате *</a>
+				<div class="note" style="margin-top:5px">
+				* - для оплаты кредитной картой выберите пункт <strong>"Pay with Debit or Credit Card"</strong>.
+				</div>
 			</div>
 		</form>
 	</div>

@@ -18,7 +18,7 @@ function checkBuyTicketForm() {
 	if (nm !== nm1) $('#buyerName').val(nm1);
 
 	if (!$('#buyerEmail').val()) {
-		$('#ticketFormError').text('Пожалуйста, укажите Ваше адрес электронной почты. На него будет отправлен Ваш электронный билет.');
+		$('#ticketFormError').text('Пожалуйста, укажите Ваше адрес электронной почты. На него будет отправлен Ваш билет.');
 		return false;
 	}
 	if (!validateEmail($('#buyerEmail').val())) {
@@ -27,7 +27,7 @@ function checkBuyTicketForm() {
 	}
 
 	if (!$('#cbAgreed')[0].checked) {
-		$('#ticketFormError').text('Вы должны согласиться с условиями продажи билетов для продложения.');
+		$('#ticketFormError').text('Вы должны согласиться с условиями продажи билетов для продолжения.');
 		return false;
 	}
 
@@ -70,7 +70,7 @@ $(function () {
 		var totPr = "$" + Number(totPr).toFixed(2);
 		s += "<br>Handling fee: $" + handlingFee;
 		s += "<br>Итого: " + totPr;
-		s += "<div style='margin-top:5px'><a class=button href='#' onclick=buyStep2()>Далее</a></div>"
+		s += "<div style='margin-top:5px'><a href='#' class='button ticket-buy-button' onclick='buyStep2();return false'>Далее</a></div>"
 
 		$('#hSeats').val(seats);
 
@@ -81,7 +81,7 @@ $(function () {
 		//	+ '<input type="text" maxlength=250 name=buyerEmail name="buyerEmail" placeholder="Ваш e-mail" value=""/>'
 		//	+ '<input type=submit onclick="checkBuyTicketForm()" class="buyButton" value="Купить"/></form>';
 		//s += '</td></tr></table>';
-		$('#ticketInfoBox').html(s);
+		$('#ticketInfoBox').html(s).show();
 		var msg = "";
 		if (tickets.length == 1) msg = "Выбран 1 билет на сумму " + totPr;
 		else if (tickets.length < 5) msg = "Выбрано " + tickets.length + " билета на общую сумму " + totPr;
@@ -90,7 +90,7 @@ $(function () {
 	}
 
 	var ss = $('.hall-map a[data-n]');
-
+	var f = false;
 	for (var i = 0; i < ss.length; i++) {
 
 		var seat = ss[i].getAttribute('data-n');
@@ -108,21 +108,23 @@ $(function () {
 						var idx = tickets.indexOf(t);
 						if (idx !== -1) {
 							tickets.splice(idx, 1);
-							$(this).removeClass('selSeat');
+							$(this).removeClass('sel-seat');
 						} else {
 							tickets.push(t);
-							$(this).addClass('selSeat');
+							$(this).addClass('sel-seat');
 						}
 
 						refr();
 						return false;
 					});
+				if (!f) ss[i].focus();
+				f = true;
 				found = true;
 				break;
 			}
 		}
 		if (!found) {
-			$(ss[i]).css('background-color', 'gainsboro');
+			$(ss[i]).addClass('dis-seat');
 		}
 	}
 

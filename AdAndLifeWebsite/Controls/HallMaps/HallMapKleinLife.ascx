@@ -1,8 +1,26 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="HallMap.ascx.cs" Inherits="AdAndLifeWebsite.Controls.HallMap" %>
-
+﻿<%@ Control Language="C#" %>
+<style>
+.stage-pic-div {
+	width: 900px;
+    background-color: #dcdcdc;
+    padding: 10px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 25px;
+	font-size: 19px;
+    letter-spacing: 4px;
+}
+</style>
 <div class="hall-map-cont">
 
 	<table class="hall-map">
+		<tr>
+			<td colspan="57">
+				<div class="stage-pic-div">
+					СЦЕНА
+				</div> 
+			</td>
+		</tr>
 		<tr>
 			<td>A</td>
 			<td></td>

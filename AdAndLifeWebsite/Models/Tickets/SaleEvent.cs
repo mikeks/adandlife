@@ -17,13 +17,13 @@ namespace AdAndLifeWebsite.Models.Tickets
     {
 		public decimal HandlingFee = 3.5M;
         public int Id { get; set; } = 0;
+        public int LocationId { get; set; }
+        public EventLocation Location { get; private set; }
         public string EventName { get; set; }
         public string EventNameEng { get; set; }
         public string EventDescription { get; set; }
 
 		public string EventImage { get; set; }
-		public string EventLocation { get; set; }
-		public string EventAddress { get; set; }
         public DateTime EventDate { get; set; }
         //public int TotalTicketCount { get; set; }
         //public int SoldTicketCount { get; set; }
@@ -45,8 +45,9 @@ namespace AdAndLifeWebsite.Models.Tickets
 			EventDescription = (string)rdr["EventDescription"];
 
 			EventImage = (string)rdr["EventImage"];
-			EventLocation = (string)rdr["EventLocation"];
-			EventAddress = (string)rdr["EventAddress"];
+			LocationId = (int)rdr["LocationId"];
+			Location = EventLocation.GetById(LocationId);
+
 			EventDate = (DateTime)rdr["EventDate"];
 
 			IsAvaliable = (bool)rdr["IsAvaliable"];

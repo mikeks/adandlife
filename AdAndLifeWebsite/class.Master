@@ -108,7 +108,7 @@
                 <div class="menu-item">
                     <a href="/articles.aspx" class="menu-item-text<%= _isSel("articles.aspx") %>">Статьи</a>
                 </div>
-                <%if (HttpContext.Current.IsDebuggingEnabled && AdAndLifeWebsite.Models.Tickets.SaleEvent.AllForSale.Count() > 0)
+                <%if (AdAndLifeWebsite.Models.Tickets.SaleEvent.AllForSale.Count() > 0)
 					{ %>
                 <div class="menu-item" style="background-color: #a53692;">
                     <a href="/tickets.aspx" class="menu-item-text<%= _isSel("tickets.aspx") %>">Билеты</a>
@@ -130,9 +130,11 @@
                 <asp:ContentPlaceHolder ID="ContentAreaNoForm" runat="server" />
             </div>
 
+			<%if (!HideBanners) { %>
             <img class="banner_mob" src="/ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
             <img class="banner_mob" src="/ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
             <img class="banner_mob" src="/ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
+			<% } %>
 
 
         </div>

@@ -61,6 +61,15 @@ namespace AdAndLifeWebsite.Models.Tickets
 			ExecSQL("update ticket.SellTransaction set RedeemDateTime = GETDATE() where Id = " + Id);
 		}
 
+		public void SaveDigitalTicket(string html)
+		{
+			ExecSQL("update ticket.SellTransaction set DigitalTicketHtml = @html where Id = @id", (cmd) =>
+			{
+				cmd.Parameters.AddWithValue("@id", Id);
+				cmd.Parameters.AddWithValue("@html", html);
+			});
+		}
+
 		public void BeginSellingTransaction(SaleEvent sale, IEnumerable<Ticket> tickets)
 		{
 

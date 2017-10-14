@@ -16,10 +16,13 @@ namespace AdAndLifeWebsite
     {
 
         protected SaleEvent Sale;
+		protected bool StartStep1 = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 			(Master as MainMaster).HideBanners = true;
+
+			StartStep1 = Request.RawUrl.Contains("?buy");
 
             try
             {
@@ -27,9 +30,13 @@ namespace AdAndLifeWebsite
                 var url = Request["url"];
                 if (url == null) throw new Exception();
                 Sale = SaleEvent.GetByUrl(url);
-				
 
 				if (Sale == null) throw new Exception();
+
+				var cont = Page.Master.FindControl("ContentAreaNoForm");
+				cont.FindControl("hmKleinLife").Visible = Sale.Location.Code == "KleinLife";
+				cont.FindControl("hmArchWood").Visible = Sale.Location.Code == "ArchWood";
+
             }
             catch (Exception)
             {

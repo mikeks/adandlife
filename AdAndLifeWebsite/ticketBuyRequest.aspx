@@ -9,10 +9,10 @@
 <body>
 	Please wait...
 
-	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" id="frm" method="post">
+	<form action="https://www.paypal.com/cgi-bin/webscr" id="frm" method="post"> <%--www.sandbox.paypal.com--%>
 		<input type="hidden" name="cmd" value="_cart" />
 		<input type="hidden" name="upload" value="1" />
-		<input type="hidden" name="business" value="R28N4TKRNCR4E" />
+		<input type="hidden" name="business" value="R6FMTNX6C9BB8" />   <%--R28N4TKRNCR4E--%>
 		<input type="hidden" name="currency_code" value="USD" />
 		<input type="hidden" name="handling_cart" value="<%= Sale.HandlingFee %>" />
 
