@@ -677,3 +677,10 @@ span.active-city {
 	background-color: #b9b9b9;
 	color: gray;
 }
+
+.fb-share-button-img {
+	height: 58px;
+	vertical-align: middle;
+	margin-left: 10px;
+	margin-top: 3px;
+}

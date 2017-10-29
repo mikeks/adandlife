@@ -5,7 +5,17 @@
 <%@ Register Src="~/Controls/HallMaps/HallMapArchWood.ascx" TagPrefix="uc1" TagName="HallMapArchWood" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
+  <meta property="og:type"   content="product" /> 
+  <meta property="og:url"    content="http://adandlife.com/ticket/<%= Sale.UrlName %>" /> 
+  <meta property="og:title"  content="<%= Sale.EventName %>" /> 
+  <meta property="og:image"  content="http://adandlife.com/ArticleImages/events/<%= Sale.EventImage %>" /> 
+
 	<script src="/js/tickets.js"></script>
+    <script>
+		var ww = window.innerWidth || document.documentElement.clientWidth;
+		function openPopup(u) { if (ww < 760) location = u; else open(u, '_blank', 'width=600,height=400,resizable=1,top=' + Math.max(0, screen.height / 2 - 300) + ',left=' + Math.max(0, screen.width / 2 - 200)) }
+		function shareFb(s) { openPopup('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(s)) }
+    </script>
 	<style>
 		.coontent-area {
 			max-width: 10000px!important;
@@ -45,6 +55,10 @@
 		</div>
 		<div style="margin-top:5px;width:100%">
 			<a class="button" href='#' onclick="buyStep1();return false">Купить билеты</a>
+			<a href="#" onclick="shareFb('http://adandlife.com/ticket/<%= Sale.UrlName %>');return false;">
+				<img class="fb-share-button-img" src="/img/facebook-share-button.png" alt="Рассказать друзьям на Facebook" />
+			</a>
+
 		</div>
 	</div>
 
@@ -94,7 +108,7 @@
 			<div style="margin-top: 10px">
 				<div class="buy-form-label">Условия продажи билетов</div>
 				<textarea class="ticket-agreement" readonly="readonly">Купленные билеты возврату и обмену не подлежат. Исключением является только отмена мероприятия. В случае отмены мероприятия, возврат денег происходит в течение двух недель.
-Мы настоятельно рекомендуем распечатать электронный билет. Изображение электронного билета в читаемом качестве с четким штрих-кодом должно быть предоставлено перед входом на мероприятие. При отсутствии билета вход на мероприятие невозможен.</textarea>
+Мы рекомендуем распечатать электронный билет. Изображение электронного билета в читаемом качестве с четким штрих-кодом должно быть предоставлено перед входом на мероприятие. При отсутствии билета вход на мероприятие невозможен.</textarea>
 			</div>
 			<input type="checkbox" id="cbAgreed" /><label for="cbAgreed">Я согласен с этими условиями.</label>
 			<div style="margin-top:18px">
