@@ -19,12 +19,12 @@ namespace AdAndLifeWebsite
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			
 			try
 			{
 				var id = int.Parse(Request.Form["eventId"]);
 				Sale = SaleEvent.GetById(id);
-				if (Sale == null) throw new Exception();
+				if (Sale == null || !Sale.IsAvaliable) throw new Exception();
 
 				var name = Request["buyerName"];
 				var email = Request["buyerEmail"];
@@ -37,7 +37,7 @@ namespace AdAndLifeWebsite
 				Tickets = new List<Ticket>();
 				foreach (var seat in seats)
 				{
-					var t = Sale.Tickets.First((x) => x.Seat == seat);
+					var t = Sale.AvaliableTickets.First((x) => x.Seat == seat);
 					Tickets.Add(t);
 				}
 

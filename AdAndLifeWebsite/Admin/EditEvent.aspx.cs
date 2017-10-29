@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace AdAndLifeWebsite.Admin
 {
-	public partial class EditTicket : System.Web.UI.Page
+	public partial class EditEvent : System.Web.UI.Page
 	{
 
         public SaleEvent Sale;

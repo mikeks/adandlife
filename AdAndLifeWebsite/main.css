@@ -610,6 +610,7 @@ span.active-city {
 .event-cont {
 	float: left;
 	margin: 15px;
+	min-height: 485px;
 }
 
 .event-big-image {
@@ -652,6 +653,7 @@ span.active-city {
 		width: 100%;
 		margin: 0;
 		margin-bottom: 30px;
+		min-height: 50px;
 	}
 
 }

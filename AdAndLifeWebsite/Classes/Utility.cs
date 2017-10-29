@@ -18,6 +18,8 @@ namespace AdAndLifeWebsite.Classes
 
         public static bool IsProd => !HttpContext.Current.IsDebuggingEnabled;
 
+		public const bool USE_TEST_PAYPAL = false;
+
         public static Bitmap ResizeImage(Image image, int width)
         {
             int height = image.Height * width / image.Width;

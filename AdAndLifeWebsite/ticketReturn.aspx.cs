@@ -48,6 +48,7 @@ namespace AdAndLifeWebsite
 
 					var sale = SaleEvent.GetById(trans.EventId);
 					if (sale == null) throw new Exception("can't find sale");
+					if (!sale.IsAvaliable) throw new Exception("sale is not avaliable anymore");
 
 					var lnk = "http://www.adandlife.com/myTicket.aspx?r=" + trans.RedeemCode + trans.Id;
 

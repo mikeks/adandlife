@@ -42,10 +42,35 @@ namespace AdAndLifeWebsite.Models.Tickets
             return ReadCollectionFromDb<Ticket>("ticket.GetAvaliableTickets", (cmd) => cmd.Parameters.AddWithValue("@eventId", ev.Id));
 		}
 
+        public static IEnumerable<Ticket> GetAllTickets(SaleEvent ev)
+        {
+            return ReadCollectionFromDb<Ticket>("ticket.GetAllTickets", (cmd) => cmd.Parameters.AddWithValue("@eventId", ev.Id));
+		}
+
 		public static IEnumerable<Ticket> GetTicketsForTransaction(SellingTransaction trans)
 		{
 			return ReadCollectionFromDb<Ticket>("select * from ticket.Tickets where TransactionId = " + trans.Id.ToString());
 		}
+
+		public static void CreateNew(int eventId, decimal price, string seat)
+		{
+			ExecStoredProc("[ticket].[AddTicket]", (cmd) =>
+			{
+				cmd.Parameters.AddWithValue("@eventId", eventId);
+				cmd.Parameters.AddWithValue("@price", price);
+				cmd.Parameters.AddWithValue("@seat", seat);
+			});
+		}
+
+		public static void DeleteTicket(int eventId, string seat)
+		{
+			ExecStoredProc("[ticket].[DeleteTicket]", (cmd) =>
+			{
+				cmd.Parameters.AddWithValue("@eventId", eventId);
+				cmd.Parameters.AddWithValue("@seat", seat);
+			});
+		}
+
 
 	}
 

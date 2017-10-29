@@ -35,7 +35,14 @@ namespace AdAndLifeWebsite
 				if (Trans == null) throw new Exception("Transaction not found");
 
 				var ev = SaleEvent.GetById(Trans.EventId);
-				Descr = "Event: " + ev.EventName + " (" + ev.EventDate + ")<br>Code: " + Trans.RedeemCode;
+
+				var tickets = Ticket.GetTicketsForTransaction(Trans);
+
+
+
+				Descr = "Event: " + ev.EventName + " (" + ev.EventDate + ")<br>"
+					+ "Seats (" + tickets.Count() + "): " + tickets.Select((x) => x.Seat).Aggregate((a, b) => a + ", " + b) 
+					+ "<br>Code: " + Trans.RedeemCode;
 
 				Trans.TicketRedeemed();
 				

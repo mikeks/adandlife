@@ -10,7 +10,7 @@
 namespace AdAndLifeWebsite.Admin {
     
     
-    public partial class EditTicket {
+    public partial class EditEvent {
         
         /// <summary>
         /// EventName control.
@@ -22,6 +22,15 @@ namespace AdAndLifeWebsite.Admin {
         protected global::System.Web.UI.WebControls.TextBox EventName;
         
         /// <summary>
+        /// EventNameEng control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EventNameEng;
+        
+        /// <summary>
         /// UrlName control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace AdAndLifeWebsite.Admin {
         protected global::System.Web.UI.WebControls.TextBox UrlName;
         
         /// <summary>
+        /// FileUpload1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        
+        /// <summary>
         /// EventDescription control.
         /// </summary>
         /// <remarks>
@@ -38,15 +56,6 @@ namespace AdAndLifeWebsite.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTextArea EventDescription;
-        
-        /// <summary>
-        /// PayPalCodeButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea PayPalCodeButton;
         
         /// <summary>
         /// IsAvaliable control.

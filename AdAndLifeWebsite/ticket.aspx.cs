@@ -31,7 +31,7 @@ namespace AdAndLifeWebsite
                 if (url == null) throw new Exception();
                 Sale = SaleEvent.GetByUrl(url);
 
-				if (Sale == null) throw new Exception();
+				if (Sale == null || !Sale.IsAvaliable) throw new Exception();
 
 				var cont = Page.Master.FindControl("ContentAreaNoForm");
 				cont.FindControl("hmKleinLife").Visible = Sale.Location.Code == "KleinLife";

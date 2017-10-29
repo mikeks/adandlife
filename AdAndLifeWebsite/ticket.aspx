@@ -19,7 +19,7 @@
 		var eventId = <%= Sale.Id %>;
 		var avaliableTickets = [<% 
 		var f = true;
-		foreach (var t in Sale.Tickets)
+		foreach (var t in Sale.AvaliableTickets)
 		{
 			if (!f) Response.Write(",");
 			Response.Write("{seat:\"" + t.Seat + "\",pr:\"" + t.Price + "\"}");
@@ -51,7 +51,7 @@
 	<div id="step1" <%= !StartStep1 ? "style='display:none'" : "" %>>
 		<div class="ticket-price-box0">
 			<strong>Выберите места на карте зала.</strong>
-			<div class="note">Зеленым цветом обозначены доступные для покупки места. Спешите! Осталось билетов: <%= Sale.Tickets.Count() %> шт.</div>
+			<div class="note">Зеленым цветом обозначены доступные для покупки места. Спешите! Осталось билетов: <%= Sale.AvaliableTickets.Count() %> шт.</div>
 
 		</div>
 		<div id="ticketInfoBox" style="display:none" class="ticket-price-box">

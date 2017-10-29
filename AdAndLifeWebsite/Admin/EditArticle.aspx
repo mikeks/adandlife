@@ -44,13 +44,13 @@
 
 
 
-    <div style="margin:15px 0;">
+<%--    <div style="margin:15px 0;">
     <%foreach (var url in Article.GetImagesUrls())
         {
             Response.Write("<img style=\"width:100px\" src=\"" + url + "\" />");
         }
     %>
-    </div>
+    </div>--%>
 
     <div style="margin:15px 0;">
 	    Прежде чем использовать картинку на сайте, ее нужно загрузить тут. Допускается формат PNG или JPG.<br />

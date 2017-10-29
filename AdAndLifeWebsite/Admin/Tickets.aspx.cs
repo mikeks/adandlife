@@ -14,7 +14,7 @@ namespace AdAndLifeWebsite.Admin
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-            SalesRepeater.DataSource = SaleEvent.All;
+            SalesRepeater.DataSource = SaleEvent.AllForSale;
             SalesRepeater.DataBind();
 
             if (Request["del"] != null)

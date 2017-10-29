@@ -33,6 +33,9 @@
 	<% if (HttpContext.Current.IsDebuggingEnabled) { %>
 	<div style="background-color:#b1e0f0;text-align:center;padding:10px;width:200px;float:right"><%= Environment.MachineName %></div>
 	<% } %>
+	<% if (AdAndLifeWebsite.Classes.Utility.USE_TEST_PAYPAL) { %>
+	<div style="background-color:#b1e0f0;text-align:center;padding:10px;width:200px;float:right">TEST PAYPAL</div>
+	<% } %>
         <div class="left-panel">
             <div class="logo-holder">
                 <img class="logo" width="250" src="/Img/logo_adal.png" />

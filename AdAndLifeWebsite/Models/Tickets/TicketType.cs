@@ -28,18 +28,11 @@ namespace AdAndLifeWebsite.Models.Tickets
 			Price = (decimal)rdr["Price"];
         }
 
-        private static TicketType[] _all;
-
         public static TicketType[] All
         {
             get
             {
-                if (_all == null)
-                {
-                    //_all = ReadCollectionFromDb<TicketsSale>("GetTicketsSales");
-                    _all = ReadCollectionFromDb<TicketType>("select * from ticket.TicketType");
-                }
-                return _all;
+				return ReadCollectionFromDb<TicketType>("select * from ticket.TicketType");
             }
         }
 

@@ -35,7 +35,8 @@ namespace AdAndLifeWebsite.Models.Tickets
 
 		public IEnumerable<TicketType> Codes => TicketType.ForEvent(this);
 
-		public IEnumerable<Ticket> Tickets => Ticket.GetAvaliableTickets(this);
+		public IEnumerable<Ticket> AvaliableTickets => Ticket.GetAvaliableTickets(this);
+		public IEnumerable<Ticket> AllTickets => Ticket.GetAllTickets(this);
 
 		public void ReadFromDb(SqlDataReader rdr)
         {
@@ -103,7 +104,34 @@ namespace AdAndLifeWebsite.Models.Tickets
         }
 
 
-    }
+		private string ImageFolder
+		{
+			get
+			{
+				return HttpContext.Current.Server.MapPath("~/ArticleImages/events/");
+			}
+		}
+
+		public void SaveImage(byte[] rawRata)
+		{
+			//if (!Directory.Exists(ImageFolder)) Directory.CreateDirectory(ImageFolder);
+
+			using (var img = Image.FromStream(new MemoryStream(rawRata)))
+			{
+				var img2 = img.Width > 400 ? Utility.ResizeImage(img, 400) : img;
+
+				var fn = ImageFolder + UrlName + ".jpg";
+				if (File.Exists(fn))
+				{
+					File.Delete(fn);
+				}
+				img2.Save(fn);
+			}
+		}
+
+
+
+	}
 
 
 

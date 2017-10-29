@@ -10,7 +10,8 @@
 				<ItemTemplate>
 					<li class="art-list">
                         <span class="art-name"><%# Eval("EventName") %></span>
-						<a href="EditTicket.aspx?id=<%# Eval("Id") %>">Редактировать</a> |
+						<a href="EditEvent.aspx?id=<%# Eval("Id") %>">Редактировать мероприятие</a> |
+						<a href="EditTickets.aspx?id=<%# Eval("Id") %>">Редактировать билеты</a> |
                         <a target="_blank" href="/ticket.aspx?id=<%# Eval("Id") %>">Открыть на сайте</a> |
 						<a style="color:red" onclick="return confirm('Удалить?');" href="Tickets.aspx?del=<%# Eval("Id") %>">Удалить</a> 
 					</li>
