@@ -21,17 +21,11 @@ namespace AdAndLifeWebsite.Models.Tickets
         public EventLocation Location { get; private set; }
         public string EventName { get; set; }
         public string EventNameEng { get; set; }
-        public string EventDescription { get; set; }
-
+		public string EventDescription { get; set; } = "";
 		public string EventImage { get; set; }
-        public DateTime EventDate { get; set; }
-        //public int TotalTicketCount { get; set; }
-        //public int SoldTicketCount { get; set; }
-        //public string PaypalButtonCode { get; set; }
+		public DateTime EventDate { get; set; } = DateTime.Today;
         public string UrlName { get; set; }
         public bool IsAvaliable { get; set; }
-
-		//public bool IsTicketsAvaliable => TotalTicketCount - SoldTicketCount > 0;
 
 		public IEnumerable<TicketType> Codes => TicketType.ForEvent(this);
 
@@ -84,23 +78,19 @@ namespace AdAndLifeWebsite.Models.Tickets
 
         internal void Save()
         {
-            ExecStoredProc("SaveTicketsSale", (cmd) =>
+			_all = null;
+			ExecStoredProc("ticket.SaveSaleEvent", (cmd) =>
             {
                 if (Id != 0) cmd.Parameters.AddWithValue("@id", Id);
-                cmd.Parameters.AddWithValue("@eventName", EventName);
-                cmd.Parameters.AddWithValue("@eventDescription", EventDescription);
-                //cmd.Parameters.AddWithValue("@totalTickets", TotalTicketCount);
-                //cmd.Parameters.AddWithValue("@paypalButtonCode", PaypalButtonCode);
-                cmd.Parameters.AddWithValue("@isAvaliable", IsAvaliable);
-                cmd.Parameters.AddWithValue("@urlName", UrlName);
+				cmd.Parameters.AddWithValue("@locationId", LocationId);
+				cmd.Parameters.AddWithValue("@eventName", EventName);
+				cmd.Parameters.AddWithValue("@eventNameEng", EventNameEng);
+				cmd.Parameters.AddWithValue("@eventDescription", EventDescription);
+				cmd.Parameters.AddWithValue("@eventImage", EventImage);
+				cmd.Parameters.AddWithValue("@eventDate", EventDate);
+				cmd.Parameters.AddWithValue("@urlName", UrlName);
+				cmd.Parameters.AddWithValue("@isAvaliable", IsAvaliable);
             });
-            _all = null;
-        }
-
-        internal static void Delete(int id)
-        {
-            ExecSQL("delete from TicketsSale where Id = " + id);
-            _all = null;
         }
 
 
@@ -114,11 +104,15 @@ namespace AdAndLifeWebsite.Models.Tickets
 
 		public void SaveImage(byte[] rawRata)
 		{
-			//if (!Directory.Exists(ImageFolder)) Directory.CreateDirectory(ImageFolder);
 
 			using (var img = Image.FromStream(new MemoryStream(rawRata)))
 			{
-				var img2 = img.Width > 400 ? Utility.ResizeImage(img, 400) : img;
+				if (img.Width < 400)
+				{
+					throw new Exception("Размер афиши слишком маленький. Требуется хотя бы 400 пикселей в ширину.");
+				}
+
+				var img2 = Utility.ResizeImage(img, 400);
 
 				var fn = ImageFolder + UrlName + ".jpg";
 				if (File.Exists(fn))
@@ -126,6 +120,9 @@ namespace AdAndLifeWebsite.Models.Tickets
 					File.Delete(fn);
 				}
 				img2.Save(fn);
+
+				EventImage = UrlName + ".jpg";
+
 			}
 		}
 

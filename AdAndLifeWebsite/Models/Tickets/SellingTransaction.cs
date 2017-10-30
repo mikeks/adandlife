@@ -21,6 +21,8 @@ namespace AdAndLifeWebsite.Models.Tickets
         public int EventId { get; set; }
 		public string Name { get; set; }
 		public string Email { get; set; }
+		public string UserRefferer { get; private set; }
+		public bool Subscribe { get; private set; }
         public string RedeemCode { get; set; }
         public DateTime? RedeemDateTime { get; set; }
 
@@ -36,10 +38,12 @@ namespace AdAndLifeWebsite.Models.Tickets
 			RedeemDateTime = (DateTime?)ResolveDbNull(rdr["RedeemDateTime"]);
         }
 
-		public SellingTransaction(string name, string email)
+		public SellingTransaction(string name, string email, string userRefferer, bool subscribe)
 		{
 			Name = name;
 			Email = email;
+			UserRefferer = userRefferer;
+			Subscribe = subscribe;
 		}
 
 		public SellingTransaction()
@@ -85,6 +89,8 @@ namespace AdAndLifeWebsite.Models.Tickets
 				cmd.Parameters.AddWithValue("@eventId", sale.Id);
 				cmd.Parameters.AddWithValue("@name", Name);
 				cmd.Parameters.AddWithValue("@email", Email);
+				cmd.Parameters.AddWithValue("@userRefferer", UserRefferer);
+				cmd.Parameters.AddWithValue("@subscribe", Subscribe);
 				cmd.Parameters.AddWithValue("@seats", d);
 			}, (rdr) =>
 			{

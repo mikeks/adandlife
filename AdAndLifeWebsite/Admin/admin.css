@@ -20,6 +20,10 @@
     margin-bottom: 20px;
 }
 
-    .admin-menu a {
-        margin-right: 20px;
-    }
+.admin-menu a {
+    margin-right: 20px;
+}
+
+li.art-list.off {
+	color: gray;
+}

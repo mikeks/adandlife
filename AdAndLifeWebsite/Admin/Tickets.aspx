@@ -4,12 +4,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentArea" runat="server">
     <h1>Билеты</h1>
     <div>
-        <a href="EditTicket.aspx">Добавить новую продажу</a><br />
+        <a href="EditEvent.aspx">Добавить новую продажу</a><br />
 		<ul>
 			<asp:Repeater runat="server" ID="SalesRepeater">
 				<ItemTemplate>
-					<li class="art-list">
-                        <span class="art-name"><%# Eval("EventName") %></span>
+					<li class="art-list<%# (bool)Eval("IsAvaliable") ? "" : " off" %>">
+                        <span class="art-name"><%# Eval("EventName") %> <%# (bool)Eval("IsAvaliable") ? "" : " (снято с продажи)" %></span>
 						<a href="EditEvent.aspx?id=<%# Eval("Id") %>">Редактировать мероприятие</a> |
 						<a href="EditTickets.aspx?id=<%# Eval("Id") %>">Редактировать билеты</a> |
                         <a target="_blank" href="/ticket.aspx?id=<%# Eval("Id") %>">Открыть на сайте</a> |

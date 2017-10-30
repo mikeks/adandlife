@@ -28,7 +28,9 @@ namespace AdAndLifeWebsite
 
 				var name = Request["buyerName"];
 				var email = Request["buyerEmail"];
-				
+				var userRefferer = Request["userRefferer"];
+				bool subscribe = Request["subscribe"] != null;
+
 				if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email)) throw new Exception();
 
 				if (string.IsNullOrWhiteSpace(Request.Form["seats"])) throw new Exception();
@@ -44,7 +46,7 @@ namespace AdAndLifeWebsite
 				//var totalFee = 0.3M + 0.029M * (Tickets.Sum((x) => x.Price));
 				//FeePerTicket = totalFee / Tickets.Count;
 
-				var b = new SellingTransaction(name, email);
+				var b = new SellingTransaction(name, email, userRefferer, subscribe);
 				b.BeginSellingTransaction(Sale, Tickets);
 				TransactionId = b.Id;
 

@@ -34,20 +34,34 @@
         <asp:TextBox runat="server" ID="UrlName" MaxLength="14" Width="300" />
     </div>
 
+    <div>
+        Место проведения:<br />
+		<asp:DropDownList ID="EventLocationDropDown" DataTextField="Name" DataValueField="Id" runat="server"></asp:DropDownList>
+    </div>
+
+    <div>
+        Дата проведения:<br />
+        <asp:TextBox runat="server" TextMode="DateTime" ID="EventDate" Width="300" />
+    </div>
+
+
+	<h2>Афиша</h2>
+	<img src="/ArticleImages/events/<%= Sale.EventImage %>" />
+
 	<div style="margin:15px 0;">
-	    Афиша. Загрузите изображение. Допускается формат PNG или JPG.<br />
+	    Загрузите изображение. Допускается формат PNG или JPG.<br />
 	    <asp:FileUpload ID="FileUpload1" runat="server" />
     </div>
 
     <div>
-        Описание событие. Скопируйте сюда анонс:<br />
+        Анонс:<br />
         <textarea runat="server" id="EventDescription" style="width: 1000px; height: 400px;">
 	</textarea>
     </div>
 
     <br />
     <div>
-        <asp:CheckBox ID="IsAvaliable" Text="Доступно для покупки" runat="server" />
+        <asp:CheckBox ID="IsAvaliable" Text="Доступно для продажи" runat="server" />
     </div>
     <br />
 

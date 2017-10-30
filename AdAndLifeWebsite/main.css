@@ -539,14 +539,13 @@ span.active-city {
 	border-radius: 3px;
 	border: solid 2px #0c8290;
 }
-
 .ticket-buy-button {
 	width: 88%;
 	text-align: center;
 }
 
 .note {
-	font-size: 17px;
+	font-size: 16px;
 	color: #424242;
 }
 
@@ -561,12 +560,11 @@ span.active-city {
 	margin: 20px 0;
 }
 
-	.hall-map td {
-		width: 30px;
-		height: 30px;
-		text-align: center;
-	}
-
+.hall-map td {
+	width: 30px;
+	height: 30px;
+	text-align: center;
+}
 
 .buyButton {
 	font-size: 26px;
@@ -579,8 +577,6 @@ span.active-city {
 	vertical-align: bottom;
 	padding-left: 60px;
 }
-
-
 
 .buy-form-label {
 	font-size: 18px;

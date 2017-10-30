@@ -98,13 +98,26 @@
 					<td>
 						<input class="ticket-buy-input" type="text" maxlength="250" id="buyerEmail" name="buyerEmail" value=""/>
 					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
+					<td>
 						<div class="note">На этот e-mail будет выслан Ваш электронный билет</div>
 					</td>
 				</tr>
+				<tr>
+					<td>
+						<div class="buy-form-label">Как вы о нас узнали:</div>
+					</td>
+					<td>
+						<select class="ticket-buy-input" id="userRefferer" name="userRefferer">
+							<option value="notSet">Выберите</option>
+							<option value="facebook">Через Facebook</option>
+							<option value="newspaper">Через газету "Реклама и Жизнь"</option>
+							<option value="friends">От друзей</option>
+							<option value="other">Другое</option>
+						</select>
+					</td>
+				</tr>
 			</table>
+			<input type="checkbox" id="cbSubscribe" name="subscribe" checked="checked" /><label for="cbSubscribe">Получать уведомления о новых концертах на e-mail.</label>
 			<div style="margin-top: 10px">
 				<div class="buy-form-label">Условия продажи билетов</div>
 				<textarea class="ticket-agreement" readonly="readonly">Купленные билеты возврату и обмену не подлежат. Исключением является только отмена мероприятия. В случае отмены мероприятия, возврат денег происходит в течение двух недель.

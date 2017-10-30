@@ -21,6 +21,10 @@ function checkBuyTicketForm() {
 		$('#ticketFormError').text('Пожалуйста, укажите Ваше адрес электронной почты. На него будет отправлен Ваш билет.');
 		return false;
 	}
+	if ($('#userRefferer').val() === "notSet") {
+		$('#ticketFormError').text('Пожалуйста, укажите как Вы о нас узнали.');
+		return false;
+	}
 	if (!validateEmail($('#buyerEmail').val())) {
 		$('#ticketFormError').text('Ошибка в адресе электронной почты. Проверьте, что адрес указан верно.');
 		return false;

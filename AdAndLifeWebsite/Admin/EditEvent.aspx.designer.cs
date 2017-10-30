@@ -40,6 +40,24 @@ namespace AdAndLifeWebsite.Admin {
         protected global::System.Web.UI.WebControls.TextBox UrlName;
         
         /// <summary>
+        /// EventLocationDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList EventLocationDropDown;
+        
+        /// <summary>
+        /// EventDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EventDate;
+        
+        /// <summary>
         /// FileUpload1 control.
         /// </summary>
         /// <remarks>

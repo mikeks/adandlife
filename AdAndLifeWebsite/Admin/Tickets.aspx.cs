@@ -14,15 +14,8 @@ namespace AdAndLifeWebsite.Admin
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-            SalesRepeater.DataSource = SaleEvent.AllForSale;
+            SalesRepeater.DataSource = SaleEvent.All;
             SalesRepeater.DataBind();
-
-            if (Request["del"] != null)
-            {
-                int delId = int.Parse(Request["del"]);
-                SaleEvent.Delete(delId);
-                Response.Redirect("Tickets.aspx");
-            }
 
 		}
 	}
