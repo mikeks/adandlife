@@ -22,20 +22,24 @@ namespace AdAndLifeWebsite.Models.Tickets
 		public string Name { get; set; }
 		public string Email { get; set; }
 		public string UserRefferer { get; private set; }
-		public bool Subscribe { get; private set; }
         public string RedeemCode { get; set; }
-        public DateTime? RedeemDateTime { get; set; }
+		public DateTime? PurchaseDate { get; private set; }
+		public DateTime? RedeemDateTime { get; set; }
+		public DateTime? Created { get; private set; }
+		public bool Subscribe { get; private set; }
 
-        //public bool IsTicketsAvaliable => TotalTicketCount - SoldTicketCount > 0;
-
-        public void ReadFromDb(SqlDataReader rdr)
+		public void ReadFromDb(SqlDataReader rdr)
         {
             Id = (int)rdr["Id"];
 			EventId = (int)rdr["EventId"];
 			Name = (string)rdr["Name"];
 			Email = (string)rdr["Email"];
+			UserRefferer = (string)ResolveDbNull(rdr["UserRefferer"]);
 			RedeemCode = (string)ResolveDbNull(rdr["RedeemCode"]);
+			PurchaseDate = (DateTime?)ResolveDbNull(rdr["PurchaseDate"]);
 			RedeemDateTime = (DateTime?)ResolveDbNull(rdr["RedeemDateTime"]);
+			Created = (DateTime?)ResolveDbNull(rdr["Created"]);
+			Subscribe = (bool)rdr["Subscribe"];
         }
 
 		public SellingTransaction(string name, string email, string userRefferer, bool subscribe)
@@ -50,9 +54,20 @@ namespace AdAndLifeWebsite.Models.Tickets
 		{
 		}
 
+		public SaleEvent GetSale()
+		{
+			return SaleEvent.GetById(EventId);
+		}
+
 		public static SellingTransaction GetById(int id)
 		{
 			return ReadCollectionFromDb<SellingTransaction>("select * from ticket.SellTransaction where Id = " + id.ToString()).FirstOrDefault();
+		}
+
+
+		public static IEnumerable<SellingTransaction> GetByEventId(int eventId)
+		{
+			return ReadCollectionFromDb<SellingTransaction>("select * from ticket.SellTransaction where EventId = " + eventId.ToString());
 		}
 
 		public static SellingTransaction GetByRedeemCode(string redeemCode)
@@ -65,14 +80,14 @@ namespace AdAndLifeWebsite.Models.Tickets
 			ExecSQL("update ticket.SellTransaction set RedeemDateTime = GETDATE() where Id = " + Id);
 		}
 
-		public void SaveDigitalTicket(string html)
-		{
-			ExecSQL("update ticket.SellTransaction set DigitalTicketHtml = @html where Id = @id", (cmd) =>
-			{
-				cmd.Parameters.AddWithValue("@id", Id);
-				cmd.Parameters.AddWithValue("@html", html);
-			});
-		}
+		//public void SaveDigitalTicket(string html)
+		//{
+		//	ExecSQL("update ticket.SellTransaction set DigitalTicketHtml = @html where Id = @id", (cmd) =>
+		//	{
+		//		cmd.Parameters.AddWithValue("@id", Id);
+		//		cmd.Parameters.AddWithValue("@html", html);
+		//	});
+		//}
 
 		public void BeginSellingTransaction(SaleEvent sale, IEnumerable<Ticket> tickets)
 		{

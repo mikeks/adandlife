@@ -10,6 +10,7 @@ using System.Net;
 using System.Data.SqlClient;
 using System.Text;
 using System.Text.RegularExpressions;
+using AdAndLifeWebsite.Models.Tickets;
 
 public class EMailSender
 {
@@ -44,6 +45,17 @@ public class EMailSender
         }
         return false;
     }
+
+	public static bool SendTicketToUser(SellingTransaction trans)
+	{
+		var sale = trans.GetSale();
+		var lnk = "http://www.adandlife.com/myTicket.aspx?r=" + trans.RedeemCode + trans.Id;
+
+		var emailText = "Уважаемый " + trans.Name + ". Ваш электронный билет на \"" + sale.EventName + "\" Вы можете распечатать, пройдя по ссылке: "
+			+ "<a href=\"" + lnk + "\">" + lnk + "</a>.<br><br>Спасибо за то, что воспользовались сервисом продажи билетов.<br>Реклама и Жизнь, Филадельфия.";
+
+		return SendTicketToUser(trans.Email, trans.Name, "Билет: " + sale.EventName, emailText);
+	}
 
 	public static bool SendTicketToUser(string toEmail, string toName, string topic, string htmlBody)
 	{

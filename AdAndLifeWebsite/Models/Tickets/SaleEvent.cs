@@ -126,6 +126,10 @@ namespace AdAndLifeWebsite.Models.Tickets
 			}
 		}
 
+		public IEnumerable<SellingTransaction> GetTransactions()
+		{
+			return SellingTransaction.GetByEventId(Id);
+		}
 
 
 	}

@@ -80,6 +80,8 @@
   <ItemGroup>
     <Content Include="Admin\admin.css" />
     <Content Include="Admin\EditArticle.aspx" />
+    <Content Include="Admin\ResendTicket.aspx" />
+    <Content Include="Admin\ViewTickets.aspx" />
     <Content Include="Admin\EditEvent.aspx" />
     <Content Include="Admin\EditTickets.aspx" />
     <Content Include="Admin\Tickets.aspx" />
@@ -149,6 +151,20 @@
     </Compile>
     <Compile Include="Admin\EditArticle.aspx.designer.cs">
       <DependentUpon>EditArticle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ResendTicket.aspx.cs">
+      <DependentUpon>ResendTicket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ResendTicket.aspx.designer.cs">
+      <DependentUpon>ResendTicket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewTickets.aspx.cs">
+      <DependentUpon>ViewTickets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewTickets.aspx.designer.cs">
+      <DependentUpon>ViewTickets.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\EditEvent.aspx.cs">
       <DependentUpon>EditEvent.aspx</DependentUpon>

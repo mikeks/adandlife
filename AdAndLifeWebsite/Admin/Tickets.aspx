@@ -12,8 +12,8 @@
                         <span class="art-name"><%# Eval("EventName") %> <%# (bool)Eval("IsAvaliable") ? "" : " (снято с продажи)" %></span>
 						<a href="EditEvent.aspx?id=<%# Eval("Id") %>">Редактировать мероприятие</a> |
 						<a href="EditTickets.aspx?id=<%# Eval("Id") %>">Редактировать билеты</a> |
-                        <a target="_blank" href="/ticket.aspx?id=<%# Eval("Id") %>">Открыть на сайте</a> |
-						<a style="color:red" onclick="return confirm('Удалить?');" href="Tickets.aspx?del=<%# Eval("Id") %>">Удалить</a> 
+						<a href="ViewTickets.aspx?id=<%# Eval("Id") %>">Купленные билеты</a> |
+                        <a target="_blank" href="/ticket.aspx?id=<%# Eval("Id") %>">Открыть на сайте</a> 
 					</li>
 				</ItemTemplate>
 			</asp:Repeater>

@@ -50,12 +50,7 @@ namespace AdAndLifeWebsite
 					if (sale == null) throw new Exception("can't find sale");
 					if (!sale.IsAvaliable) throw new Exception("sale is not avaliable anymore");
 
-					var lnk = "http://www.adandlife.com/myTicket.aspx?r=" + trans.RedeemCode + trans.Id;
-
-					var emailText = "Уважаемый " + trans.Name + ". Ваш электронный билет на \"" + sale.EventName + "\" Вы можете распечатать, пройдя по ссылке: "
-						+ "<a href=\"" + lnk + "\">" + lnk + "</a>.<br><br>Спасибо за то, что воспользовались сервисом продажи билетов.<br>Реклама и Жизнь, Филадельфия.";
-
-					EMailSender.SendTicketToUser(trans.Email, trans.Name, "Билет: " + sale.EventName, emailText);
+					EMailSender.SendTicketToUser(trans);
 
 					var adminEmailText = $"Куплен билет на {sale.EventName} ({sale.EventDate}).";
 					EMailSender.SendEmail("admin@adandlife.com", "Ad & Life website", "Куплен билет", "", adminEmailText);

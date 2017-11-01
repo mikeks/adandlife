@@ -96,7 +96,7 @@
 						<div class="buy-form-label">Email:</div>
 					</td>
 					<td>
-						<input class="ticket-buy-input" type="text" maxlength="250" id="buyerEmail" name="buyerEmail" value=""/>
+						<input class="ticket-buy-input" type="email" maxlength="250" id="buyerEmail" name="buyerEmail" value=""/>
 					</td>
 					<td>
 						<div class="note">На этот e-mail будет выслан Ваш электронный билет</div>
