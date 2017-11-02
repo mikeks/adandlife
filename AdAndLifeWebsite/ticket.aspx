@@ -10,7 +10,7 @@
   <meta property="og:title"  content="<%= Sale.EventName %>" /> 
   <meta property="og:image"  content="http://adandlife.com/ArticleImages/events/<%= Sale.EventImage %>" /> 
 
-	<script src="/js/tickets.js"></script>
+	<script src="/js/tickets.js?4"></script>
     <script>
 		var ww = window.innerWidth || document.documentElement.clientWidth;
 		function openPopup(u) { if (ww < 760) location = u; else open(u, '_blank', 'width=600,height=400,resizable=1,top=' + Math.max(0, screen.height / 2 - 300) + ',left=' + Math.max(0, screen.width / 2 - 200)) }
@@ -19,6 +19,16 @@
 	<style>
 		.coontent-area {
 			max-width: 10000px!important;
+		}
+		.ticketCount {
+			width: 60px;
+			background: #b1e0f0;
+			padding: 5px;
+			height: 25px;
+			font-weight: bold;
+		}
+		.no-seat-box {
+			margin-top: 30px;
 		}
 	</style>
 </asp:Content>
@@ -63,20 +73,36 @@
 	</div>
 
 	<div id="step1" <%= !StartStep1 ? "style='display:none'" : "" %>>
+		<% if (Sale.Location.IsNoSeats)	{ %>
+		
+		<div class="ticket-price-box0">
+			Количество: <input type="number" name="ticketCount" id="nsTicketCount" class="ticketCount" min="1" max="<%= Sale.AvaliableTickets.Count() %>" value="1" /> шт.<br />
+			<div class="note">Осталось билетов: <%= Sale.AvaliableTickets.Count() %> шт.</div>
+			<div class="no-seat-box">
+				<span style="font-size:16px">Handling fee: $<%= Sale.HandlingFee %></span><br />
+				Итого: <span id="nsCost"></span>
+				<div style='margin-top:5px'><a href='#' class='button' onclick='buyStep2();return false'>Далее</a></div>
+			</div>
+
+		</div>
+		
+
+
+		<% } else { %>
 		<div class="ticket-price-box0">
 			<strong>Выберите места на карте зала.</strong>
 			<div class="note">Зеленым цветом обозначены доступные для покупки места. Спешите! Осталось билетов: <%= Sale.AvaliableTickets.Count() %> шт.</div>
-
 		</div>
 		<div id="ticketInfoBox" style="display:none" class="ticket-price-box">
 		</div>
 		<uc1:HallMapKleinLife runat="server" ID="hmKleinLife" />
 		<uc1:HallMapArchWood runat="server" ID="hmArchWood" />
+		<% } %>
 	</div>
 
 	<div id="step2" style="display:none">
 		<div class="ticket-step2note">
-			<span id="ticketInfoShort"></span> (<a href="#" onclick="buyStep1()">выбрать другие билеты</a>)
+			<span id="ticketInfoShort"></span> (<a href="#" onclick="buyStep1()">изменить</a>)
 		</div>
 		<form method="post" id="buyForm" action="/ticketBuyRequest.aspx">
 			<input type="hidden" name="eventId" value="<%= Sale.Id %>"/>

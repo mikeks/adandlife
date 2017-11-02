@@ -20,6 +20,8 @@ namespace AdAndLifeWebsite.Models.Tickets
 		public string Name { get; set; }
 		public string Address { get; set; }
 
+		public bool IsNoSeats => Code == "NoSeats";
+
 		public void ReadFromDb(SqlDataReader rdr)
         {
             Id = (int)rdr["Id"];

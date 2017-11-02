@@ -13,8 +13,13 @@ namespace AdAndLifeWebsite
     public partial class ArchivePage : System.Web.UI.Page
     {
 
+		protected void Page_Init(object sender, EventArgs e)
+		{
+			(Master as MainMaster).PageTitle = "Архив газет Реклама и Жизнь и Еврейская Жизнь";
+			(Master as MainMaster).MetaDescription = "Читать последние выпуски газет Реклама и Жизнь и Еврейская Жизнь. Архив газет за прошлый год.";
+		}
 
-        protected void Page_Load(object sender, EventArgs e)
+		protected void Page_Load(object sender, EventArgs e)
         {
 
             repArchiveALPhila.DataSource = WebsiteNewspaper.All.Where((x) => x.NewspaperType == NewspaperTypeEnum.AdAndLifePhila);

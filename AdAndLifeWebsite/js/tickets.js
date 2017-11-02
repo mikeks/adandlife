@@ -58,42 +58,69 @@ function buyStep2() {
 	return false;
 }
 
+function getTotalPrice() {
+	var totPr = handlingFee;
+	for (var i = 0; i < tickets.length; i++) {
+		totPr += +tickets[i].pr;
+	}
+	return "$" + Number(totPr).toFixed(2);
+}
+
+
+
 $(function () {
 
+	function refrData() {
+		var msg = "";
+		if (tickets.length == 1) msg = "Выбран 1 билет на сумму " + getTotalPrice();
+		else if (tickets.length < 5) msg = "Выбрано " + tickets.length + " билета на общую сумму " + getTotalPrice();
+		else msg = "Выбрано " + tickets.length + " билетов на общую сумму " + getTotalPrice();
+		$('#ticketInfoShort').text(msg);
+		var seats = '';
+		for (var i = 0; i < tickets.length; i++) {
+			seats += tickets[i].seat + ',';
+		}
+		$('#hSeats').val(seats);
+	}
+
+
+	function noSeatRefr() {
+		var cnt = $('#nsTicketCount').val();
+		tickets = [];
+		for (var i = 0; i < cnt; i++) {
+			tickets.push(avaliableTickets[i]);
+		}
+		$('#nsCost').text(getTotalPrice());
+		refrData();
+	}
+
 	function refr() {
+		if (tickets.length == 0) {
+			$('#ticketInfoBox').hide();
+			return;
+		}
 		var s = 'Выбрано билетов: ' + tickets.length + '<br>';
 		if (tickets.length > 1) s += "Места: "; else s += "Место "
-		var totPr = handlingFee;
-		var seats = '';
 		for (var i = 0; i < tickets.length; i++) {
 			if (i > 0) s += ", ";
 			s += tickets[i].seat + ' ($' + Number(tickets[i].pr).toFixed(2) + ')';
-			seats += tickets[i].seat + ',';
-			totPr += +tickets[i].pr;
 		}
-		var totPr = "$" + Number(totPr).toFixed(2);
 		s += "<br>Handling fee: $" + handlingFee;
-		s += "<br>Итого: " + totPr;
+		s += "<br>Итого: " + getTotalPrice();
 		s += "<div style='margin-top:5px'><a href='#' class='button ticket-buy-button' onclick='buyStep2();return false'>Далее</a></div>"
-
-		$('#hSeats').val(seats);
-
-		//s += '</td><td class=ticketBuyFormCont><form method=post action="/ticketBuyRequest.aspx">'
-		//	+ '<input type="hidden" name="eventId" value="' + eventId + '"/>'
-		//	+ '<input type="hidden" name="seats" value="' + seats + '"/>'
-		//	+ '<input type="text" maxlength=100 id=buyerName name="buyerName" placeholder="Ваше имя" value=""/>'
-		//	+ '<input type="text" maxlength=250 name=buyerEmail name="buyerEmail" placeholder="Ваш e-mail" value=""/>'
-		//	+ '<input type=submit onclick="checkBuyTicketForm()" class="buyButton" value="Купить"/></form>';
-		//s += '</td></tr></table>';
 		$('#ticketInfoBox').html(s).show();
-		var msg = "";
-		if (tickets.length == 1) msg = "Выбран 1 билет на сумму " + totPr;
-		else if (tickets.length < 5) msg = "Выбрано " + tickets.length + " билета на общую сумму " + totPr;
-		else msg = "Выбрано " + tickets.length + " билетов на общую сумму " + totPr;
-		$('#ticketInfoShort').text(msg);
+		refrData();
 	}
 
 	var ss = $('.hall-map a[data-n]');
+
+	if (!ss.length) {
+		// no seats
+		$('#nsTicketCount').change(noSeatRefr).keyup(noSeatRefr);
+		noSeatRefr();
+		return;
+	}
+
 	var f = false;
 	for (var i = 0; i < ss.length; i++) {
 

@@ -605,8 +605,11 @@ span.active-city {
 
 .event-cont {
 	float: left;
-	margin: 15px;
-	min-height: 485px;
+	margin: 7px;
+	background: #dfe6e8;
+	box-shadow: 0px 0px 8px 2px #0c8290;
+	padding: 10px;
+	height: 570px;
 }
 
 .event-big-image {
@@ -648,8 +651,11 @@ span.active-city {
 		float: none;
 		width: 100%;
 		margin: 0;
+		padding: 0;
 		margin-bottom: 30px;
-		min-height: 50px;
+		height: auto;
+		background: inherit;
+		box-shadow: inherit;
 	}
 
 }

@@ -20,8 +20,14 @@ namespace AdAndLifeWebsite
         protected string Topic;
         protected string Msg;
 
+		protected void Page_Init(object sender, EventArgs e)
+		{
+			(Master as MainMaster).PageTitle = "Связаться с редакцией газеты";
+			(Master as MainMaster).MetaDescription = "Отправить заявку на объявление в газете, отзыв или предложение";
+		}
 
-        protected void Page_Load(object sender, EventArgs e)
+
+		protected void Page_Load(object sender, EventArgs e)
         {
 
             Name = Request["msgName"];

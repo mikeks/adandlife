@@ -18,9 +18,15 @@ namespace AdAndLifeWebsite
         protected SaleEvent Sale;
 		protected bool StartStep1 = false;
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
+		protected void Page_Init(object sender, EventArgs e)
+		{
 			(Master as MainMaster).HideBanners = true;
+			(Master as MainMaster).NoWidthLimit = true;
+		}
+
+
+		protected void Page_Load(object sender, EventArgs e)
+        {
 
 			StartStep1 = Request.RawUrl.Contains("?buy");
 
@@ -30,6 +36,10 @@ namespace AdAndLifeWebsite
                 var url = Request["url"];
                 if (url == null) throw new Exception();
                 Sale = SaleEvent.GetByUrl(url);
+
+				(Master as MainMaster).PageTitle = Sale.EventName;
+				(Master as MainMaster).MetaDescription = "Купить билет на " + Sale.EventName + ", который пройдет " + Sale.EventDate.ToShortDateString() + " в " + Sale.Location.Name + " (США)";
+
 
 				if (Sale == null || !Sale.IsAvaliable) throw new Exception();
 

@@ -4,8 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Реклама и Жизнь - бесплатная газета объявлений. <%= IsBaltimore ? "Baltimore (Балтимор), Washington, DC" : "Philadelphia (Филадельфия), New Jersey"  %>, США</title>
-    <meta name="Description" content="Реклама и Жизнь, Еврейская Жизнь - популярные бесплатные газеты объявление в Филадельфии, New Jersey, Baltimore. Classified, объявления, реклама, статьи, билеты." />
+    <title><%= PageTitle %></title>
+    <meta name="Description" content="<%= "" + MetaDescription %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="main.css?3" rel="stylesheet" />
     <meta property="fb:app_id" content="1519165781479119"/>
@@ -120,13 +120,15 @@
 
 			<%if (!HideBanners) { %>
 			<div class="bannerView">
+				<img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20.jpg" />
+				<img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43.jpg" />
 				<img class="banner" src="/ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
 				<img class="banner" src="/ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
 				<img class="banner" src="/ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
 			</div>
 			<% } %>
 
-            <div class="coontent-area">
+            <div class="coontent-area"<%= NoWidthLimit? "style='max-width:99999px'" : "" %>>
                 <form id="form1" runat="server">
                     <asp:ContentPlaceHolder ID="ContentArea" runat="server" />
                 </form>
@@ -134,6 +136,8 @@
             </div>
 
 			<%if (!HideBanners) { %>
+            <img class="banner_mob" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20.jpg" />
+            <img class="banner_mob" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43.jpg" />
             <img class="banner_mob" src="/ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
             <img class="banner_mob" src="/ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
             <img class="banner_mob" src="/ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />

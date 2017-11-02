@@ -88,6 +88,9 @@ namespace AdAndLifeWebsite.Admin
 					return;
 				}
 
+				Sale.UrlName = UrlName.Text.Trim(); // should be before saving an image
+
+
 				if (FileUpload1.HasFiles)
 				{
 					var fn = FileUpload1.FileName;
@@ -113,7 +116,6 @@ namespace AdAndLifeWebsite.Admin
 				Sale.EventName = EventName.Text.Trim();
                 Sale.EventDescription = EventDescription.InnerText.Replace("\n", "<br>").Replace("\r", "");
                 Sale.IsAvaliable = IsAvaliable.Checked;
-                Sale.UrlName = UrlName.Text.Trim();
 				Sale.EventNameEng = EventNameEng.Text.Trim();
 				try
 				{

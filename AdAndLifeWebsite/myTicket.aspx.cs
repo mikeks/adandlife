@@ -38,6 +38,10 @@ namespace AdAndLifeWebsite
 			get
 			{
 				var s = "";
+				if (Sale.Location.IsNoSeats)
+				{
+					return $"{Tickets.Count()} шт.";
+				}
 				foreach (var t in Tickets) {
 					s += t.Seat + ", ";
 				}

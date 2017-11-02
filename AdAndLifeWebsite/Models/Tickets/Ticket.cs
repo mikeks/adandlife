@@ -19,15 +19,37 @@ namespace AdAndLifeWebsite.Models.Tickets
 		public int EventId { get; set; }
 		public int TicketTypeId { get; set; }
 		public string Seat { get; set; }
+		public DateTime? LockedUntil { get; set; }
+		public DateTime? PurchaseDate { get; set; }
+		public int? TransactionId { get; set; }
 
-        //public bool IsTicketsAvaliable => TotalTicketCount - SoldTicketCount > 0;
+		public SellingTransaction Transaction
+		{
+			get
+			{
+				if (!TransactionId.HasValue) return null;
+				return SellingTransaction.GetById(TransactionId.Value);
+			}
+		}
+		
+		public string BuyerName
+		{
+			get
+			{
+				if (Transaction == null) return null;
+				return Transaction.Name;
+			}
+		}
 
-        public void ReadFromDb(SqlDataReader rdr)
+		public void ReadFromDb(SqlDataReader rdr)
         {
             Id = (int)rdr["Id"];
 			EventId = (int)rdr["EventId"];
 			TicketTypeId = (int)rdr["TicketTypeId"];
 			Seat = (string)rdr["Seat"];
+			LockedUntil = (DateTime?)ResolveDbNull(rdr["LockedUntil"]);
+			PurchaseDate = (DateTime?)ResolveDbNull(rdr["PurchaseDate"]);
+			TransactionId = (int?)ResolveDbNull(rdr["TransactionId"]);
         }
 
 		//public void Lock()

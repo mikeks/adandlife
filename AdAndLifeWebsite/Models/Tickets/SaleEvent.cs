@@ -60,7 +60,7 @@ namespace AdAndLifeWebsite.Models.Tickets
                 if (_all == null)
                 {
                     //_all = ReadCollectionFromDb<TicketsSale>("GetTicketsSales");
-                    _all = ReadCollectionFromDb<SaleEvent>("select * from ticket.SaleEvent order by Created");
+                    _all = ReadCollectionFromDb<SaleEvent>("select * from ticket.SaleEvent order by EventDate");
                 }
                 return _all;
             }

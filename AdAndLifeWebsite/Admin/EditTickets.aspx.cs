@@ -17,7 +17,7 @@ namespace AdAndLifeWebsite.Admin
         public SaleEvent Sale;
         public string ErrorMessage = "";
 		public bool IsSaved = false;
-		protected string ExistingTickets = "";
+		//protected string ExistingTickets = "";
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -34,11 +34,16 @@ namespace AdAndLifeWebsite.Admin
 			}
 
 
-			foreach (var t in Sale.AllTickets)
-			{
-				ExistingTickets += $"{t.Seat} (${t.Price:0}), ";
-			}
-			ExistingTickets = ExistingTickets.Trim(',', ' ');
+			RepeaterExistingTickets.DataSource = Sale.AllTickets;
+			RepeaterExistingTickets.DataBind();
+
+
+			//foreach (var t in Sale.AllTickets)
+			//{
+			//	ExistingTickets += $"{t.Seat} (${t.Price:0}), ";
+			//	t.Price
+			//}
+			//ExistingTickets = ExistingTickets.Trim(',', ' ');
 
 			bool isChanged = false;
 

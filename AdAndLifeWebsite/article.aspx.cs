@@ -17,7 +17,8 @@ namespace AdAndLifeWebsite
 
         protected WebsiteArticle Article;
 
-        protected void Page_Load(object sender, EventArgs e)
+
+		protected void Page_Load(object sender, EventArgs e)
         {
 
 
@@ -26,8 +27,12 @@ namespace AdAndLifeWebsite
                 var aId = int.Parse(Request["id"]);
                 Article = WebsiteArticle.GetById(aId);
                 CanonicalUrl = "http://adandlife.com/article.aspx?id=" + aId.ToString();
-            }
-            catch (Exception)
+
+				(Master as MainMaster).PageTitle = Article.Name;
+				(Master as MainMaster).MetaDescription = "Статья из газеты: " + Article.Name;
+
+			}
+			catch (Exception)
             {
                 Response.Redirect("/articles.aspx", true);
             }

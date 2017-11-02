@@ -16,8 +16,15 @@ namespace AdAndLifeWebsite
         protected string CanonicalUrl = "http://adandlife.com/classified.aspx";
         protected string OgTitle = "Classified";
 
-        protected void Page_Load(object sender, EventArgs e)
+		protected void Page_Init(object sender, EventArgs e)
+		{
+			(Master as MainMaster).PageTitle = Utility.IsBaltimore ? "Объявления в Балтиморе (Baltimore)" : "Объявления в Филадельфии";
+			(Master as MainMaster).MetaDescription = "Спрос и предложения труда, рент квартир и комнат, занятия, продам/куплю, услуги, business opportunities в " + (Utility.IsBaltimore ? "Балтиморе" : "Филадельфии");
+		}
+
+		protected void Page_Load(object sender, EventArgs e)
         {
+
             //ClassifiedAd.ReloadAllFromDb();
 
             int adId = 0;

@@ -19,7 +19,7 @@
 		<%
 			int i = 1;
 			foreach (var ticket in Tickets) { %>
-		<input type="hidden" name="item_name_<%= i %>" value="<%= Sale.EventNameEng %> (seat <%= ticket.Seat %>)" />
+		<input type="hidden" name="item_name_<%= i %>" value="<%= Sale.EventNameEng %> (<%= ticket.Seat %>)" />
 		<input type="hidden" name="quantity_<%= i %>" value="1" />
 		<input type="hidden" name="amount_<%= i %>" value="<%= ticket.Price %>" />
 		<% 

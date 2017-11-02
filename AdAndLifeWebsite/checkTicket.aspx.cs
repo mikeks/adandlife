@@ -52,7 +52,7 @@ namespace AdAndLifeWebsite
 				ErrorMessage = ee.Message;
 			}
 
-			if (Trans == null)
+			if (Trans == null || ErrorMessage != "")
 			{
 				Conclusion = "Invalid ticket";
 				Color = "red";
