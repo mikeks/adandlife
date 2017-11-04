@@ -120,8 +120,8 @@
 
 			<%if (!HideBanners) { %>
 			<div class="bannerView">
-				<img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20.jpg" />
-				<img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43.jpg" />
+				<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20-fullscreen.jpg"><img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20.jpg" /></a>
+				<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43-fullscreen.jpg"><img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43.jpg" /></a>
 				<img class="banner" src="/ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
 				<img class="banner" src="/ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
 				<img class="banner" src="/ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
