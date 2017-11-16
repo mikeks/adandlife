@@ -7,7 +7,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
-using VitalConnection.AAL.Builder.Model;
 
 namespace AdAndLifeWebsite.Models.Articles.Entities
 {

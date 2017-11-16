@@ -8,7 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentArea" runat="server">
     <h1>Архив</h1>
 
-    <%if (SiteUser.IsAdmin)
+    <%if (SiteUser.CheckAccess("edit"))
         { %>
     <section class="admin-add-archive">
 
@@ -91,7 +91,7 @@
                     <a target="_blank" href="<%# Eval("Url") %>">
                         №<%# Eval("Number", "{0:D2}") %> <%# Eval("Year") %>
                     </a>
-                    <%if (SiteUser.IsAdmin) { %><a href="?del=<%# Eval("Id") %>">(удалить)</a><% } %>
+                    <%if (SiteUser.CheckAccess("edit")) { %><a href="?del=<%# Eval("Id") %>">(удалить)</a><% } %>
                 </li>
             </ItemTemplate>
         </asp:Repeater>
@@ -104,7 +104,7 @@
                     <a target="_blank" href="<%# Eval("Url") %>">
                         №<%# Eval("Number", "{0:D2}") %> <%# Eval("Year") %>
                     </a>
-                    <%if (SiteUser.IsAdmin) { %><a href="?del=<%# Eval("Id") %>">(удалить)</a><% } %>
+                    <%if (SiteUser.CheckAccess("edit")) { %><a href="?del=<%# Eval("Id") %>">(удалить)</a><% } %>
                 </li>
             </ItemTemplate>
         </asp:Repeater>
@@ -117,7 +117,7 @@
                     <a target="_blank" href="<%# Eval("Url") %>">
                         №<%# Eval("Number", "{0:D2}") %> <%# Eval("Year") %>
                     </a>
-                    <%if (SiteUser.IsAdmin) { %><a href="?del=<%# Eval("Id") %>">(удалить)</a><% } %>
+                    <%if (SiteUser.CheckAccess("edit")) { %><a href="?del=<%# Eval("Id") %>">(удалить)</a><% } %>
                 </li>
             </ItemTemplate>
         </asp:Repeater>

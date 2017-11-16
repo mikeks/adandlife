@@ -19,7 +19,7 @@ namespace AdAndLifeWebsite
 
 		public string PageTitle { get; set; }
 
-		public bool IsAdmin => Models.SiteUser.IsAdmin;
+		public bool IsAdmin => SiteUser.CurrentUser != null;
 
         public string DomainPA => Utility.DomainPA;
         public string DomainBaltimore => Utility.DomainBaltimore;

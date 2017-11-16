@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="class.master.cs" Inherits="AdAndLifeWebsite.MainMaster" %>
+<%@ Import Namespace="AdAndLifeWebsite.Models" %>
 
 <!DOCTYPE html>
 
@@ -120,29 +121,28 @@
 
 			<%if (!HideBanners) { %>
 			<div class="bannerView">
-				<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20-fullscreen.jpg"><img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20.jpg" /></a>
-				<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43-fullscreen.jpg"><img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43.jpg" /></a>
-				<img class="banner" src="/ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
-				<img class="banner" src="/ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
-				<img class="banner" src="/ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
+			<%foreach (var bnr in SiteBanner.BannersForRightColumn) { %>
+				<a target="_blank" href="/ArticleImages/banners/<%= bnr.FullscreenFilename %>"><img class="bannerBottom" src="ArticleImages/banners/<%= bnr.RightColumnFilename %>" /></a>
+			<% } %>
 			</div>
 			<% } %>
 
-            <div class="coontent-area"<%= NoWidthLimit? "style='max-width:99999px'" : "" %>>
+<%--				<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20-fullscreen.jpg"><img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20.jpg" /></a>
+				<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43-fullscreen.jpg"><img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43.jpg" /></a>
+				<img class="banner" src="/ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
+				<img class="banner" src="/ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
+				<img class="banner" src="/ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />--%>
+
+            <div class="coontent-area" <%= NoWidthLimit? "style='max-width:99999px'" : "" %>>
                 <form id="form1" runat="server">
                     <asp:ContentPlaceHolder ID="ContentArea" runat="server" />
                 </form>
                 <asp:ContentPlaceHolder ID="ContentAreaNoForm" runat="server" />
             </div>
 
-			<%if (!HideBanners) { %>
-            <img class="banner_mob" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20.jpg" />
-            <img class="banner_mob" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43.jpg" />
-            <img class="banner_mob" src="/ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
-            <img class="banner_mob" src="/ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
-            <img class="banner_mob" src="/ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />
+			<%if (!HideBanners) foreach (var bnr in SiteBanner.BannersForRightColumn) { %>
+				<a class="banner_mob" target="_blank" href="/ArticleImages/banners/<%= bnr.FullscreenFilename %>"><img class="bannerBottom" src="ArticleImages/banners/<%= bnr.RightColumnFilename %>" /></a>
 			<% } %>
-
 
         </div>
 </body>

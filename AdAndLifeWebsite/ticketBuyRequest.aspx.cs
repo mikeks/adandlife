@@ -1,4 +1,5 @@
-﻿using AdAndLifeWebsite.Models.Tickets;
+﻿using AdAndLifeWebsite.Models;
+using AdAndLifeWebsite.Models.Tickets;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +7,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using VitalConnection.AAL.Builder.Model;
 
 namespace AdAndLifeWebsite
 {

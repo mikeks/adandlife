@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
-using VitalConnection.AAL.Builder.Model;
 
 namespace AdAndLifeWebsite.Models.Tickets
 {

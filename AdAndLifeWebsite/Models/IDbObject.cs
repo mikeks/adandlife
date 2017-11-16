@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VitalConnection.AAL.Builder.Model
+namespace AdAndLifeWebsite.Models
 {
     public interface IDbObject
     {

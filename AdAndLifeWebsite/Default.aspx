@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/class.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="AdAndLifeWebsite.HomePage" %>
+<%@ Import Namespace="AdAndLifeWebsite.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
 </asp:Content>
 
@@ -46,9 +47,13 @@
         </ul>
     </div>
 
-<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20-fullscreen.jpg"><img class="bannerBottom" src="ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20-homepage.jpg" /></a>
+	<%foreach (var bnr in SiteBanner.BannersForHomepage) { %>
+		<a target="_blank" href="/ArticleImages/banners/<%= bnr.FullscreenFilename %>"><img class="bannerBottom" src="ArticleImages/banners/<%= bnr.HomepageFilename %>" /></a>
+	<% } %>
+
+<%--<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20-fullscreen.jpg"><img class="bannerBottom" src="ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20-homepage.jpg" /></a>
 <a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43-fullscreen.jpg"><img class="bannerBottom" src="ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43-homepage.jpg" /></a>
 	<br />
-<img class="bannerBottom" src="ArticleImages/banners/4bc_C_Trucking Co_5343_17_P36.jpg" />
+<img class="bannerBottom" src="ArticleImages/banners/4bc_C_Trucking Co_5343_17_P36.jpg" />--%>
 
 </asp:Content>

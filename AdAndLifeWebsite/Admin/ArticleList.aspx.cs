@@ -1,4 +1,5 @@
-﻿using AdAndLifeWebsite.Models.Articles.Entities;
+﻿using AdAndLifeWebsite.Models;
+using AdAndLifeWebsite.Models.Articles.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace AdAndLifeWebsite.Admin
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			SiteUser.CheckPageAccess("edit");
+
 			ArticlesRepeater.DataSource = WebsiteArticle.All;
 			ArticlesRepeater.DataBind();
 

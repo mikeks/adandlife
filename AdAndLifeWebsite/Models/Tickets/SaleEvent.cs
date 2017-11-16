@@ -7,7 +7,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
-using VitalConnection.AAL.Builder.Model;
 
 namespace AdAndLifeWebsite.Models.Tickets
 {
@@ -31,6 +30,10 @@ namespace AdAndLifeWebsite.Models.Tickets
 
 		public IEnumerable<Ticket> AvaliableTickets => Ticket.GetAvaliableTickets(this);
 		public IEnumerable<Ticket> AllTickets => Ticket.GetAllTickets(this);
+
+		public IEnumerable<Ticket> SoldTickets => AllTickets.Where((x) => x.BuyerName != null && x.PurchaseDate != null);
+
+		public decimal TotalSoldAmount => SoldTickets.Sum((x) => x.Price);
 
 		public void ReadFromDb(SqlDataReader rdr)
         {

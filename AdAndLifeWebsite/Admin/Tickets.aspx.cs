@@ -14,6 +14,7 @@ namespace AdAndLifeWebsite.Admin
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			SiteUser.CheckPageAccess("tickets");
             SalesRepeater.DataSource = SaleEvent.All;
             SalesRepeater.DataBind();
 

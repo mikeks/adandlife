@@ -12,6 +12,7 @@
     <div class="admin-menu">
         <a href="/Admin/Default.aspx" >Админка</a>
         <a href="/" >Вернуться на сайт</a>
+        <a href="Login.aspx?mode=exit" >Выйти</a>
     </div>
 
     <form id="form1" runat="server">

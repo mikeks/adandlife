@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace VitalConnection.AAL.Builder.Model
+namespace AdAndLifeWebsite.Models
 {
 
     public class ConnectionProblemException : Exception { }

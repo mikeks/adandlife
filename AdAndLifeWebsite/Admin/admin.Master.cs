@@ -12,7 +12,7 @@ namespace AdAndLifeWebsite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SiteUser.TestAdminAccess();
+            SiteUser.CheckPageAccess(null);
         }
 
 

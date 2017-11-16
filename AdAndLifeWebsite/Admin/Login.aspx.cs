@@ -15,12 +15,20 @@ namespace AdAndLifeWebsite.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request["login"] != null && Request["password"] != null)
+			if (Request["mode"] == "exit")
+			{
+				SiteUser.Logout();
+				Response.Redirect("/", true);
+			}
+
+			var login = Request["login"];
+			var password = Request["password"];
+
+			if (!string.IsNullOrWhiteSpace(login) && !string.IsNullOrWhiteSpace(password))
             {
-                var lp = ConfigurationManager.AppSettings["adminAccess"].Split('|');
-                if (Request["login"] == lp[0] && Request["password"] == lp[1])
-                {
-                    SiteUser.SetAdmin();
+				var user = SiteUser.Login(login, password);
+				if (user != null)
+				{
                     Response.Redirect("/Admin/Default.aspx");
                 } else
                 {

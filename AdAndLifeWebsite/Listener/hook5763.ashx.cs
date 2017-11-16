@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AdAndLifeWebsite.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
-using VitalConnection.AAL.Builder.Model;
 
 namespace AdAndLifeWebsite.Listener
 {

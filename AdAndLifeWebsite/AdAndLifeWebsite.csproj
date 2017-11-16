@@ -79,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\admin.css" />
+    <Content Include="Admin\Banners.aspx" />
+    <Content Include="Admin\EditBanner.aspx" />
+    <Content Include="Admin\Money.aspx" />
     <Content Include="Admin\EditArticle.aspx" />
     <Content Include="Admin\ResendTicket.aspx" />
     <Content Include="Admin\ViewTickets.aspx" />
@@ -145,6 +148,27 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Banners.aspx.cs">
+      <DependentUpon>Banners.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Banners.aspx.designer.cs">
+      <DependentUpon>Banners.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EditBanner.aspx.cs">
+      <DependentUpon>EditBanner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditBanner.aspx.designer.cs">
+      <DependentUpon>EditBanner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Money.aspx.cs">
+      <DependentUpon>Money.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Money.aspx.designer.cs">
+      <DependentUpon>Money.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\EditArticle.aspx.cs">
       <DependentUpon>EditArticle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -239,6 +263,11 @@
     <Compile Include="Listener\readLog.aspx.designer.cs">
       <DependentUpon>readLog.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin\MikeMoney.cs" />
+    <Compile Include="Models\Classified\ClassifiedMoney.cs" />
+    <Compile Include="Models\Classified\ClassifiedAd.cs" />
+    <Compile Include="Models\Classified\ClassifiedRubric.cs" />
+    <Compile Include="Models\SiteBanner.cs" />
     <Compile Include="Models\Tickets\Ticket.cs" />
     <Compile Include="Models\Tickets\SellingTransaction.cs" />
     <Compile Include="Models\Tickets\EventLocation.cs" />
@@ -348,8 +377,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Articles\Entities\WebsiteArticle.cs" />
-    <Compile Include="Models\Classified\Entities\ClassifiedAd.cs" />
-    <Compile Include="Models\Classified\Entities\ClassifiedRubric.cs" />
     <Compile Include="Models\DbObject.cs" />
     <Compile Include="Models\IDbObject.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />

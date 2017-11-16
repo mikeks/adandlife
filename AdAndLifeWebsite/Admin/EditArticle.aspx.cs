@@ -1,4 +1,5 @@
-﻿using AdAndLifeWebsite.Models.Articles.Entities;
+﻿using AdAndLifeWebsite.Models;
+using AdAndLifeWebsite.Models.Articles.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,7 @@ namespace AdAndLifeWebsite.Admin
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			SiteUser.CheckPageAccess("edit");
 
 			int id = 0;
 			try

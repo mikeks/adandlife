@@ -21,6 +21,7 @@ namespace AdAndLifeWebsite.Admin
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			SiteUser.CheckPageAccess("tickets");
 
 			int id = 0;
 			try

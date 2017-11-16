@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using VitalConnection.AAL.Builder.Model;
 
 namespace AdAndLifeWebsite
 {
@@ -31,7 +30,7 @@ namespace AdAndLifeWebsite
             repArchiveJL.DataSource = WebsiteNewspaper.All.Where((x) => x.NewspaperType == NewspaperTypeEnum.JewishLife);
             repArchiveJL.DataBind();
 
-            if (Request["del"] != null && SiteUser.IsAdmin)
+            if (Request["del"] != null && SiteUser.CheckAccess("edit"))
             {
                 WebsiteNewspaper.Delete(int.Parse(Request["del"]));
                 Response.Redirect("archive.aspx");
