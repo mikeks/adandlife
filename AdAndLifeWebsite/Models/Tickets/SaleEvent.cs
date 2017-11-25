@@ -25,6 +25,7 @@ namespace AdAndLifeWebsite.Models.Tickets
 		public DateTime EventDate { get; set; } = DateTime.Today;
         public string UrlName { get; set; }
         public bool IsAvaliable { get; set; }
+        public byte OurShare { get; set; }
 
 		public IEnumerable<TicketType> Codes => TicketType.ForEvent(this);
 
@@ -34,6 +35,7 @@ namespace AdAndLifeWebsite.Models.Tickets
 		public IEnumerable<Ticket> SoldTickets => AllTickets.Where((x) => x.BuyerName != null && x.PurchaseDate != null);
 
 		public decimal TotalSoldAmount => SoldTickets.Sum((x) => x.Price);
+		public decimal OurShareUSD => TotalSoldAmount * OurShare / 100;
 
 		public void ReadFromDb(SqlDataReader rdr)
         {
@@ -50,7 +52,9 @@ namespace AdAndLifeWebsite.Models.Tickets
 
 			IsAvaliable = (bool)rdr["IsAvaliable"];
             UrlName = (string)rdr["UrlName"];
-        }
+			OurShare = (byte)rdr["OurShare"];
+
+		}
 
         private static SaleEvent[] _all;
 
@@ -93,6 +97,7 @@ namespace AdAndLifeWebsite.Models.Tickets
 				cmd.Parameters.AddWithValue("@eventDate", EventDate);
 				cmd.Parameters.AddWithValue("@urlName", UrlName);
 				cmd.Parameters.AddWithValue("@isAvaliable", IsAvaliable);
+				cmd.Parameters.AddWithValue("@ourShare", OurShare);
             });
         }
 

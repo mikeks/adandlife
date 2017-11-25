@@ -95,6 +95,7 @@
 				<th>Дата концерта</th>
 				<th>Билетов продано</th>
 				<th>Полученная сумма</th>
+				<th>Наша доля</th>
 			</tr>
 			<asp:Repeater ID="RepeaterTickets" runat="server">
 				<ItemTemplate>
@@ -102,15 +103,17 @@
 						<td><%# Eval("EventName") %></td>
 						<td><%# Eval("EventDate") %></td>
 						<td><%# ((IEnumerable<Ticket>)Eval("SoldTickets")).Count() %></td>
-						<td><%# Eval("TotalSoldAmount", "${0:#}") %></td>
+						<td><%# Eval("TotalSoldAmount", "${0:0.00}") %></td>
+						<td><%# Eval("OurShareUSD", "${0:0.00}") %> (<%# Eval("OurShare") %>%)</td>
 					</tr>
 				</ItemTemplate>
 			</asp:Repeater>
 		</table>
 
 		<div class="tot">
-			Всего за билеты: $<%= ticketsTotalPrice.ToString("0.00") %><br />
-			To Keskinov, LLC (45%): $<%= ticketsMike.ToString("0.00") %>
+			Всего получено за билеты: $<%= ticketsTotalPrice.ToString("0.00") %><br />
+			Наша доля за билеты: $<%= ticketsOurShare.ToString("0.00") %><br />
+			To Keskinov, LLC: $<%= ticketsMike.ToString("0.00") %>
 		</div>
 
 	<h2>Баннеры</h2>

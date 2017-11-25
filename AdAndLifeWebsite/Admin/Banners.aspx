@@ -54,7 +54,7 @@
 					<td><%# PosToStr(Eval("PositionRight")) %></td>
 					<td><%# PosToStr(Eval("PositionHomepage")) %></td>
 					<td><%# Eval("Price") %></td>
-					<td><%# Eval("EndDate") %></td>
+					<td><%# ((DateTime)Eval("EndDate")).ToShortDateString() %></td>
 					<td>
 						<a href="EditBanner.aspx?id=<%# Eval("Id") %>">редактировать</a><br />
 						<a onclick="return confirm('Удалить баннер <%# Eval("Name") %>?');" href="Banners.aspx?del=<%# Eval("Id") %>" style="color:red">удалить</a><br />

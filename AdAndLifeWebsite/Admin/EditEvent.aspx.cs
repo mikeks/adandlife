@@ -76,6 +76,18 @@ namespace AdAndLifeWebsite.Admin
 					return;
 				}
 
+				try
+				{
+					Sale.OurShare = Byte.Parse(OurShare.Text);
+					if (Sale.OurShare > 100) throw new Exception();
+				}
+				catch (Exception)
+				{
+					ErrorMessage = "Неверно указана наша доля (%).";
+					return;
+				}
+
+
 				if (Regex.IsMatch(EventNameEng.Text.Trim(), "[^a-z0-9 ]", RegexOptions.IgnoreCase))
 				{
 					ErrorMessage = "Название по-английски может содержать только латинские буквы, цифры или пробел.";
@@ -149,6 +161,7 @@ namespace AdAndLifeWebsite.Admin
 			IsAvaliable.Checked = Sale.IsAvaliable;
             UrlName.Text = Sale.UrlName;
 			EventDate.Text = Sale.EventDate.ToString();
+			OurShare.Text = Sale.OurShare.ToString();
 
 			EventLocation[] locs = EventLocation.All;
 			EventLocationDropDown.DataSource = locs;

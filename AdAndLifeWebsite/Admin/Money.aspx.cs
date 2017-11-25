@@ -18,6 +18,7 @@ namespace AdAndLifeWebsite.Admin
 		protected decimal classifiedTotalPrice;
 		protected decimal classifiedMike;
 		protected decimal ticketsTotalPrice;
+		protected decimal ticketsOurShare;
 		protected decimal ticketsMike;
 		protected decimal bannersTotalPrice;
 		protected decimal bannersMike;
@@ -47,11 +48,13 @@ namespace AdAndLifeWebsite.Admin
 			RepeaterTickets.DataBind();
 
 			ticketsTotalPrice = 0;
+			ticketsOurShare = 0;
 			foreach (var ev in SaleEvent.All)
 			{
 				ticketsTotalPrice += ev.TotalSoldAmount;
+				ticketsOurShare += ev.OurShareUSD;
 			}
-			ticketsMike = ticketsTotalPrice * 0.45m;
+			ticketsMike = ticketsOurShare * 0.45m;
 
 			// banners
 			RepeaterBanners.DataSource = SiteBanner.All;

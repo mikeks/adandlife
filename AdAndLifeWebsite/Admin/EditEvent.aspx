@@ -44,6 +44,10 @@
         <asp:TextBox runat="server" TextMode="DateTime" ID="EventDate" Width="300" />
     </div>
 
+    <div>
+        Наша доля (%):<br />
+        <asp:TextBox runat="server" TextMode="Number" ID="OurShare" Width="50" />
+    </div>
 
 	<h2>Афиша</h2>
 	<img src="/ArticleImages/events/<%= Sale.EventImage %>" />
@@ -58,6 +62,7 @@
         <textarea runat="server" id="EventDescription" style="width: 1000px; height: 400px;">
 	</textarea>
     </div>
+
 
     <br />
     <div>

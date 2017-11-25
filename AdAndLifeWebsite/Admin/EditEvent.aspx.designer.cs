@@ -58,6 +58,15 @@ namespace AdAndLifeWebsite.Admin {
         protected global::System.Web.UI.WebControls.TextBox EventDate;
         
         /// <summary>
+        /// OurShare control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox OurShare;
+        
+        /// <summary>
         /// FileUpload1 control.
         /// </summary>
         /// <remarks>

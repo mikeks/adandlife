@@ -125,7 +125,4 @@
     
 
 
-	<img class="bannerBottom" src="ArticleImages/banners/4bc_C_Trucking Co_5343_17_P36.jpg" />
-
-
 </asp:Content>
