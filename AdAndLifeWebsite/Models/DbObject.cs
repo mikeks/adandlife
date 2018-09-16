@@ -50,7 +50,7 @@ namespace AdAndLifeWebsite.Models
             }
         }
 
-        protected static void ReadSql(string storedProcName, Action<SqlCommand> addParAction, Action<SqlDataReader> f)
+        public static void ReadSql(string storedProcName, Action<SqlCommand> addParAction, Action<SqlDataReader> f)
         {
             using (var conn = GetConnection())
             {

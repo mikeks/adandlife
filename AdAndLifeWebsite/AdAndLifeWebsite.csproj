@@ -103,6 +103,8 @@
     <Content Include="new\classified.aspx" />
     <Content Include="FacebookInteraction\FacebookFeed.aspx" />
     <Content Include="js\adandlife.js" />
+    <Content Include="txt-feed.aspx" />
+    <Content Include="rss.aspx" />
     <Content Include="ticketBuyRequest.aspx" />
     <Content Include="myTicket.aspx" />
     <Content Include="ticketReturn.aspx" />
@@ -288,6 +290,20 @@
     </Compile>
     <Compile Include="new\classified.aspx.designer.cs">
       <DependentUpon>classified.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="txt-feed.aspx.cs">
+      <DependentUpon>txt-feed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="txt-feed.aspx.designer.cs">
+      <DependentUpon>txt-feed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="rss.aspx.cs">
+      <DependentUpon>rss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="rss.aspx.designer.cs">
+      <DependentUpon>rss.aspx</DependentUpon>
     </Compile>
     <Compile Include="ticketBuyRequest.aspx.cs">
       <DependentUpon>ticketBuyRequest.aspx</DependentUpon>
