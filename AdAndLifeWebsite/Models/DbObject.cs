@@ -50,11 +50,11 @@ namespace AdAndLifeWebsite.Models
             }
         }
 
-        public static void ReadSql(string storedProcName, Action<SqlCommand> addParAction, Action<SqlDataReader> f)
+        public static void ReadSql(string storedProcName, Action<SqlCommand> addParAction, Action<SqlDataReader> f, CommandType commandType = CommandType.StoredProcedure)
         {
             using (var conn = GetConnection())
             {
-				var cmd = new SqlCommand(storedProcName, conn) { CommandType =  CommandType.StoredProcedure };
+				var cmd = new SqlCommand(storedProcName, conn) { CommandType =  commandType };
 				addParAction?.Invoke(cmd);
 				using (var rdr = cmd.ExecuteReader())
                 {

@@ -28,8 +28,8 @@ namespace AdAndLifeWebsite
                 Article = WebsiteArticle.GetById(aId);
                 CanonicalUrl = "http://adandlife.com/article.aspx?id=" + aId.ToString();
 
-				(Master as MainMaster).PageTitle = Article.Name;
-				(Master as MainMaster).MetaDescription = "Статья из газеты: " + Article.Name;
+				(Master as MainMaster).PageTitle = Article.Name + " - Реклама и Жизнь";
+				(Master as MainMaster).MetaDescription = "Реклама и Жизнь: " + Article.Name;
 
 			}
 			catch (Exception)

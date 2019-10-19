@@ -82,7 +82,6 @@
     <Content Include="Admin\Banners.aspx" />
     <Content Include="Admin\EditBanner.aspx" />
     <Content Include="Admin\Money.aspx" />
-    <Content Include="Admin\EditArticle.aspx" />
     <Content Include="Admin\ResendTicket.aspx" />
     <Content Include="Admin\ViewTickets.aspx" />
     <Content Include="Admin\EditEvent.aspx" />
@@ -96,12 +95,12 @@
     <Content Include="checkTicket.aspx" />
     <Content Include="Controls\HallMaps\HallMapArchWood.ascx" />
     <Content Include="Controls\HallMaps\HallMapKleinLife.ascx" />
+    <Content Include="favicon.ico" />
     <Content Include="js\tickets.js" />
     <Content Include="Listener\readLog.aspx" />
     <Content Include="new\classified-paid.aspx" />
     <Content Include="new\classified-free.aspx" />
     <Content Include="new\classified.aspx" />
-    <Content Include="FacebookInteraction\FacebookFeed.aspx" />
     <Content Include="js\adandlife.js" />
     <Content Include="txt-feed.aspx" />
     <Content Include="rss.aspx" />
@@ -127,6 +126,7 @@
     <Content Include="class.Master" />
     <Content Include="Admin\admin.Master" />
     <Content Include="Listener\hook5763.ashx" />
+    <Content Include="ArticleImage.ashx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -136,7 +136,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\ArticleList.aspx" />
     <Content Include="article.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -170,13 +169,6 @@
     </Compile>
     <Compile Include="Admin\Money.aspx.designer.cs">
       <DependentUpon>Money.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\EditArticle.aspx.cs">
-      <DependentUpon>EditArticle.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\EditArticle.aspx.designer.cs">
-      <DependentUpon>EditArticle.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ResendTicket.aspx.cs">
       <DependentUpon>ResendTicket.aspx</DependentUpon>
@@ -213,13 +205,6 @@
     <Compile Include="Admin\Tickets.aspx.designer.cs">
       <DependentUpon>Tickets.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ArticleList.aspx.cs">
-      <DependentUpon>ArticleList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ArticleList.aspx.designer.cs">
-      <DependentUpon>ArticleList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\admin.Master.cs">
       <DependentUpon>admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -241,6 +226,9 @@
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ArticleImage.ashx.cs">
+      <DependentUpon>ArticleImage.ashx</DependentUpon>
+    </Compile>
     <Compile Include="checkTicketLogin.aspx.cs">
       <DependentUpon>checkTicketLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -255,6 +243,7 @@
     <Compile Include="checkTicket.aspx.designer.cs">
       <DependentUpon>checkTicket.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Extensions.cs" />
     <Compile Include="Listener\hook5763.ashx.cs">
       <DependentUpon>hook5763.ashx</DependentUpon>
     </Compile>
@@ -266,6 +255,7 @@
       <DependentUpon>readLog.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin\MikeMoney.cs" />
+    <Compile Include="Models\Articles\Entities\ArticleRubric.cs" />
     <Compile Include="Models\Classified\ClassifiedMoney.cs" />
     <Compile Include="Models\Classified\ClassifiedAd.cs" />
     <Compile Include="Models\Classified\ClassifiedRubric.cs" />
@@ -403,6 +393,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ArticleImages\" />
+    <Folder Include="FacebookInteraction\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>

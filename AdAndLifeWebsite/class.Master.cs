@@ -38,13 +38,13 @@ namespace AdAndLifeWebsite
         {
         }
 
-        bool _isAnySel = false;
+        //bool _isAnySel = false;
 
         protected string _isSel(string url)
         {
             if (Request.Url.LocalPath.ToLowerInvariant().Contains(url.ToLowerInvariant()))
             {
-                _isAnySel = true;
+                //_isAnySel = true;
                 return "-sel";
             }
             return "";

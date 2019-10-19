@@ -10,15 +10,6 @@
 namespace AdAndLifeWebsite {
     
     
-    public partial class ArticlesPage {
-        
-        /// <summary>
-        /// ARep control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ARep;
+    public partial class ArticlePage {
     }
 }

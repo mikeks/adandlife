@@ -1,129 +1,82 @@
 ﻿using AdAndLifeWebsite.Classes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Caching;
 
 namespace AdAndLifeWebsite.Models.Articles.Entities
 {
-    public class WebsiteArticle : DbObject, IDbObject
-    {
-
-        public int Id { get; set; }
-        public string Name { get; set; }
-        //public string ImageName { get; set; }
-        //private byte[] ImageToSave { get; set; }
-
-        private string ImageFolder
-        {
-            get
-            {
-                return HttpContext.Current.Server.MapPath("~/ArticleImages/" + Id + "/");
-            }
-        }
-
-        public void SaveImage(byte[] rawRata)
-        {
-            if (!Directory.Exists(ImageFolder)) Directory.CreateDirectory(ImageFolder);
-
-            using (var img = Image.FromStream(new MemoryStream(rawRata)))
-            {
-                var img2 = img.Width > 800 ? Utility.ResizeImage(img, 800) : img;
-
-                int i = 0;
-                while (File.Exists(ImageFolder + i + ".jpg"))
-                {
-                    i++;
-                }
-                img2.Save(ImageFolder + i + ".jpg");
-            }
-        }
-
-        public IEnumerable<string> GetImagesUrls()
-        {
-            if (!Directory.Exists(ImageFolder)) return new string[0];
-            var images = Directory.GetFiles(ImageFolder, "*.jpg");
-            
-            return images.Select((x) => "http://" + HttpContext.Current.Request.Url.Host + "/ArticleImages/" + Id + "/" + Path.GetFileName(x));
-        }
 
 
+	public class WebsiteArticle : DbObject, IDbObject
+	{
+
+		public int Id { get; private set; }
+		public DateTime Created { get; private set; }
+		public string Name { get; private set; }
+		public string Author { get; private set; }
+		public ArticleRubric Rubric { get; private set; }
+		public int IssueYear { get; private set; }
+		public short IssueNumber { get; private set; }
+		public string Txt { get; private set; }
+
+		public string SummaryText { get; private set; }
+
+		public string IssueNumberAndYear
+		{
+			get
+			{
+				if (IssueNumber == 0) return "";
+				return $"№{IssueNumber} ({IssueYear}) |";
+			}
+		}
+
+		private void PopulateSummaryText()
+		{
+			var s = Txt.Substring(Txt.IndexOf("<p>"));
+
+			s = s.Replace("&nbsp;", " ");
+			while (s.Contains("  ")) s = s.Replace("  ", " ");
+
+			s = Regex.Replace(s, "<.*?>", " ").Substring(0, 400);
+
+			var p = s.LastIndexOf(". "); 
+			if (p < 100) p = s.LastIndexOf(" ");
+			if (p < 100) p = 300;
+			s = s.Substring(0, p) + "...";
 
 
-
-        //public List<WebsiteImage> ArticleImages
-        //{
-        //    get
-        //    {
-
-        //        var aa = new List<WebsiteImage>();
-
-        //        ReadSql($"select * from WebsiteImage where articleId = {Id}", (rdr) =>
-        //        {
-        //            var img = new WebsiteImage();
-        //            img.ReadFromDb(rdr);
-        //            aa.Add(img);
-        //        });
-
-        //        return aa;
-
-        //    }
-        //}
-
-
-        private string _txt;
-        public string Txt
-        {
-            get
-            {
-                if (_txt == null)
-                {
-                    ReadSql($"select txt from WebsiteArticle where id = {Id}", (rdr) =>
-                    {
-                        Txt = (string)rdr["txt"];
-                    });
-                }
-                return _txt;
-            }
-            set
-            {
-                _txt = value;
-            }
-        }
-
-
-
+			SummaryText = s;
+		}
 
         public void ReadFromDb(SqlDataReader rdr)
         {
             Id = (int)rdr["Id"];
             Name = (string)rdr["Name"];
-        }
+			Author = (string)ResolveDbNull(rdr["Author"]);
+			Created = (DateTime)rdr["Created"];
+			var rubricId = (int?)ResolveDbNull(rdr["RubricId"]);
+			Rubric = rubricId == null ? null : ArticleRubric.GetById(rubricId.Value);
+			IssueYear = (int)rdr["IssueYear"];
+			IssueNumber = (short)rdr["IssueNumber"];
+			var rawText = (string)rdr["txt"];
+			Txt = Regex.Replace(rawText, "ArticleImages\\/(\\d+).jpg", $"ArticleImage.ashx?a={Id}&n=$1");
+			PopulateSummaryText();
+			
+		}
 
-        private static Dictionary<int, WebsiteArticle> _all;
 
-
-        private static void ReadAll()
-        {
-            if (_all == null)
-            {
-                var aa = ReadCollectionFromDb<WebsiteArticle>("select Id, Name from [WebsiteArticle]");
-                _all = new Dictionary<int, WebsiteArticle>();
-                foreach (var a in aa)
-                {
-                    _all.Add(a.Id, a);
-                }
-            }
-        }
 
         public static WebsiteArticle GetById(int id)
         {
-            ReadAll();
-            return _all.ContainsKey(id) ? _all[id] : null;
+			return All.FirstOrDefault((x) => x.Id == id);
         }
 
 
@@ -131,35 +84,28 @@ namespace AdAndLifeWebsite.Models.Articles.Entities
         {
             get
             {
-                ReadAll();
-                return _all.Values;
+				var articles = (WebsiteArticle[])HttpContext.Current.Cache.Get("articles");
+				if (articles == null)
+				{
+					articles = ReadCollectionFromDb<WebsiteArticle>("select * from [WebsiteArticle]");
+					HttpContext.Current.Cache.Insert("articles", articles, null, DateTime.Now.AddMinutes(5), Cache.NoSlidingExpiration);
+				}
+				return articles;
             }
         }
 
-        internal void Save()
-        {
-            ExecStoredProc("SaveWebsiteArticle", (cmd) =>
-            {
-                if (Id > 0) cmd.Parameters.AddWithValue("id", Id);
-                cmd.Parameters.AddWithValue("@name", Name);
-                cmd.Parameters.AddWithValue("@txt", Txt);
 
-                //if (ImageToSave != null && ImageToSave.Length > 0)
-                //{
-                //    cmd.Parameters.AddWithValue("@imageName", ImageName);
-                //    cmd.Parameters.Add(new SqlParameter("@imageData", System.Data.SqlDbType.VarBinary, ImageToSave.Length) { Value = ImageToSave });
+		public static byte[] GetImage(int articleId, int num)
+		{
+			byte[] data = null;
+			ReadSql($"select data from WebsiteArticleImage where ArticleId = {articleId} and Num = {num}", (rdr) =>
+			{
+				data = (byte[])rdr["data"];
+			});
+			return data;
+		}
 
-                //}
-
-            });
-            _all = null;
-        }
-
-        internal static void Delete(int articleId)
-        {
-            ExecSQL("delete WebsiteArticle where id = " + articleId);
-            _all = null;
-        }
+        
     }
 
 

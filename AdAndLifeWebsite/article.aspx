@@ -13,16 +13,14 @@
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+	<section class="article">
+		<% Response.Write(Article.Txt); %>
+	</section>
 
-		<h1>
-			<%=Article.Name %>
-		</h1>
-		<section>
-			<% Response.Write(Article.Txt); %>
-		</section>
+	<button onclick="shareFb(location.href)">Share on Facebook</button>
 
-        <h2>Ваши комментарии</h2>
-        <div class="fb-comments" data-href="<%= CanonicalUrl  %>" data-numposts="5"></div>
+    <h2>Ваши комментарии</h2>
+    <div class="fb-comments" data-href="<%= CanonicalUrl  %>" data-numposts="5"></div>
 
 </asp:Content>
 

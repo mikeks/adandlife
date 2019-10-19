@@ -1,10 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/class.Master" AutoEventWireup="true" CodeBehind="classified.aspx.cs" Inherits="AdAndLifeWebsite.ClassifiedPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
-    <script>
-        var ww = window.innerWidth || document.documentElement.clientWidth;
-        function openPopup(u) { if (ww < 760) location = u; else open(u, '_blank', 'width=600,height=400,resizable=1,top=' + Math.max(0, screen.height / 2 - 300) + ',left=' + Math.max(0, screen.width / 2 - 200)) }
-        function shareFb(s) { openPopup('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(s)) }
-    </script>
     <meta property="og:title" content="<%= OgTitle %>" />
     <meta property="og:type" content="article" /> 
     <meta property="og:url" content="<%= CanonicalUrl %>" />

@@ -4,16 +4,37 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentArea" runat="server">
-    <h1>Статьи</h1>
+	
+	
+	
+	<nav class="rubric-list">
+		<ul>
+			<asp:Repeater runat="server" ID="RepRubric">
+				<ItemTemplate>
+					<li <%# Rubric != null && (int)Eval("Id") == Rubric.Id ? "class='selected'" : "" %> ><a href="/articles.aspx?rubricId=<%# Eval("Id") %>"><%# Eval("Name") %></a></li>
+				</ItemTemplate>
+			</asp:Repeater>
+		</ul>
+	</nav>
+	
+	<%--<h1><%= Rubric == null ? "Статьи" : Rubric.Name %></h1>--%>
     <ul class="article-list"> 
         <asp:Repeater runat="server" ID="ARep">
             <ItemTemplate>
                 <li>
-                    <section>
-                        <h1><a href="/article.aspx?id=<%# Eval("Id") %>"><%# Eval("Name") %></a></h1>
+					<div class="article-cat">
+						<%# Eval("Rubric") %> |
+						<%# Eval("IssueNumberAndYear") %>
+						<%# Eval("Author") %>
+					</div>
+					<a class="article-link" href="/article.aspx?id=<%# Eval("Id") %>">
+						<%# Eval("Name") %>
+						<div class="art-summary">
+							<%# Eval("SummaryText") %> 
+						</div>
+					</a>
 
-                    </section>
-                </li>
+                </li> 
             </ItemTemplate>
         </asp:Repeater>
     </ul>
