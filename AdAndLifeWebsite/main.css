@@ -735,11 +735,23 @@ nav.rubric-list li.selected a {
 	margin: 0;
 	font-family: sans-serif;
 	padding-left: 0;
+	width: 100%;
 }
 
 .article-list li {
 	text-decoration: none;
 	margin-bottom: 15px;
+	clear: both;
+	break-inside: avoid-column;
+	page-break-inside: avoid;
+	-webkit-column-break-inside: avoid;
+	display: table;
+}
+
+@media only screen and (min-width: 600px) {
+	.article-list {
+		columns: 2;
+	}
 }
 
 a.article-link {
@@ -762,10 +774,16 @@ a.article-link {
 	border-width: 0 0 1px 0;
 	padding-bottom: 10px;
 	margin-top: 5px;
+	overflow: auto;
 }
 
 .art-summary a {
 	color: gray;
+}
+
+.art-summary img {
+	float: left;
+	margin-right: 10px;
 }
 
 
@@ -791,6 +809,7 @@ a.article-link {
 		max-width: 100%;
 		height: auto;
 	}
+
 
 
 

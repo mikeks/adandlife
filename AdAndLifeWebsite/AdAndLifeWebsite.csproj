@@ -90,6 +90,7 @@
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Login.aspx" />
     <Content Include="archive.aspx" />
+    <Content Include="articles.aspx" />
     <Content Include="bin\Facebook.dll" />
     <Content Include="checkTicketLogin.aspx" />
     <Content Include="checkTicket.aspx" />
@@ -113,7 +114,6 @@
     <Content Include="Img\newspaper_adandlife.png" />
     <Content Include="Img\newspaper_jewish.png" />
     <Content Include="tickets.aspx" />
-    <Content Include="articles.aspx" />
     <Content Include="classified.aspx" />
     <Content Include="Img\logo_adal.png" />
     <Content Include="Img\logo_eg.png" />
@@ -228,6 +228,13 @@
     </Compile>
     <Compile Include="ArticleImage.ashx.cs">
       <DependentUpon>ArticleImage.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="articles.aspx.cs">
+      <DependentUpon>articles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="articles.aspx.designer.cs">
+      <DependentUpon>articles.aspx</DependentUpon>
     </Compile>
     <Compile Include="checkTicketLogin.aspx.cs">
       <DependentUpon>checkTicketLogin.aspx</DependentUpon>
@@ -360,13 +367,6 @@
     </Compile>
     <Compile Include="class.Master.designer.cs">
       <DependentUpon>class.Master</DependentUpon>
-    </Compile>
-    <Compile Include="articles.aspx.cs">
-      <DependentUpon>articles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="articles.aspx.designer.cs">
-      <DependentUpon>articles.aspx</DependentUpon>
     </Compile>
     <Compile Include="classified.aspx.cs">
       <DependentUpon>classified.aspx</DependentUpon>

@@ -11,7 +11,7 @@
 		<ul>
 			<asp:Repeater runat="server" ID="RepRubric">
 				<ItemTemplate>
-					<li <%# Rubric != null && (int)Eval("Id") == Rubric.Id ? "class='selected'" : "" %> ><a href="/articles.aspx?rubricId=<%# Eval("Id") %>"><%# Eval("Name") %></a></li>
+					<li <%# Rubric != null && (int)Eval("Id") == Rubric.Id ? "class='selected'" : "" %>><a href="/articles.aspx?rubricId=<%# Eval("Id") %>"><%# Eval("Name") %></a></li>
 				</ItemTemplate>
 			</asp:Repeater>
 		</ul>

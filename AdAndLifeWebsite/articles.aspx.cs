@@ -38,7 +38,7 @@ namespace AdAndLifeWebsite
 			ARep.DataBind();
 
 			RepRubric.DataSource = ArticleRubric.All.OrderByDescending((r) => allArticles.Count((a) => a.Rubric.Id == r.Id)).Take(8);
-			RepRubric.DataBind();
+			//RepRubric.DataBind();
 		}
 	}
 }

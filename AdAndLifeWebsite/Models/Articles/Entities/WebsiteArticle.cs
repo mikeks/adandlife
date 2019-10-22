@@ -26,8 +26,10 @@ namespace AdAndLifeWebsite.Models.Articles.Entities
 		public int IssueYear { get; private set; }
 		public short IssueNumber { get; private set; }
 		public string Txt { get; private set; }
+		public bool UsePreviewImage { get; private set; }
 
 		public string SummaryText { get; private set; }
+
 
 		public string IssueNumberAndYear
 		{
@@ -52,6 +54,10 @@ namespace AdAndLifeWebsite.Models.Articles.Entities
 			if (p < 100) p = 300;
 			s = s.Substring(0, p) + "...";
 
+			if (Txt.Contains("<img") && UsePreviewImage)
+			{
+				s = $"<img src='/ArticleImage.ashx?a={Id}&n=1&th=1'>" + s;
+			}
 
 			SummaryText = s;
 		}
@@ -66,6 +72,7 @@ namespace AdAndLifeWebsite.Models.Articles.Entities
 			Rubric = rubricId == null ? null : ArticleRubric.GetById(rubricId.Value);
 			IssueYear = (int)rdr["IssueYear"];
 			IssueNumber = (short)rdr["IssueNumber"];
+			UsePreviewImage = (bool)rdr["UsePreviewImage"];
 			var rawText = (string)rdr["txt"];
 			Txt = Regex.Replace(rawText, "ArticleImages\\/(\\d+).jpg", $"ArticleImage.ashx?a={Id}&n=$1");
 			PopulateSummaryText();
