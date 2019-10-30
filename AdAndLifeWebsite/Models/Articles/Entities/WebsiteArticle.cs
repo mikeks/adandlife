@@ -31,35 +31,41 @@ namespace AdAndLifeWebsite.Models.Articles.Entities
 		public string SummaryText { get; private set; }
 
 
-		public string IssueNumberAndYear
+		public string ArticleInfo
 		{
 			get
 			{
-				if (IssueNumber == 0) return "";
-				return $"№{IssueNumber} ({IssueYear}) |";
+				var s = "";
+				if (IssueNumber != 0) s += $" | №{ IssueNumber} ({ IssueYear})";
+				if (!string.IsNullOrEmpty(Author)) s += $" | {Author}";
+				return s;
 			}
 		}
 
 		private void PopulateSummaryText()
 		{
-			var s = Txt.Substring(Txt.IndexOf("<p>"));
-
-			s = s.Replace("&nbsp;", " ");
-			while (s.Contains("  ")) s = s.Replace("  ", " ");
-
-			s = Regex.Replace(s, "<.*?>", " ").Substring(0, 400);
-
-			var p = s.LastIndexOf(". "); 
-			if (p < 100) p = s.LastIndexOf(" ");
-			if (p < 100) p = 300;
-			s = s.Substring(0, p) + "...";
-
-			if (Txt.Contains("<img") && UsePreviewImage)
+			try
 			{
-				s = $"<img src='/ArticleImage.ashx?a={Id}&n=1&th=1'>" + s;
-			}
+				var s = Txt.Substring(Txt.IndexOf("<p>"));
 
-			SummaryText = s;
+				s = s.Replace("&nbsp;", " ");
+				while (s.Contains("  ")) s = s.Replace("  ", " ");
+
+				s = Regex.Replace(s, "<.*?>", " ").Substring(0, 400);
+
+				var p = s.LastIndexOf(". ");
+				if (p < 100) p = s.LastIndexOf(" ");
+				if (p < 100) p = 300;
+				s = s.Substring(0, p) + "...";
+
+				if (Txt.Contains("<img") && UsePreviewImage)
+				{
+					s = $"<img src='/ArticleImage.ashx?a={Id}&n=1&th=1'>" + s;
+				}
+
+				SummaryText = s;
+			}
+			catch {}
 		}
 
         public void ReadFromDb(SqlDataReader rdr)

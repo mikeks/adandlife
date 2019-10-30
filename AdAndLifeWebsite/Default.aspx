@@ -5,7 +5,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentArea" runat="server">
-<h1>Реклама и Жизнь</h1>
+<h1>Реклама&nbsp;и&nbsp;Жизнь</h1>
 <p>
     Приветствуем Вас на сайте газет <strong>«Реклама и Жизнь»</strong> и <strong>«Еврейская Жизнь»</strong>. Тут вы найдете 
     <a href="/classified.aspx">рекламные объявления</a>, <a href="/articles.aspx">статьи</a> и многое другое.

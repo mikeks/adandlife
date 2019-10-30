@@ -6,9 +6,10 @@
     <title><%= PageTitle %></title>
     <meta name="Description" content="<%= "" + MetaDescription %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="main.css?3" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet" />
     <meta property="fb:app_id" content="1519165781479119"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/adandlife.js"></script>
 	<script data-ad-client="ca-pub-5804490264485436" async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <asp:ContentPlaceHolder ID="Head" runat="server">
     </asp:ContentPlaceHolder>
@@ -21,25 +22,49 @@
   ga('create', 'UA-105084554-1', 'auto');
   ga('send', 'pageview');
 
-  function setState() {
-      if (document.getElementById('selState').selectedIndex == <%= IsBaltimore ? 0 : 1 %>) {
-          location.href = "<%= IsBaltimore ? CurrentUrlInPA : CurrentUrlInBaltimore %>";
-      }
+<%--function setState() {
+	if (document.getElementById('selState').selectedIndex == <%= IsBaltimore ? 0 : 1 %>) {
+	location.href = "<%= IsBaltimore ? CurrentUrlInPA : CurrentUrlInBaltimore %>";
 	}
-  function openPopup(u) {
-		var ww = window.innerWidth || document.documentElement.clientWidth;
-		if (ww < 760) location = u; else open(u, '_blank', 'width=600,height=400,resizable=1,top=' + Math.max(0, screen.height / 2 - 300) + ',left=' + Math.max(0, screen.width / 2 - 200))
-  }
-  function shareFb(s) {openPopup('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(s))}
+}--%>
+
 </script>
 </head>
-<body>
+<body ontouchstart="">
 	<% if (HttpContext.Current.IsDebuggingEnabled) { %>
-	<div style="background-color:#b1e0f0;text-align:center;padding:10px;width:200px;float:right"><%= Environment.MachineName %></div>
+<%--	<div style="background-color:#b1e0f0;text-align:center;padding:10px;width:200px;float:right"><%= Environment.MachineName %></div>--%>
 	<% } %>
 	<% if (AdAndLifeWebsite.Classes.Utility.USE_TEST_PAYPAL) { %>
 	<div style="background-color:#b1e0f0;text-align:center;padding:10px;width:200px;float:right">TEST PAYPAL</div>
 	<% } %>
+		<div class="mobile-logos">
+			<img class="m-logo" width="250" height="50" src="/Img/logo_adal.png" />
+			<img class="m-logo m-logo-eg" width="250" height="50" src="/Img/logo_eg.png" />
+
+			<div class="topnav">
+			  <div id="topMenu" style="display: none">
+				<a href="<%= CurrentUrlInPA %>"<%= IsBaltimore ? "" : " class='selected-menu'" %>>Philadelphia &amp; New Jersey</a>
+				<a href="<%= CurrentUrlInBaltimore %>"<%= IsBaltimore ? "class='selected-menu'" : "" %>>Baltimore &amp; Washington, D.C.</a>
+				  <hr />
+				<a href="/"<%= _isSelMob("default.aspx") %>>Главная</a>
+				<a href="/classified.aspx"<%= _isSelMob("classified.aspx") %>>Объявления</a>
+				<a href="/articles.aspx"<%= _isSelMob("articles.aspx") %>>Статьи</a>
+				<a href="/archive.aspx"<%= _isSelMob("archive.aspx") %>>Архив</a>
+				<a href="/contacts.aspx"<%= _isSelMob("contacts.aspx") %>>Контакты</a>
+			  </div>
+			  <a id="hambMenuButton" href="#" class="icon">
+				<div></div>
+				<div></div>
+				<div></div>
+			  </a>
+			  
+			</div>
+
+			<script>
+
+			</script>
+
+		</div>
         <div class="left-panel">
             <div class="logo-holder">
                 <img class="logo" width="250" src="/Img/logo_adal.png" />
@@ -47,30 +72,13 @@
             <div class="logo-holder">
                 <img class="logo" width="250" src="/Img/logo_eg.png" />
             </div>
-
-
-
         </div>
         <div class="main-area">
 
             <img src="/Img/bg_city.png" class="bg-city" />
             <img src="/Img/bg_newspaper.png" class="bg-newspaper" />
 
-            <select id="selState" class="mobile-state" onchange="setState()">
-                <option>
-                    Philadelphia & New Jersey
-                </option>
-                <option <%= IsBaltimore ? "selected" : "" %>>
-                    Baltimore & Washington, D.C.
-                </option>
-            </select>
-
             <div class="cities-list">
-<%--                Your location: 
-                <select>
-                    <option>Philadelphia & New Jersey</option>
-                    <option>Baltimore & Washington, DC</option>
-                </select>--%>
                 <%if (IsBaltimore)
                     { %>
                 <a href="<%= CurrentUrlInPA %>" class="off-city">Philadelphia</a>
@@ -91,7 +99,7 @@
                 215-354-0844
             </div>
             <div class="address">
-                Vc.inc@aol.com
+                <a href="mailto:vc.inc@aol.com">Vc.inc@aol.com</a>
             </div>
             <div class="address">
                 1051 County Line Rd., Unit 112, Huntingdon Valley, PA 19006 
@@ -107,19 +115,14 @@
                     <a href="/classified.aspx" class="menu-item-text<%= _isSel("classified.aspx") %>">Объявления</a>
                 </div>
                 <div class="menu-item">
-                    <a href="/archive.aspx" class="menu-item-text<%= _isSel("archive.aspx") %>">Архив</a>
+                    <a href="/articles.aspx" class="menu-item-text<%= _isSel("articles.aspx") %>">Статьи</a>
                 </div>
                 <div class="menu-item">
                     <a href="/contacts.aspx" class="menu-item-text<%= _isSel("contacts.aspx") %>">Контакты</a>
                 </div>
                 <div class="menu-item">
-                    <a href="/articles.aspx" class="menu-item-text<%= _isSel("articles.aspx") %>">Статьи</a>
+                    <a href="/archive.aspx" class="menu-item-text<%= _isSel("archive.aspx") %>">Архив</a>
                 </div>
-                <%if (AdAndLifeWebsite.Models.Tickets.SaleEvent.AllForSale.Count() > 0)
-					{ %>
-                <div class="menu-item" style="background-color: #a53692;">
-                    <a href="/tickets.aspx" class="menu-item-text<%= _isSel("tickets.aspx") %>">Билеты</a>
-                </div><% } %>
             </div>
 
 			<%if (!HideBanners) { %>

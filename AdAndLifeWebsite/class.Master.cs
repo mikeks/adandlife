@@ -38,17 +38,25 @@ namespace AdAndLifeWebsite
         {
         }
 
-        //bool _isAnySel = false;
 
         protected string _isSel(string url)
         {
             if (Request.Url.LocalPath.ToLowerInvariant().Contains(url.ToLowerInvariant()))
             {
-                //_isAnySel = true;
                 return "-sel";
             }
             return "";
         }
 
-    }
+		protected string _isSelMob(string url)
+		{
+			if (Request.Url.LocalPath.ToLowerInvariant().Contains(url.ToLowerInvariant()))
+			{
+				return " class='selected'";
+			}
+			return "";
+		}
+
+
+	}
 }

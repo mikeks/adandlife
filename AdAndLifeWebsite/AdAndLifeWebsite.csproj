@@ -96,7 +96,10 @@
     <Content Include="checkTicket.aspx" />
     <Content Include="Controls\HallMaps\HallMapArchWood.ascx" />
     <Content Include="Controls\HallMaps\HallMapKleinLife.ascx" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\main.css" />
     <Content Include="favicon.ico" />
+    <Content Include="js\jquery.min.js" />
     <Content Include="js\tickets.js" />
     <Content Include="Listener\readLog.aspx" />
     <Content Include="new\classified-paid.aspx" />

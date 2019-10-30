@@ -34,7 +34,7 @@
         </div>
 
     <div class="classified-note">
-        Показаны объявления в <%= AdAndLifeWebsite.Classes.Utility.IsBaltimore ? "Baltimore & Washington, DC" : "Philadelphia и New Jersey" %>. Переключить штат можно в верхней части сайта.
+        Показаны объявления в <%= AdAndLifeWebsite.Classes.Utility.IsBaltimore ? "Baltimore & Washington, DC" : "Philadelphia и New Jersey" %>. Переключить штат можно в меню.
     </div>
 
         <div class="classified-ad-container">

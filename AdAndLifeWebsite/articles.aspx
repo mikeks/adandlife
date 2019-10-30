@@ -4,10 +4,29 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentArea" runat="server">
-	
-	
-	
-	<nav class="rubric-list">
+
+	<div class="rubric-menu">
+		<div class="rubric-menu-title">
+			<%= RubricMenuTitle %> <i class="arrow-down"></i>
+		</div>
+		<div class="rubric-list">
+			<% if (Rubric != null)	{ %>
+				<a href="/articles.aspx">Все рубрики</a>
+  			    <hr />
+			<% } %>
+			<%foreach (var r in Rubrics) { %>
+				<a href="?rubricId=<%= r.Id %>"><%= r.Name %></a>
+			<% } %>
+<%--			<hr />
+			<a href="#">По номерам газет</a>--%>
+		</div>
+	</div>
+
+
+	<h1 class="articles"><%= HeaderTitle %></h1>
+
+
+<%--	<nav class="rubric-list">
 		<ul>
 			<asp:Repeater runat="server" ID="RepRubric">
 				<ItemTemplate>
@@ -15,7 +34,7 @@
 				</ItemTemplate>
 			</asp:Repeater>
 		</ul>
-	</nav>
+	</nav>--%>
 	
 	<%--<h1><%= Rubric == null ? "Статьи" : Rubric.Name %></h1>--%>
     <ul class="article-list"> 
@@ -23,9 +42,8 @@
             <ItemTemplate>
                 <li>
 					<div class="article-cat">
-						<%# Eval("Rubric") %> |
-						<%# Eval("IssueNumberAndYear") %>
-						<%# Eval("Author") %>
+						<a href="?rubricId=<%# Eval("Rubric.Id") %>"><%# Eval("Rubric") %></a> 
+						<%# Eval("ArticleInfo") %>
 					</div>
 					<a class="article-link" href="/article.aspx?id=<%# Eval("Id") %>">
 						<%# Eval("Name") %>
