@@ -87,8 +87,6 @@
     <Content Include="archive.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="bin\Facebook.dll" />
-    <Content Include="Controls\HallMaps\HallMapArchWood.ascx" />
-    <Content Include="Controls\HallMaps\HallMapKleinLife.ascx" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\main.css" />
     <Content Include="favicon.ico" />
@@ -234,9 +232,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="ArticleImages\" />
-    <Folder Include="FacebookInteraction\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>

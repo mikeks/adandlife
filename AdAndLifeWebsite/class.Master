@@ -48,9 +48,9 @@
 				  <hr />
 				<a href="/"<%= _isSelMob("default.aspx") %>>Главная</a>
 				<a href="/classified.aspx"<%= _isSelMob("classified.aspx") %>>Объявления</a>
-				<a href="/archive.aspx"<%= _isSelMob("archive.aspx") %>>Архив</a>
 				<a href="/about.aspx"<%= _isSelMob("about.aspx") %>>О газете</a>
 				<a href="/contacts.aspx"<%= _isSelMob("contacts.aspx") %>>Контакты</a>
+				<a href="/archive.aspx"<%= _isSelMob("archive.aspx") %>>Архив</a>
 			  </div>
 			  <a id="hambMenuButton" href="#" class="icon">
 				<div></div>

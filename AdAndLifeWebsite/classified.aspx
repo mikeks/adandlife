@@ -17,12 +17,24 @@
     }(document, 'script', 'facebook-jssdk'));</script>--%>
 
 
+	<div class="top-nav" style="visibility: hidden">
 
-		<div class="rubric-menu" style="visibility: hidden">
-			<div class="rubric-menu-title">
+		<div class="dropdown-menu font-size">
+			<div class="dropdown-menu-title">
+				<span class="font-t1">A</span><span class="font-t2">A</span><i class="arrow-down"></i>
+			</div>
+			<div class="dropdown-list font-change">
+				<a class="font-a1" data-size="16" href="#">А</a>
+				<a class="font-a2" data-size="18" href="#">А</a>
+				<a class="font-a3" data-size="20" href="#">А</a>
+			</div>
+		</div>
+
+		<div class="dropdown-menu">
+			<div class="dropdown-menu-title">
 				<%= RubricMenuTitle %> <i class="arrow-down"></i>
 			</div>
-			<div class="rubric-list">
+			<div class="dropdown-list">
 				<% if (Rubric != null)	{ %>
 					<a href="/classified.aspx">Все рубрики</a>
   					<hr />
@@ -32,6 +44,7 @@
 				<% } %>
 			</div>
 		</div>
+	</div>
 
 		<div class="search-cont" style="visibility: hidden">
 			<div class="search-icon">

@@ -31,6 +31,8 @@ namespace AdAndLifeWebsite.Models.Classified
 		{
 			Id = (int)rdr["Id"];
 			Name = (string)rdr["Name"];
+			if (Name == "Спрос и предложение труда") Name = "Работа";
+			if (Name == "Business Opportunities") Name = "Бизнес";
 			SortOrder = (byte)rdr["Sort"];
             ImageFilename = (string)rdr["ImageFilename"];
         }

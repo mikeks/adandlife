@@ -21,6 +21,7 @@ namespace AdAndLifeWebsite
 		protected int PageNumber;
 		protected int TotalPages;
 		private int RubricId;
+		protected bool IsMainPage = true;
 
 		protected void Page_Init(object sender, EventArgs e)
 		{
@@ -41,7 +42,7 @@ namespace AdAndLifeWebsite
 			RubricId = 0;
 			int.TryParse(Request["rubric"], out RubricId);
 
-			HeaderTitle = Utility.IsBaltimore ? "Балтимор" : "Филадельфия";
+			HeaderTitle = "Реклама и Жизнь - " + (Utility.IsBaltimore ? "Балтимор" : "Филадельфия");
 			RubricMenuTitle = "Все рубрики";
 
 			var allArticles = WebsiteArticle.All;
@@ -51,9 +52,10 @@ namespace AdAndLifeWebsite
 				Rubric = ArticleRubric.GetById(RubricId);
 				if (Rubric != null)
 				{
-					Articles = Articles.Where((x) => x.Rubric != null && x.Rubric.Id == RubricId);
+					Articles = allArticles.Where((x) => x.Rubric != null && x.Rubric.Id == RubricId);
 					HeaderTitle = Rubric.Name;
 					RubricMenuTitle = Rubric.Name;
+					IsMainPage = false;
 				}
 			} else
 			{

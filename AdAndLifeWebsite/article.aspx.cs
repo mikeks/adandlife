@@ -28,13 +28,15 @@ namespace AdAndLifeWebsite
                 Article = WebsiteArticle.GetById(aId);
                 CanonicalUrl = "http://adandlife.com/article.aspx?id=" + aId.ToString();
 
-				(Master as MainMaster).PageTitle = Article.Name + " - Реклама и Жизнь";
-				(Master as MainMaster).MetaDescription = "Реклама и Жизнь: " + Article.Name;
+				
+
+				(Master as MainMaster).PageTitle = Article.Name;
+				(Master as MainMaster).MetaDescription = Article.Name;
 
 			}
 			catch (Exception)
             {
-                Response.Redirect("/articles.aspx", true);
+                Response.Redirect("/", true);
             }
 
 

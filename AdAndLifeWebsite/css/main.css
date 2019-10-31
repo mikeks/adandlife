@@ -21,8 +21,7 @@ button {
     border-radius: 3px;
     margin: 10px;
     padding: 10px;
-    font-size: 16px;
-    font-family: Arial;
+    font-size: 1rem;
     background-color: #eee;
     color: #333;
     display: inline-block;
@@ -750,71 +749,54 @@ section.contacts {
 
 
 /*Articles*/
-/*nav.rubric-list {
-	border: solid 1px #576979;
-	border-width: 1px 0 1px 0;
-	margin: 0 0 15px 0;
-}
 
-nav.rubric-list a {
-	color: #0e4779;
-	font-family: sans-serif;
-	white-space: nowrap;
-	padding: 0 22px 0 0;
-	text-decoration: none;
-	text-transform: uppercase;
-	font: bold 16px 'PT Sans', sans-serif;
-}
 
-nav.rubric-list li {
-	display: block;
-	color: black;
-}
-
-nav.rubric-list ul {
-	list-style: none;
-	display: flex;
-	margin: 5px 0 4px 0;
-	padding: 0;
-}
-
-nav.rubric-list li.selected a {
-	color: #ea3d5e;
-}*/
-
-.rubric-menu {
+.top-nav {
 	right: 9px;
 	position: absolute;
 	margin-top: 4px;
-	background: #0c8290;
-	padding: 5px 12px;
-	color: #ffffff;
-	letter-spacing: 1px;
 	z-index: 100;
-	cursor: pointer;
+}
+
+.top-nav.art {
+	top: 59px;
+	right: 3px;
+	margin-top: 0;
 }
 
 
-.rubric-list {
+.dropdown-menu {
+	background: #0c8290;
+	padding: 5px 12px 1px;
+	color: #ffffff;
+	letter-spacing: 1px;
+	cursor: pointer;
+	float: left;
+	margin-right: 5px;
+	font-size: 16px;
+}
+
+
+.dropdown-list {
 	padding-top: 3px;
 	max-height: 0;
 	transition: max-height 0.3s linear;
 	overflow: hidden;
 }
 
-.rubric-menu:hover .rubric-list, .rubric-menu:active .rubric-list, .rubric-menu:focus .rubric-list  {
+.dropdown-menu:hover .dropdown-list, .dropdown-menu:active .dropdown-list, .dropdown-menu:focus .dropdown-list {
 	max-height: 500px;
 }
 
 
-.rubric-list a {
+.dropdown-list a {
 	display: block;
 	color: white;
 	text-decoration: none;
 	margin: 8px 0;
 }
 
-.rubric-menu .arrow-down {
+.arrow-down {
 	border: solid white;
 	border-width: 0 3px 3px 0;
 	display: inline-block;
@@ -846,13 +828,9 @@ nav.rubric-list li.selected a {
 }
 
 @media only screen and (max-width: 600px) {
-	h1.main span {
-		display: none;
-	}
 	h1.main {
-		font-size: 19px;
-		padding-top: 8px;
-		padding-bottom: 12px;
+		visibility: hidden;
+		height: 44px;
 	}
 }
 
@@ -866,11 +844,11 @@ nav.rubric-list li.selected a {
 a.article-link {
 	text-decoration: none;
 	color: black;
-	font-size: large;
+	font-size: 1.2rem;
 }
 
 .article-cat {
-	font-size: medium;
+	font-size: 0.9rem;
 	position: relative;
 	color: #0c8290;
 }
@@ -884,7 +862,7 @@ a.article-link {
 }
 
 .art-summary {
-	font-size: small;
+	font-size: 0.9rem;
 	color: #444;
 	border: dotted 1px gray;
 	max-width: 800px;
@@ -942,7 +920,7 @@ section.article h2 {
 /* Classified on homepage */
 
 .classified-hp {
-	font-size: small;
+	font-size: 0.9rem;
 	color: #444;
 	border: dotted 1px gray;
 	max-width: 800px;
@@ -977,10 +955,9 @@ section.article h2 {
 }
 
 .search-icon {
-	height: 31px;
+	height: 27px;
 	background: #0c8290;
-	width: 31px;
-	border-radius: 8px;
+	width: 28px;
 }
 
 .search-icon svg {
@@ -1077,8 +1054,7 @@ section.article h2 {
 }
 
 /*Pager*/
-
-.pager a.current {
+	.pager a.current {
 	background: #0c8290;
 	color: white;
 }
@@ -1097,4 +1073,41 @@ section.article h2 {
 .pager span {
 	font-size: 16px;
 	color: #222;
+}
+
+/* Breadcrumps */
+.breadcrumps a {
+	text-decoration: none;
+}
+
+.breadcrumps a:hover {
+	text-decoration: underline;
+}
+
+
+.breadcrumps {
+	font-size: 15px;
+	position: relative;
+	color: #27656d;
+	margin-top: 7px;
+}
+
+.font-t1 {
+	font-size: 9px;
+}
+
+.font-t2 {
+	font-size: 16px;
+}
+
+.font-a1 {
+	font-size: 12px;
+}
+
+.font-a2 {
+	font-size: 16px;
+}
+
+.font-a3 {
+	font-size: 22px;
 }
