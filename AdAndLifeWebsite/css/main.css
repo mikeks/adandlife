@@ -26,12 +26,12 @@ button {
     background-color: #eee;
     color: #333;
     display: inline-block;
+	width: 94%;
 }
 
+
 .classified-ad.premium {
-    color: #fefefe;
-    font-weight: bold;
-    background: #0c8290;
+	background-color: #e5f7ef;
 }
 
 .classifiedRubric {
@@ -128,27 +128,6 @@ button {
     /*max-width: 1250px;*/
 }
 
-.search-bar { 
-    font-weight: bold;
-    width: 300px;
-    font-size: large;
-    border: solid 2px #b1e0f0;
-    border-radius: 5px 0 0 5px;
-    padding: 6px;
-    margin-left: 10px;
-}
-
-.search-button {
-    font-size: large;
-    height: 37px;
-    padding: 0 10px;
-    border: solid 2px #b1e0f0;
-    border-radius: 0 5px 5px 0;
-    margin: 0;
-    position: relative;
-    left: -1px;
-    cursor: pointer;
-}
 
 .bg-city {
     height: 148px;
@@ -334,19 +313,13 @@ button {
 		height: 50px;
 	}
 
-	.search-bar {
-		width: 94%;
-		margin-left: 0;
-		border-radius: 5px;
-	}
+
+
     .coontent-area {
         margin-left: 0;
 		margin-top: 0;
     }
-    .new-classified-ad {
-        float: right;
-        font-size: 12px;
-    }
+
     .ad-rubric, .ad-rubric-sel {
         width: 95%;
         margin: 3px 0px;
@@ -501,18 +474,15 @@ strong {
     color: #333;
 }
 
-.new-classified-ad {
-    font-family: Arial;
-    color: #0c8290;
-}
+
 
 a {
      color: #0c8290;
 }
-.classified-ad.premium a {
+/*.classified-ad.premium a {
     color: white;
     font-weight: normal;
-}
+}*/
 
 a.off-city {
     background: white;
@@ -867,7 +837,7 @@ nav.rubric-list li.selected a {
 
 .article-list li {
 	text-decoration: none;
-	margin-bottom: 15px;
+	margin-bottom: 7px;
 	clear: both;
 	break-inside: avoid-column;
 	page-break-inside: avoid;
@@ -875,16 +845,20 @@ nav.rubric-list li.selected a {
 	display: table;
 }
 
-h1.articles {
-	visibility: hidden;
+@media only screen and (max-width: 600px) {
+	h1.main span {
+		display: none;
+	}
+	h1.main {
+		font-size: 19px;
+		padding-top: 8px;
+		padding-bottom: 12px;
+	}
 }
 
 @media only screen and (min-width: 600px) {
 	.article-list {
 		columns: 2;
-	}
-	h1.articles {
-		visibility: visible;
 	}
 }
 
@@ -892,12 +866,12 @@ h1.articles {
 a.article-link {
 	text-decoration: none;
 	color: black;
+	font-size: large;
 }
 
 .article-cat {
-	font-size: small;
+	font-size: medium;
 	position: relative;
-	/* top: 2px; */
 	color: #0c8290;
 }
 
@@ -911,7 +885,7 @@ a.article-link {
 
 .art-summary {
 	font-size: small;
-	color: gray;
+	color: #444;
 	border: dotted 1px gray;
 	max-width: 800px;
 	border-width: 0 0 1px 0;
@@ -948,10 +922,10 @@ a.article-link {
 	max-width: 100%;
 }
 
-	.article-image-box img {
-		max-width: 100%;
-		height: auto;
-	}
+.article-image-box img {
+	max-width: 100%;
+	height: auto;
+}
 
 
 
@@ -965,3 +939,162 @@ section.article h2 {
 	margin-top: 40px;
 }
 
+/* Classified on homepage */
+
+.classified-hp {
+	font-size: small;
+	color: #444;
+	border: dotted 1px gray;
+	max-width: 800px;
+	border-width: 0 0 1px 0;
+	padding-bottom: 10px;
+	margin-top: 5px;
+	overflow: auto;
+}
+
+.class-hp-cat {
+	font-size: medium;
+	position: relative;
+	color: #0c8290;
+	margin-bottom: 3px;
+}
+
+.class-hp-cat a {
+	text-decoration: none;
+}
+
+.class-hp-cat a:hover {
+	text-decoration: underline;
+}
+
+
+/* Search bar in Classified */
+
+.search-cont {
+	height: 35px;
+	padding-top: 4px;
+	padding-left: 0;
+}
+
+.search-icon {
+	height: 31px;
+	background: #0c8290;
+	width: 31px;
+	border-radius: 8px;
+}
+
+.search-icon svg {
+	width: 22px;
+	height: 22px;
+	margin-top: 4px;
+	margin-left: 4px;
+	fill: white;
+}
+
+.share-button {
+	position: relative;
+	top: 1px;
+	left: 2px;
+}
+
+.search-cancel {
+	font-size: 22px;
+	position: relative;
+	top: -11px;
+	right: -4px;
+	color: #0c8290;
+	display: none;
+}
+
+.search-bar {
+	font-weight: bold;
+	width: 300px;
+	font-size: large;
+	border: solid 2px #b1e0f0;
+	border-radius: 5px 0 0 5px;
+	padding: 6px;
+	margin-left: 10px;
+}
+
+.search-button {
+	font-size: large;
+	height: 37px;
+	padding: 0 10px;
+	border: solid 2px #b1e0f0;
+	border-radius: 0 5px 5px 0;
+	margin: 0;
+	position: relative;
+	left: -1px;
+	cursor: pointer;
+}
+
+
+.new-classified-ad {
+	font-family: Arial;
+	color: #0c8290;
+}
+
+.new-classified-ad.mob {
+	display: block;
+	font-size: 12px;
+	text-align: right;
+}
+
+.new-classified-ad.desk {
+	font-size: 15px;
+	margin-left: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+	.search-bar {
+		width: calc(100% - 40px);
+		margin-left: 0;
+		border-radius: 5px;
+		position: relative;
+		top: -15px;
+		font-size: small;
+		display: none;
+	}
+	.new-classified-ad.desk {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 600px) {
+	.search-icon {
+		display: none;
+	}
+	.new-classified-ad.mob {
+		display: none;
+	}
+}
+
+.no-classified-ads-found {
+	text-align: center;
+	margin-top: 50px;
+	color: gray;
+}
+
+/*Pager*/
+
+.pager a.current {
+	background: #0c8290;
+	color: white;
+}
+
+.pager a {
+	display: inline-block;
+	text-decoration: none;
+	margin-bottom: 5px;
+	padding: 1px 4px;
+}
+
+.pager {
+	margin: 20px 0;
+}
+
+.pager span {
+	font-size: 16px;
+	color: #222;
+}

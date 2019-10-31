@@ -81,42 +81,23 @@
     <Content Include="Admin\admin.css" />
     <Content Include="Admin\Banners.aspx" />
     <Content Include="Admin\EditBanner.aspx" />
-    <Content Include="Admin\Money.aspx" />
-    <Content Include="Admin\ResendTicket.aspx" />
-    <Content Include="Admin\ViewTickets.aspx" />
-    <Content Include="Admin\EditEvent.aspx" />
-    <Content Include="Admin\EditTickets.aspx" />
-    <Content Include="Admin\Tickets.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Login.aspx" />
+    <Content Include="ads.txt" />
     <Content Include="archive.aspx" />
-    <Content Include="articles.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="bin\Facebook.dll" />
-    <Content Include="checkTicketLogin.aspx" />
-    <Content Include="checkTicket.aspx" />
     <Content Include="Controls\HallMaps\HallMapArchWood.ascx" />
     <Content Include="Controls\HallMaps\HallMapKleinLife.ascx" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\main.css" />
     <Content Include="favicon.ico" />
     <Content Include="js\jquery.min.js" />
-    <Content Include="js\tickets.js" />
-    <Content Include="Listener\readLog.aspx" />
-    <Content Include="new\classified-paid.aspx" />
-    <Content Include="new\classified-free.aspx" />
-    <Content Include="new\classified.aspx" />
     <Content Include="js\adandlife.js" />
-    <Content Include="txt-feed.aspx" />
-    <Content Include="rss.aspx" />
-    <Content Include="ticketBuyRequest.aspx" />
-    <Content Include="myTicket.aspx" />
-    <Content Include="ticketReturn.aspx" />
-    <Content Include="ticketSoldout.aspx" />
-    <Content Include="ticket.aspx" />
+    <Content Include="robots.txt" />
     <Content Include="contacts.aspx" />
     <Content Include="Img\newspaper_adandlife.png" />
     <Content Include="Img\newspaper_jewish.png" />
-    <Content Include="tickets.aspx" />
     <Content Include="classified.aspx" />
     <Content Include="Img\logo_adal.png" />
     <Content Include="Img\logo_eg.png" />
@@ -128,7 +109,6 @@
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="class.Master" />
     <Content Include="Admin\admin.Master" />
-    <Content Include="Listener\hook5763.ashx" />
     <Content Include="ArticleImage.ashx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -140,13 +120,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="article.aspx" />
-    <Content Include="Default.aspx" />
+    <Content Include="About.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="main.css" />
     <Content Include="obj\Debug\AdAndLifeWebsite.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\AdAndLifeWebsite.dll" />
     <Content Include="obj\Debug\AdAndLifeWebsite.pdb" />
-    <Content Include="tinymce\tinymce.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -165,48 +143,6 @@
     </Compile>
     <Compile Include="Admin\EditBanner.aspx.designer.cs">
       <DependentUpon>EditBanner.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Money.aspx.cs">
-      <DependentUpon>Money.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Money.aspx.designer.cs">
-      <DependentUpon>Money.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ResendTicket.aspx.cs">
-      <DependentUpon>ResendTicket.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ResendTicket.aspx.designer.cs">
-      <DependentUpon>ResendTicket.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ViewTickets.aspx.cs">
-      <DependentUpon>ViewTickets.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ViewTickets.aspx.designer.cs">
-      <DependentUpon>ViewTickets.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\EditEvent.aspx.cs">
-      <DependentUpon>EditEvent.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\EditEvent.aspx.designer.cs">
-      <DependentUpon>EditEvent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\EditTickets.aspx.cs">
-      <DependentUpon>EditTickets.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\EditTickets.aspx.designer.cs">
-      <DependentUpon>EditTickets.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Tickets.aspx.cs">
-      <DependentUpon>Tickets.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Tickets.aspx.designer.cs">
-      <DependentUpon>Tickets.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\admin.Master.cs">
       <DependentUpon>admin.Master</DependentUpon>
@@ -232,108 +168,20 @@
     <Compile Include="ArticleImage.ashx.cs">
       <DependentUpon>ArticleImage.ashx</DependentUpon>
     </Compile>
-    <Compile Include="articles.aspx.cs">
-      <DependentUpon>articles.aspx</DependentUpon>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="articles.aspx.designer.cs">
-      <DependentUpon>articles.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="checkTicketLogin.aspx.cs">
-      <DependentUpon>checkTicketLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="checkTicketLogin.aspx.designer.cs">
-      <DependentUpon>checkTicketLogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="checkTicket.aspx.cs">
-      <DependentUpon>checkTicket.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="checkTicket.aspx.designer.cs">
-      <DependentUpon>checkTicket.aspx</DependentUpon>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\Extensions.cs" />
-    <Compile Include="Listener\hook5763.ashx.cs">
-      <DependentUpon>hook5763.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Listener\readLog.aspx.cs">
-      <DependentUpon>readLog.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Listener\readLog.aspx.designer.cs">
-      <DependentUpon>readLog.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Admin\MikeMoney.cs" />
     <Compile Include="Models\Articles\Entities\ArticleRubric.cs" />
     <Compile Include="Models\Classified\ClassifiedMoney.cs" />
     <Compile Include="Models\Classified\ClassifiedAd.cs" />
     <Compile Include="Models\Classified\ClassifiedRubric.cs" />
     <Compile Include="Models\SiteBanner.cs" />
-    <Compile Include="Models\Tickets\Ticket.cs" />
-    <Compile Include="Models\Tickets\SellingTransaction.cs" />
-    <Compile Include="Models\Tickets\EventLocation.cs" />
-    <Compile Include="Models\Tickets\TicketType.cs" />
-    <Compile Include="new\classified-paid.aspx.cs">
-      <DependentUpon>classified-paid.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="new\classified-paid.aspx.designer.cs">
-      <DependentUpon>classified-paid.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="new\classified-free.aspx.designer.cs">
-      <DependentUpon>classified-free.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="new\classified.aspx.cs">
-      <DependentUpon>classified.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="new\classified.aspx.designer.cs">
-      <DependentUpon>classified.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="txt-feed.aspx.cs">
-      <DependentUpon>txt-feed.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="txt-feed.aspx.designer.cs">
-      <DependentUpon>txt-feed.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="rss.aspx.cs">
-      <DependentUpon>rss.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="rss.aspx.designer.cs">
-      <DependentUpon>rss.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ticketBuyRequest.aspx.cs">
-      <DependentUpon>ticketBuyRequest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ticketBuyRequest.aspx.designer.cs">
-      <DependentUpon>ticketBuyRequest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="myTicket.aspx.cs">
-      <DependentUpon>myTicket.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="myTicket.aspx.designer.cs">
-      <DependentUpon>myTicket.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ticketReturn.aspx.cs">
-      <DependentUpon>ticketReturn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ticketReturn.aspx.designer.cs">
-      <DependentUpon>ticketReturn.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ticketSoldout.aspx.cs">
-      <DependentUpon>ticketSoldout.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ticket.aspx.cs">
-      <DependentUpon>ticket.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="article.aspx.cs">
       <DependentUpon>article.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -354,16 +202,8 @@
     <Compile Include="contacts.aspx.designer.cs">
       <DependentUpon>contacts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Tickets\SaleEvent.cs" />
     <Compile Include="Models\Articles\Entities\WebsiteNewspaper.cs" />
     <Compile Include="Models\SiteUser.cs" />
-    <Compile Include="tickets.aspx.cs">
-      <DependentUpon>tickets.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tickets.aspx.designer.cs">
-      <DependentUpon>tickets.aspx</DependentUpon>
-    </Compile>
     <Compile Include="class.Master.cs">
       <DependentUpon>class.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -378,8 +218,8 @@
     <Compile Include="classified.aspx.designer.cs">
       <DependentUpon>classified.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">

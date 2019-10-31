@@ -17,7 +17,7 @@
 		<% Response.Write(Article.Txt); %>
 	</section>
 
-	<button onclick="shareFb(location.href)">Share on Facebook</button>
+	<button onclick="shareFb(location.href);return false">Share on Facebook</button>
 
     <h2>Ваши комментарии</h2>
     <div class="fb-comments" data-href="<%= CanonicalUrl  %>" data-numposts="5"></div>

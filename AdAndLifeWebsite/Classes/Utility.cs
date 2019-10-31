@@ -28,8 +28,8 @@ namespace AdAndLifeWebsite.Classes
             return ResizeImage(image, width, height);
         }
 
-        public static string PayPalServer => ConfigurationManager.AppSettings["PayPalServer"];
-        public static string PayPalButtonCode => ConfigurationManager.AppSettings["PayPalButtonCode"];
+        //public static string PayPalServer => ConfigurationManager.AppSettings["PayPalServer"];
+        //public static string PayPalButtonCode => ConfigurationManager.AppSettings["PayPalButtonCode"];
 
         public static Bitmap ResizeImage(Image image, int width, int height)
         {

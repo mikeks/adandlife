@@ -48,8 +48,8 @@
 				  <hr />
 				<a href="/"<%= _isSelMob("default.aspx") %>>Главная</a>
 				<a href="/classified.aspx"<%= _isSelMob("classified.aspx") %>>Объявления</a>
-				<a href="/articles.aspx"<%= _isSelMob("articles.aspx") %>>Статьи</a>
 				<a href="/archive.aspx"<%= _isSelMob("archive.aspx") %>>Архив</a>
+				<a href="/about.aspx"<%= _isSelMob("about.aspx") %>>О газете</a>
 				<a href="/contacts.aspx"<%= _isSelMob("contacts.aspx") %>>Контакты</a>
 			  </div>
 			  <a id="hambMenuButton" href="#" class="icon">
@@ -115,7 +115,7 @@
                     <a href="/classified.aspx" class="menu-item-text<%= _isSel("classified.aspx") %>">Объявления</a>
                 </div>
                 <div class="menu-item">
-                    <a href="/articles.aspx" class="menu-item-text<%= _isSel("articles.aspx") %>">Статьи</a>
+                    <a href="/about.aspx" class="menu-item-text<%= _isSel("about.aspx") %>">О газете</a>
                 </div>
                 <div class="menu-item">
                     <a href="/contacts.aspx" class="menu-item-text<%= _isSel("contacts.aspx") %>">Контакты</a>
@@ -133,11 +133,6 @@
 			</div>
 			<% } %>
 
-<%--				<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20-fullscreen.jpg"><img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20.jpg" /></a>
-				<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43-fullscreen.jpg"><img class="banner" src="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43.jpg" /></a>
-				<img class="banner" src="/ArticleImages/banners/1-4_C_Truck Mike_3469_17_P34.jpg" />
-				<img class="banner" src="/ArticleImages/banners/2bc_C_Carvell Home Care_7555_Calendar2015.jpg" />
-				<img class="banner" src="/ArticleImages/banners/2bc_C_Vita Care_Calendar 2017.jpg" />--%>
 
             <div class="coontent-area" <%= NoWidthLimit? "style='max-width:99999px'" : "" %>>
                 <form id="form1" runat="server">

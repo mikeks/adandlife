@@ -12,9 +12,12 @@ namespace AdAndLifeWebsite
     public partial class ClassifiedPage : System.Web.UI.Page
     {
 
-        protected int CurrentRubricId = 0;
         protected string CanonicalUrl = "http://adandlife.com/classified.aspx";
         protected string OgTitle = "Classified";
+		protected string RubricMenuTitle;
+		protected ClassifiedRubric Rubric;
+		protected IEnumerable<ClassifiedRubric> Rubrics;
+		protected IEnumerable<ClassifiedAd> Ads;
 
 		protected void Page_Init(object sender, EventArgs e)
 		{
@@ -27,56 +30,44 @@ namespace AdAndLifeWebsite
 
             //ClassifiedAd.ReloadAllFromDb();
 
-            int adId = 0;
+            int adId;
+			int.TryParse(Request["ad"], out adId);
 
-            try
+			int rubricId;
+			int.TryParse(Request["rubric"], out rubricId);
+
+			RubricMenuTitle = "Все рубрики";
+
+
+			int state = Utility.IsBaltimore ? ClassifiedAd.BALTIMORE : ClassifiedAd.PA;
+            Ads = ClassifiedAd.All[state];
+			Rubrics = ClassifiedRubric.All[state].Where((x) => x.Ads.Count > 0);
+
+			if (adId > 0)
             {
-                CurrentRubricId = int.Parse(Request["rubric"]);
-            }
-            catch { }
-
-            try
-            {
-                if (Request["ad"] != null) adId = int.Parse(Request["ad"]);
-            }
-            catch { }
-
-            int state = Utility.IsBaltimore ? ClassifiedAd.BALTIMORE : ClassifiedAd.PA;
-
-            IEnumerable<ClassifiedAd> ads = ClassifiedAd.All[state];
-
-            if (adId > 0)
-            {
-                ClassifiedRepeater.DataSource = ads.Where((x) => x.Id == adId);
-
-                var ad = ads.FirstOrDefault((x) => x.Id == adId);
+                Ads = Ads.Where((x) => x.Id == adId);
+				var ad = Ads.FirstOrDefault();
                 if (ad != null)
                 {
                     CanonicalUrl += "?ad=" + adId.ToString();
                     OgTitle = ad.Text;
                 }
+            } else if (!string.IsNullOrEmpty(SearchBar.Value))
+			{
+				Ads = Ads.Where((c) => c.Text.ToLower().Contains(SearchBar.Value.ToLower()));
+			}
+			else if (rubricId != 0)
+			{
+				Rubric = Rubrics.FirstOrDefault((x) => x.Id == rubricId);
+				if (Rubric != null)
+				{
+					Ads = Ads.Where((c) => c.Rubric.Id == rubricId);
+					RubricMenuTitle = Rubric.Name;
+				}
+			}
 
-            } else
-            {
-                if (CurrentRubricId != 0)
-                {
-                    ads = ads.Where((c) => c.Rubric.Id == CurrentRubricId);
-                }
-
-                if (!string.IsNullOrEmpty(SearchBar.Value))
-                {
-                    ads = ads.Where((c) => c.Text.ToLower().Contains(SearchBar.Value.ToLower()));
-                }
-
-                ClassifiedRepeater.DataSource = ads.OrderBy((x) => x.IsPromoting ? 0 : 1);
-            }
-
-            ClassifiedRepeater.DataBind();
-
-
-
-            RubricRepeater.DataSource = ClassifiedRubric.All[state].Where((x) => x.Ads.Count > 0);
-            RubricRepeater.DataBind();
+			ClassifiedRepeater.DataSource = Ads.OrderBy((x) => x.IsPromoting ? 0 : 1);
+			ClassifiedRepeater.DataBind();
 
         }
     }

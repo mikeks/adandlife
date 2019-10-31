@@ -22,15 +22,6 @@ namespace AdAndLifeWebsite {
         protected global::System.Web.UI.HtmlControls.HtmlInputText SearchBar;
         
         /// <summary>
-        /// RubricRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RubricRepeater;
-        
-        /// <summary>
         /// ClassifiedRepeater control.
         /// </summary>
         /// <remarks>

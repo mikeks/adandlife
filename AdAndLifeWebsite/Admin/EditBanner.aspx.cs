@@ -1,14 +1,6 @@
 ﻿using AdAndLifeWebsite.Models;
-using AdAndLifeWebsite.Models.Admin;
-using AdAndLifeWebsite.Models.Articles.Entities;
-using AdAndLifeWebsite.Models.Tickets;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AdAndLifeWebsite.Admin

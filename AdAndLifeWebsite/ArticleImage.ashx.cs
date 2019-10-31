@@ -64,8 +64,6 @@ namespace AdAndLifeWebsite
 
 			context.Response.OutputStream.Write(data, 0, data.Length);
 
-
-
 			context.Response.End();
 
 		}

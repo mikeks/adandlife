@@ -14,14 +14,6 @@
         <li>
             <a href="/archive.aspx">Выпуски газет</a>
         </li>
-        <li>
-            <a href="ArticleList.aspx">Статьи</a>
-        </li>
-		<% } %>
-		<%if (SiteUser.CheckAccess("tickets")) { %>
-        <li>
-            <a href="Tickets.aspx">Билеты</a>
-        </li>
 		<% } %>
 		<%if (SiteUser.CheckAccess("banners")) { %>
         <li>

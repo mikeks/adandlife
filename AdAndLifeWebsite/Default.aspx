@@ -1,59 +1,73 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/class.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="AdAndLifeWebsite.HomePage" %>
-<%@ Import Namespace="AdAndLifeWebsite.Models" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/class.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="AdAndLifeWebsite.DefaultPage" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
 </asp:Content>
 
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentArea" runat="server">
-<h1>Реклама&nbsp;и&nbsp;Жизнь</h1>
-<p>
-    Приветствуем Вас на сайте газет <strong>«Реклама и Жизнь»</strong> и <strong>«Еврейская Жизнь»</strong>. Тут вы найдете 
-    <a href="/classified.aspx">рекламные объявления</a>, <a href="/articles.aspx">статьи</a> и многое другое.
-</p>
-<p>
-    Газеты <strong>«Реклама и Жизнь»</strong> и <strong>«Еврейская жизнь»</strong> выходят в свет почти 20 лет!
-    Издатель – <strong>Виталий Рахман</strong>, поэт, художник и профессиональный дизайнер. Газеты пользуются 
-    заслуженным вниманием читателей и распространяются в Greater Philadelphia, NJ, Baltimore, Washington DC и VA.
-</p>
-<p>
-    С компанией успешно сотрудничают <strong>ведущие прозаики</strong>, <strong>журналисты</strong> и <strong>поэты</strong> русского Зарубежья. 
-    Широко освещаются культурные и политические новости в мире, и особенно подробно - США, Израиля и России. 
-    Особое внимание уделяется местным новостям, в том числе непосредственным событиям, происходящим внутри общины. 
-</p>
-<p>
-    В газетах публикуются рекламы известнейших в общине врачей, юристов, социальных и детских учреждений, компаний, 
-    распространяющих товары и услуги для населения, популярных агентств по продаже автомашин, ресторанов, аптек, спортивных клубов и целый ряд других бизнесов.
-</p>
-<p>
-    Только в течение одной недели в секции <a href="/classified.aspx">Classified</a> указанных изданий публикуется несколько сотен различных объявлений, 
-    в том числе предложений по трудоустройству на работу, Real Estate услуг, занятиях, о покупке и продаже, туризме, широком спектре услуг для населения и
-    многих других.
-</p>
-<p>
-    Для <strong>рекламодателей</strong>, размещающих рекламу в газетах, установлены гибкие системы цен и скидок.
-</p>
-    <div class="p">
-        На сайте доступны электронные версии газет в разделе <a href="/archive.aspx">архив</a>: 
-        <ul>
-            <li>
-                Последний выпуск газеты "Реклама и Жизнь" в Филадельфии и New Jersey <a target="_blank" href="<%= lastPhila.Url%>">номер <%= lastPhila.Number %></a>.
-            </li>
-            <li>
-                Последний выпуск газеты "Реклама и Жизнь" в Baltimore и Washington, D.C. <a target="_blank" href="<%= lastBalt.Url%>">номер <%= lastBalt.Number %></a>.
-            </li>
-            <li>
-                Последний выпуск газеты "Еврейская Жизнь" <a target="_blank" href="<%= lastJL.Url%>">номер <%= lastJL.Number %></a>.
-            </li>
-        </ul>
-    </div>
 
-	<%foreach (var bnr in SiteBanner.BannersForHomepage) { %>
-		<a target="_blank" href="/ArticleImages/banners/<%= bnr.FullscreenFilename %>"><img class="bannerBottom" src="ArticleImages/banners/<%= bnr.HomepageFilename %>" /></a>
+	<div class="rubric-menu">
+		<div class="rubric-menu-title">
+			<%= RubricMenuTitle %> <i class="arrow-down"></i>
+		</div>
+		<div class="rubric-list">
+			<% if (Rubric != null)	{ %>
+				<a href="/">Все рубрики</a>
+  			    <hr />
+			<% } %>
+			<%foreach (var r in Rubrics) { %>
+				<a href="?rubric=<%= r.Id %>"><%= r.Name %></a>
+			<% } %>
+		</div>
+	</div>
+
+
+	<h1 class="main"><span>Реклама и Жизнь - </span> <%= HeaderTitle %></h1>
+
+	
+    <ul class="article-list"> 
+		<%
+			var i = 0;
+			foreach (var art in Articles) { %>
+
+                <li>
+					<div class="article-cat">
+						<a href="?rubricId=<%= art.Rubric.Id %>"><%= art.Rubric %></a> 
+						<%= art.ArticleInfo %>
+					</div>
+					<a class="article-link" href="/article.aspx?id=<%= art.Id %>">
+						<%= art.Name %>
+						<div class="art-summary">
+							<%= art.SummaryText %> 
+						</div>
+					</a>
+                </li> 
+				
+			<%
+				if (Ads.Count > 0 && i++ % 2 == 0)
+				{
+					var ad = Ads[0];
+					Ads.RemoveAt(0);
+					%>
+
+					<li class="classified-hp">
+						<div class="class-hp-cat">
+							<a href="/classified.aspx?rubric=<%= ad.Rubric.Id %>"><%= ad.Rubric %></a> 
+						</div>
+						<%= ad.Text %>
+					</li>
+			<% } %>
+
+		<% } %>
+
+    </ul>
+
+	<% if (TotalPages > 1)	{ %>
+	<div class="pager">
+		<span>Страницы: </span>
+		<% for (var p = 1; p < TotalPages; p++) { %>
+			<a href="<%= GetPageLink(p) %>" <%= p == PageNumber ? "class='current'" : "" %>><%= p %></a>
+		<% } %>
+	</div>
 	<% } %>
-
-<%--<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20-fullscreen.jpg"><img class="bannerBottom" src="ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_JL20-homepage.jpg" /></a>
-<a target="_blank" href="/ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43-fullscreen.jpg"><img class="bannerBottom" src="ArticleImages/banners/1-2_C_Clinical Trial Center_1700_17_P43-homepage.jpg" /></a>
-	<br />
-<img class="bannerBottom" src="ArticleImages/banners/4bc_C_Trucking Co_5343_17_P36.jpg" />--%>
 
 </asp:Content>

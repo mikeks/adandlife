@@ -17,35 +17,58 @@
     }(document, 'script', 'facebook-jssdk'));</script>--%>
 
 
-        <div>
-            <input class="search-bar" type="text" name="txtFirstName" id="SearchBar" placeholder="Поиск" runat="server" />
-            <asp:Button class="search-button" Text="Поиск" runat="server" />
-            <a class="new-classified-ad" href="/contacts.aspx?msgTopic=%D0%9D%D0%BE%D0%B2%D0%BE%D0%B5+%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5">
-                Дать объявление
-            </a>
-        </div>
 
-        <div>
-            <asp:Repeater runat="server" ID="RubricRepeater">
-                <ItemTemplate>
-                    <a class="ad-rubric<%# (int)Eval("Id") == CurrentRubricId ? "-sel" : "" %>" href="?rubric=<%# Eval("Id") %>"><%# Eval("Name") %></a>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
+		<div class="rubric-menu" style="visibility: hidden">
+			<div class="rubric-menu-title">
+				<%= RubricMenuTitle %> <i class="arrow-down"></i>
+			</div>
+			<div class="rubric-list">
+				<% if (Rubric != null)	{ %>
+					<a href="/classified.aspx">Все рубрики</a>
+  					<hr />
+				<% } %>
+				<%foreach (var r in Rubrics) { %>
+					<a href="?rubric=<%= r.Id %>"><%= r.Name %></a>
+				<% } %>
+			</div>
+		</div>
 
-    <div class="classified-note">
+		<div class="search-cont" style="visibility: hidden">
+			<div class="search-icon">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve"><g><path d="M968.2,849.4L667.3,549c83.9-136.5,66.7-317.4-51.7-435.6C477.1-25,252.5-25,113.9,113.4c-138.5,138.3-138.5,362.6,0,501C219.2,730.1,413.2,743,547.6,666.5l301.9,301.4c43.6,43.6,76.9,14.9,104.2-12.4C981,928.3,1011.8,893,968.2,849.4z M524.5,522c-88.9,88.7-233,88.7-321.8,0c-88.9-88.7-88.9-232.6,0-321.3c88.9-88.7,233-88.7,321.8,0C613.4,289.4,613.4,433.3,524.5,522z"/></g></svg>
+			</div>
+            <input class="search-bar" type="text" name="txtFirstName" id="SearchBar" placeholder="Поиск" runat="server" /><asp:Button class="search-button" Text="Поиск" runat="server" />
+			<span class="search-cancel">×</span>
+			<a class="new-classified-ad desk" href="/contacts.aspx?msgTopic=%D0%9D%D0%BE%D0%B2%D0%BE%D0%B5+%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5">Дать объявление</a>
+
+		</div>
+
+        <a class="new-classified-ad mob" href="/contacts.aspx?msgTopic=%D0%9D%D0%BE%D0%B2%D0%BE%D0%B5+%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5">
+            Дать объявление
+        </a>
+
+
+	
+<%--    <div class="classified-note">
         Показаны объявления в <%= AdAndLifeWebsite.Classes.Utility.IsBaltimore ? "Baltimore & Washington, DC" : "Philadelphia и New Jersey" %>. Переключить штат можно в меню.
-    </div>
+    </div>--%>
 
         <div class="classified-ad-container">
             <asp:Repeater runat="server" ID="ClassifiedRepeater">
                 <ItemTemplate>
                     <div class="classified-ad<%# (bool)Eval("IsPromoting") ? " premium" : "" %>">
                     <%# Eval("Text") %>
-                    <a href="#" onclick="shareFb('http://adandlife.com/classified.aspx?ad=<%# Eval("Id") %>');return false;">Поделитесь этим объявлением на Facebook</a>
+                    <a href="#" class="share-button" onclick="shareFb('http://adandlife.com/classified.aspx?ad=<%# Eval("Id") %>');return false;">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1000" width="14" height="14" enable-background="new 0 0 1000 1000" xml:space="preserve"><g><path d="M464.1,161.2H180.6c-39.6,0-75-2.8-75,37.3v567.6c0,40.1,32.1,72.6,71.7,72.6H751c39.6,0,71.7-32.5,71.7-72.6V621h95.6v242c0,40.1-32.1,72.6-71.7,72.6H81.7C42.1,935.6,10,903.1,10,863V137c0-40.1,32.1-72.6,71.7-72.6h382.4V161.2z"/><path d="M193.2,635.4c0,0,28.8-384.2,489.6-380.9V64.4L990,350.9L682.8,637.4V448.7C682.8,448.7,391.6,398.8,193.2,635.4z"/></g></svg>
+                    </a>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
 
+		<% if (Ads.Count() == 0) { %>
+		<div class="no-classified-ads-found">
+			Поиск не дал результатов
+		</div>
+		<% } %>
 </asp:Content>
