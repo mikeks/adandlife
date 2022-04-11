@@ -42,7 +42,7 @@
 		<tr>
 			<th>Название баннера</th>
 			<th>Позиция в правой колонке</th>
-			<th>Позиция на главной</th>
+			<%--<th>Позиция на главной</th>--%>
 			<th>Цена</th>
 			<th>Дата снятия</th>
 			<th>Операции</th>
@@ -52,7 +52,7 @@
 				<tr <%# IsBannerActive(Container.DataItem) ? "class='vis'": "class='hid'" %>>
 					<td><%# Eval("Name") %></td>
 					<td><%# PosToStr(Eval("PositionRight")) %></td>
-					<td><%# PosToStr(Eval("PositionHomepage")) %></td>
+					<%--<td><%# PosToStr(Eval("PositionHomepage")) %></td>--%>
 					<td><%# Eval("Price") %></td>
 					<td><%# ((DateTime)Eval("EndDate")).ToShortDateString() %></td>
 					<td>

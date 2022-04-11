@@ -30,7 +30,7 @@ namespace AdAndLifeWebsite.Admin
 
 			if (!IsPostBack)
 			{
-				FillPostionDD(ddPositionHomepage);
+				//FillPostionDD(ddPositionHomepage);
 				FillPostionDD(ddPositionRight);
 			}
 
@@ -89,7 +89,7 @@ namespace AdAndLifeWebsite.Admin
 					return;
 				}
 
-				Banner.PositionHomepage = int.Parse(ddPositionHomepage.SelectedValue);
+				Banner.PositionHomepage = 0; // int.Parse(ddPositionHomepage.SelectedValue);
 				Banner.PositionRight = int.Parse(ddPositionRight.SelectedValue);
 
 				if (FileUpload1.HasFiles)
@@ -120,7 +120,7 @@ namespace AdAndLifeWebsite.Admin
 			BannerName.Text = Banner.Name;
 
 			ddPositionRight.SelectedIndex = Banner.PositionRight;
-			ddPositionHomepage.SelectedIndex = Banner.PositionHomepage;
+			//ddPositionHomepage.SelectedIndex = Banner.PositionHomepage;
 
 			if (Banner.EndDate != DateTime.MinValue) BannerEndDate.Text = Banner.EndDate.ToString("yyyy-MM-dd");
 			BannerPrice.Text = Banner.Price.ToString("0.##");

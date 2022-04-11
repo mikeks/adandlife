@@ -141,9 +141,9 @@
                 <asp:ContentPlaceHolder ID="ContentAreaNoForm" runat="server" />
             </div>
 
-			<%if (!HideBanners) foreach (var bnr in SiteBanner.BannersForRightColumn) { %>
+<%--			<%if (!HideBanners) foreach (var bnr in SiteBanner.BannersForRightColumn) { %>
 				<a class="banner_mob" target="_blank" href="/ArticleImages/banners/<%= bnr.FullscreenFilename %>"><img class="bannerBottom" src="ArticleImages/banners/<%= bnr.RightColumnFilename %>" /></a>
-			<% } %>
+			<% } %>--%>
 
         </div>
 </body>

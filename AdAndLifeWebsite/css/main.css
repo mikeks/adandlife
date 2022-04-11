@@ -1,4 +1,7 @@
-﻿body {
+﻿html {
+	min-width: 400px
+}
+body {
 	font-family: sans-serif;
 }
 
@@ -124,7 +127,7 @@ button {
 .coontent-area {
     margin-top: 15px;
     margin-left: 14px;
-    /*max-width: 1250px;*/
+    max-width: 1250px;
 }
 
 
@@ -269,8 +272,14 @@ button {
 }
 
 
-@media only screen and (max-width: 1000px) {
-    .archive-block {
+@media only screen and (max-width: 700px) {
+	.archive-cont {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 1270px) {
+	.archive-block {
         width: 113px;
     }
     .archive-title {
@@ -335,9 +344,7 @@ button {
     .banner {
         display: none;
     }
-    .classified-ad-container {
-        column-count: 1!important;
-    }
+
 	h1 {
 		margin-top: 0;
 	}
@@ -347,17 +354,39 @@ button {
     column-count: 2;
 }
 
+@media only screen and (max-width: 800px) {
+	.classified-ad-container {
+		column-count: 1 !important;
+	}
+}
+
+@media only screen and (max-width: 550px) {
+	.classified-ad-container {
+		width: 100%;
+	}
+}
+
+
 .bannerView {
 	float: right;
-	max-width: 300px;
-	margin-top: 20px;
-	width: 30%;
+	margin-top: 70px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+}
+
+.bannerView a {
+	display: block;
 }
 
 .bannerBottom {
 	max-width: 100%;
 }
 
+@media only screen and (max-width: 400px) {
+	.bannerView, .bannerBottom {
+		width: 100%;
+	}
+}
 
 .banner_mob {
     display: none;
@@ -758,6 +787,13 @@ section.contacts {
 	z-index: 100;
 }
 
+@media only screen and (max-width: 400px) {
+	.top-nav {
+		right: auto;
+		left: 10px;
+	}
+}
+
 .top-nav.art {
 	top: 59px;
 	right: 3px;
@@ -814,8 +850,9 @@ section.contacts {
 	margin: 0;
 	font-family: sans-serif;
 	padding-left: 0;
-	width: 100%;
-}
+	columns: 1;
+/*	width: 100%;
+*/}
 
 .article-list li {
 	text-decoration: none;
@@ -834,13 +871,17 @@ section.contacts {
 	}
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 840px) {
 	.article-list {
 		columns: 2;
 	}
 }
 
-
+@media only screen and (max-width: 560px) {
+	.article-list {
+		width: 100%;
+	}
+}
 a.article-link {
 	text-decoration: none;
 	color: black;
