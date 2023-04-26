@@ -6,17 +6,6 @@
     <meta property="og:image" content="http://adandlife.com/Img/aal_fb.jpg"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentArea" runat="server">
-
-<%--    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.10&appId=1519165781479119";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>--%>
-
-
 	<div class="top-nav" style="visibility: hidden">
 
 		<div class="dropdown-menu font-size">
@@ -52,13 +41,11 @@
 			</div>
             <input class="search-bar" type="text" name="txtFirstName" id="SearchBar" placeholder="Поиск" runat="server" /><asp:Button class="search-button" Text="Поиск" runat="server" />
 			<span class="search-cancel">×</span>
-			<a class="new-classified-ad desk" href="/contacts.aspx?msgTopic=%D0%9D%D0%BE%D0%B2%D0%BE%D0%B5+%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5">Дать объявление</a>
-
 		</div>
 
-        <a class="new-classified-ad mob" href="/contacts.aspx?msgTopic=%D0%9D%D0%BE%D0%B2%D0%BE%D0%B5+%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5">
-            Дать объявление
-        </a>
+		<div class="new-ad">
+			Чтобы дать своё объявление, звоните по телефону <div class="pn">215-354-0844</div>
+		</div>
 
 
 	

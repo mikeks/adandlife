@@ -1152,3 +1152,27 @@ section.article h2 {
 .font-a3 {
 	font-size: 22px;
 }
+
+.new-ad {
+	border: solid 1px #b1e0f0;
+	border-radius: 3px;
+	padding: 10px;
+	font-size: 1rem;
+	background-color: #d3e7ff;
+	color: #333;
+	margin-right: 3px;
+	margin-top: 14px;
+	text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+	.new-ad {
+		margin-left: 10px;
+	}
+}
+
+.new-ad > .pn {
+	font-weight: bold;
+	margin-top: 6px;
+}
+
