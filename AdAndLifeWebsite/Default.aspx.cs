@@ -32,7 +32,7 @@ namespace AdAndLifeWebsite
 		protected string GetPageLink(int page)
 		{
 			if (RubricId == 0) return $"/?page={page}";
-			return $"/rubric={RubricId}&page={page}";
+			return $"/?rubric={RubricId}&page={page}";
 		}
 
 		protected void Page_Load(object sender, EventArgs e)

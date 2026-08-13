@@ -82,7 +82,6 @@
     <Content Include="ads.txt" />
     <Content Include="archive.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="bin\Facebook.dll" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\main.css" />
     <Content Include="favicon.ico" />
@@ -226,6 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ArticleImages\" />
+    <Folder Include="bin\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
@@ -243,7 +243,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58062</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://adandlife.com</IISUrl>
+          <IISUrl>http://dev.adandlife.com</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

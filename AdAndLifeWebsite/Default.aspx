@@ -43,7 +43,7 @@
 
                 <li>
 					<div class="article-cat">
-						<a href="?rubricId=<%= art.Rubric.Id %>"><%= art.Rubric %></a> 
+						<a href="?rubric=<%= art.Rubric.Id %>"><%= art.Rubric %></a> 
 						<%= art.ArticleInfo %>
 					</div>
 					<a class="article-link" href="/article.aspx?id=<%= art.Id %>">
